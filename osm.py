@@ -64,7 +64,7 @@ for icc, uri in osm_uris.items():
         C.log(f"Downloading OSM extract for {icc}")
         full_pbf = outdir / f"full-{icc}.osm.pbf"
         url = "https://download.geofabrik.de/europe/"
-        url += f"{uri}-{snapshot_str[2:]}.osm.pbf"
+        url += f"{uri}-{snapshot_str}.osm.pbf"
         resp = requests.get(url, stream=True)
         resp.raise_for_status()
         with open(full_pbf, "wb") as f:

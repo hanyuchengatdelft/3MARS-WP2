@@ -288,10 +288,10 @@ These zip files are renamed to `man-{feed_name}.zip` ("man" for "manual") to dis
 
 | Feed name | Region/operator with data URL <br>(⬇︎: direct download)</br> | Preparation note |
 |---|---|---|
-| ❌ ATC | Romanian rail: [CFR Călători](https://www.cfrcalatori.ro/), Astra Trans Carpatic and CFM | Multi-agency GTFS archive |
+| ATC | [Romanian rail timetable data](https://data.gov.ro/organization/sc-informatica-feroviara-sa) | Official operator XML datasets, including CFR Călători, Astra Trans Carpatic and CFM; convert to GTFS with the [Romanian Railways GTFS exporter](https://github.com/vasile/data.gov.ro-gtfs-exporter) |
 | BDZ | [Bulgarian state railways](https://sipbg.gov.bg/bgnap/portal/en/catalog/710c84db-9f73-46b2-9731-d0df793a6133) | GTFS API export |
 | Elron | ⬇︎ [Estonian rail: Elron](https://eu-gtfs.remix.com/elron.zip) | Operator GTFS archive |
-| ❌ Estonia | ⬇︎ [Estonia bus-rail](https://s3.transitpdf.com/files/uran/improved-gtfs-maanteeamet.zip) | Aggregated national archive; link expired as of 2026-09-05 |
+| Estonia | [Estonian public transport](https://peatus.ee/content/Veebilehest%20ja%20%C3%BChistranspordi%20avaandmetest) | The former national archive has been replaced by separate regional and operator feeds; combine the required bus feeds with the Elron feed listed above |
 | EuroStar | [EuroStar high-speed rail](https://transport.data.gouv.fr/datasets/eurostar-gtfs-plan-de-transport-et-temps-reel) | Multi-agency GTFS archive |
 | Finland | ⬇︎ [Finland full feed](https://mobility.mobility-database.fintraffic.fi/en) | National GTFS archive |
 | Latvia | ⬇︎ [Latvia rail (Vivi)](https://vivi.lv/uploads/GTFS.zip) | Operator GTFS archive |
@@ -302,11 +302,11 @@ These zip files are renamed to `man-{feed_name}.zip` ("man" for "manual") to dis
 | PKPIntercity | ⬇︎ [Poland intercity rail](https://mkuran.pl/gtfs/pkpic.zip) | Operator GTFS archive |
 | Poland-rail | ⬇︎ [Poland rail](https://mkuran.pl/gtfs/polish_trains.zip) | Operator GTFS archive |
 | SBB | [Swiss rail: SBB](https://data.opentransportdata.swiss/dataset/timetable-2026-gtfs2020) | National timetable archive |
-| ☑️ SNCB | [Belgian rail: NMBS/SNCB](https://transportdata.be/dataset/sncb-gfts-scheduled-timetable-and-real-time-data) | Operator GTFS archive |
+| SNCB | ⬇︎ [Belgian rail: NMBS/SNCB](https://opendata-discovery-gtfs-static.api.production.belgianmobility.io/api/gtfs/feed/nmbssncb/static) | Official static GTFS from the [Belgian Mobility open-data portal](https://data.belgianmobility.io/en/knowledge-base.html) |
 | SNCF | [French rail: SNCF](https://transport.data.gouv.fr/resources/67595) | Operator GTFS archive |
-| ❌ Slovakia | [Slovakia rail](https://data.europa.eu/data/datasets/ca4cb74c-7192-4198-b074-34acd9d295e7) | National rail GTFS archive; link expired as of 2026-09-05 |
+| Slovakia | [Slovakia rail](https://data.slovensko.sk/datasety/ebeeedf1-aca2-451a-bdc0-35d536714888) | Official national rail GTFS catalogue record published by ŽSR |
 | Slovenia | ⬇︎ [Slovenia bus](https://podatki.gov.si/dataset/a87483b0-a055-488c-a854-1c4a8d079a35/resource/cc6c38a8-2424-41ae-9b43-f760c09d13b7/download/20170405gtfs.zip) | National bus GTFS archive |
-| ❌ TrainOSE | ⬇︎ [Greek rail: Hellenic Train](https://s3.transitpdf.com/files/uran/improved-gtfs-trainose.zip) | Archive has 2019 service dates and requires currency review; link expired as of 2026-09-05 |
+| TrainOSE | ⬇︎ [Greek rail: Hellenic Train](https://jbb.ghsq.de/gtfs/gr-hellenic-train.gtfs.zip) | Current community conversion of official timetable data; not an operator-published GTFS, so preserve and validate the acquired archive |
 | Trenitalia | [Italian rail: Trenitalia](https://www.cciss.it/nap/mmtis/public/en/catalog/Dataset/1077621) | NeTEx converted to GTFS; station names and coordinates matched to the [Trainline station database](https://github.com/trainline-eu/stations) |
 | UK_rail | [British rail](https://raildata.org.uk/dataProduct/P-04b05b6e-c14d-4a53-ba34-76ee7c48cc72/overview) | ATOC timetable converted with [UK2GTFS](https://github.com/ITSLeeds/UK2GTFS) |
 
@@ -337,8 +337,8 @@ Study-defining parameters are stored in [params.yml](params.yml). Values in the 
 | `STATION_BUFFER_RADIUS` | 400 | metres | Radius for associating nearby stops with a station when recovering local services |
 | `MAX_STN_OSM_OFFSET` | 5,000 | metres | Maximum station-to-network snapping distance for OSM routing |
 | `AIRPORT_CATCH_RADIUS` | 150 | kilometres | Maximum distance between an airport and an associated FUA centre |
-| `CRS_EU` | EPSG:3035 | ETRS89-LAEA Europe | Metric spatial processing, including buffers, lengths and population centres |
-| `CRS_DEG` | EPSG:4326 | WGS 84 | Stored GeoParquet geometries and longitude/latitude coordinates |
+<!-- | `CRS_EU` | EPSG:3035 | ETRS89-LAEA Europe | Metric spatial processing, including buffers, lengths and population centres |
+| `CRS_DEG` | EPSG:4326 | WGS 84 | Stored GeoParquet geometries and longitude/latitude coordinates | -->
 
 <!-- Parameters reserved for pathset construction and subsequent assignment work are listed below to distinguish planned modelling choices from the present network-generation assumptions.
 
