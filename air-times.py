@@ -38,7 +38,7 @@ if sched is None:
         sched[col] = np.int16((sched[col] // 100) * 60 + (sched[col] % 100))
     sched = sched.drop_duplicates(ignore_index=True)
     C.save(sched, "air-timetable")
-sched.view();
+sched#.view();
 
 #%% Airport codes & locations
 airports = (
@@ -52,7 +52,7 @@ airports = (
     .merge(sched[["src", "trg"]]
            .melt(value_name="iata")
            ["iata"].drop_duplicates(), on="iata")
-).view()
+)#.view()
 
 #%% Map to urban areas
 fua_centroids = (
@@ -61,7 +61,7 @@ fua_centroids = (
     .set_axis(["fua", "geometry"], axis=1)
     .pipe(gpd.GeoDataFrame, crs=C.CRS_DEG)
     .to_crs(C.CRS_EU)
-).view()
+)#.view()
 
 airports2 = airports.merge(
     airports.set_index("iata")
@@ -73,7 +73,7 @@ airports2 = airports.merge(
     .groupby("iata")
     ["fua"].agg(list),
     on="iata"
-).view()
+)#.view()
 airports2["name"] = airports2["name"].str.replace(" Airport", "")
 
 C.save(airports2, "airports")
@@ -98,23 +98,57 @@ days["nflights"] = days.apply(lambda r:
     .day_of_week.isin(r["op_days"]).sum(), axis=1
 )
 days = days[["row", "nflights"]].explode("row").astype({"row": int})
-tt = tt.merge(days, on="row").set_index("row").view(1)
+tt = tt.merge(days, on="row").set_index("row")#.view(1)
+
+#%% Airlines/carriers
+carriers = dict(
+    A3 = "Aegean Airlines",
+    AF = "Air France",
+    AY = "Finnair",
+    AZ = "ITA Airways",
+    BA = "British Airways",
+    BT = "airBaltic",
+    DY = "Norwegian Air Shuttle",
+    EW = "Eurowings",
+    FI = "Icelandair",
+    FR = "Ryanair",
+    HV = "Transavia",
+    IB = "Iberia",
+    KL = "KLM Royal Dutch Airlines",
+    KM = "Air Malta",
+    LG = "Luxair",
+    LH = "Lufthansa",
+    LO = "LOT Polish Airlines",
+    LS = "Jet2.com",
+    LX = "Swiss International Air Lines",
+    OS = "Austrian Airlines",
+    OU = "Croatia Airlines",
+    QS = "Smartwings",
+    RO = "TAROM",
+    SK = "SAS Scandinavian Airlines",
+    SN = "Brussels Airlines",
+    TO = "Transavia France",
+    TP = "TAP Air Portugal",
+    U2 = "EasyJet",
+    V7 = "Volotea",
+    W6 = "Wizz Air",
+)
 
 #%% Travel time & frequency by carrier
-od_tt = (
+links = (
     tt.assign(time=(tt["arr"] - tt["dep"]) * tt["nflights"])
     .groupby(["carrier", "src", "trg"], observed=True)
     .agg({"time": "sum", "nflights": "sum",
           "start_date": "min", "end_date": "max"})
     .reset_index()
 )
-od_tt["ndays"] = [len(pd.date_range(*x)) for x in zip(
-    od_tt["start_date"], od_tt["end_date"])]
-od_tt["time"] /= od_tt["nflights"]
-od_tt["freq"] = od_tt["nflights"] / od_tt["ndays"]
-od_tt = od_tt[["src", "trg", "carrier", "time", "freq",
-               "nflights", "ndays"]].view()
+links["carrier"] = links["carrier"].map(carriers).astype("category")
+links["ndays"] = [len(pd.date_range(*x)) for x in zip(
+    links["start_date"], links["end_date"])]
+links["time"] /= links["nflights"]
+links["freq"] = links["nflights"] / links["ndays"]
+links = links[["src", "trg", "carrier", "time", "freq",
+               "nflights", "ndays"]]
+links = links.dropna()#.view()
 
-C.save(od_tt, "air-links")
-
-#%%
+C.save(links, "air-links")

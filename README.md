@@ -47,12 +47,12 @@ It is a directed multigraph connecting major cities (FUAs) and their transport h
 It is illustrated in the figure below:
 ![3MG Schematic|1000](3MG-schematic.png)
 
-It consists of two types of nodes (currently in [**m3-nodes.csv**](m3-nodes.csv)):
+It consists of two types of nodes (currently in [**m3-nodes.csv**](nodes.csv)):
 
 - **Cities**: These serve as the demand producers and attractors. They are located by their population-weighted centroids over their boundary.
 - **Transport hubs**: These nodes serve as the supply providers for demand distribution. These consist of airports and public transport (PT) stations, i.e., bus and train stations, some of which have both bus and train connections ("intermodal stations").
 
-3MG has three types of links (currently in [**m3-links.csv**](m3-links.csv)):
+3MG has three types of links (currently in [**m3-links.csv**](links.csv)):
 
 - **Intercity**: They connect a transport hub of a city to a hub of another city by a unique travel mode and agency/operator (directed). Four modes are considered:
   - **Car** (driving between city centroids)
@@ -71,7 +71,21 @@ The following map shows the included countries, FUAs and intercity bus and rail 
 
 ## How to use
 
-### Create 3MG
+### Use the current 3MG snapshot
+```python
+import pandas as pd
+
+nodes = pd.read_csv("nodes.csv")
+edges = pd.read_csv("links.csv", dtype={"operator": str})
+
+assert nodes["node_id"].is_unique
+assert edges["src"].isin(nodes["node_id"]).all()
+assert edges["trg"].isin(nodes["node_id"]).all()
+assert edges["time"].ge(0).all()
+assert edges["src"].ne(edges["trg"]).all()
+```
+
+### Recreate 3MG
 
 1. Clone this repository to a clean local working directory.
 ```bash
@@ -126,10 +140,13 @@ env R_LIBS_USER=$R_LIB \
 
 5. Create an environment file (`env.yml`) and add your paths/credentials:
 ```bash
+dataDir="absolute/path/to/your/target/data/directory"
+mkdir -p $dataDir
+chmod -R u+rw $dataDir
 echo "
 # Main data directory for the project (must have read & write permissions)
 # (if left blank, it defaults to '{PWD}/data')
-DATA_DIR: absolute/path/to/your/target/data/directory
+DATA_DIR: $dataDir
 # MobilityDatabase API key (needed for GTFS catalogue and data download)
 MDB_API_KEY: personal_MDB_API_key
 # CartoDB API token (optional; mainly used for plotting basemap)

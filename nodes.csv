@@ -383,303 +383,303 @@ FUA_380,City,380,Århus,10.045144,56.16479
 FUA_381,City,381,Örebro,15.17946,59.251568
 FUA_382,City,382,Ústí nad Labem,13.923052,50.650074
 FUA_383,City,383,Łódź,19.468908,51.77311
-AP_KLU,Airport,KLU,Klagenfurt,14.3377,46.6425
-AP_VIE,Airport,VIE,Vienna International,16.5697,48.1103
-AP_LNZ,Airport,LNZ,Linz (Blue Danube),14.1875,48.2332
-AP_SZG,Airport,SZG,Salzburg,13.0043,47.7933
-AP_GRZ,Airport,GRZ,Graz,15.4396,46.9911
-AP_INN,Airport,INN,Innsbruck (Kranebitten),11.344,47.2602
-AP_ANR,Airport,ANR,Antwerp International,4.46028,51.1894
-AP_BRU,Airport,BRU,Brussels (Zaventem),4.48444,50.9014
-AP_CRL,Airport,CRL,Brussels South Charleroi,4.45382,50.4592
-AP_KJK,Airport,KJK,Kortrijk-Wevelgem International,3.20472,50.8172
-AP_OST,Airport,OST,Ostend-Bruges International,2.86222,51.1989
-AP_BOJ,Airport,BOJ,Burgas,27.5152,42.5696
-AP_PDV,Airport,PDV,Plovdiv,24.8508,42.0678
-AP_SOF,Airport,SOF,Sofia,23.4114,42.6967
-AP_VAR,Airport,VAR,Varna,27.8251,43.2321
-AP_BSL,Airport,BSL,EuroAirport Basel Mulhouse Freiburg,7.52916,47.59
-AP_BRN,Airport,BRN,Bern,7.49715,46.9141
-AP_GVA,Airport,GVA,Geneva,6.10895,46.2381
-AP_ZRH,Airport,ZRH,Zurich,8.54917,47.4647
-AP_JCL,Airport,JCL,Ceske Budejovice (Plana),14.4275,48.9464
-AP_BRQ,Airport,BRQ,Brno-Turany,16.6944,49.1513
-AP_KLV,Airport,KLV,Karlovy Vary,12.915,50.203
-AP_OSR,Airport,OSR,Leos Janacek,18.1111,49.6963
-AP_PED,Airport,PED,Pardubice,15.7386,50.0134
-AP_PRG,Airport,PRG,Vaclav Havel Prague,14.26,50.1008
-AP_FDH,Airport,FDH,Friedrichshafen (Bodensee),9.51149,47.6713
-AP_FKB,Airport,FKB,Karlsruhe/Baden-Baden,8.0805,48.7794
-AP_STR,Airport,STR,Stuttgart,9.22196,48.6899
-AP_FMM,Airport,FMM,Memmingen,10.2395,47.9888
-AP_MUC,Airport,MUC,Munich,11.7861,48.3538
-AP_NUE,Airport,NUE,Nuremberg,11.0781,49.4987
-AP_BER,Airport,BER,Berlin Brandenburg,13.4939,52.3514
-AP_BRE,Airport,BRE,Bremen,8.78667,53.0475
-AP_HAM,Airport,HAM,Hamburg,9.98823,53.6304
-AP_FRA,Airport,FRA,Frankfurt,8.57056,50.0333
-AP_KSF,Airport,KSF,Kassel,9.38497,51.4173
-AP_HDF,Airport,HDF,Heringsdorf,14.1523,53.8787
-AP_RLG,Airport,RLG,Rostock-Laage,12.2783,53.9182
-AP_BWE,Airport,BWE,Braunschweig-Wolfsburg,10.5561,52.3192
-AP_HAJ,Airport,HAJ,Hannover,9.68508,52.4611
-AP_CGN,Airport,CGN,Cologne Bonn,7.14274,50.8659
-AP_DTM,Airport,DTM,Dortmund,7.61224,51.5183
-AP_DUS,Airport,DUS,Dusseldorf,6.76678,51.2895
-AP_FMO,Airport,FMO,Munster Osnabruck International,7.68483,52.1346
-AP_GKE,Airport,GKE,NATO Air Base Geilenkirchen,6.04242,50.9608
-AP_NRN,Airport,NRN,Weeze (Niederrhein),6.14217,51.6024
-AP_PAD,Airport,PAD,Paderborn Lippstadt,8.61632,51.6141
-AP_HHN,Airport,HHN,Frankfurt-Hahn,7.26389,49.9487
-AP_SCN,Airport,SCN,Saarbrucken,7.10951,49.2146
-AP_DRS,Airport,DRS,Dresden,13.7672,51.1328
-AP_LEJ,Airport,LEJ,Leipzig/Halle,12.2364,51.4239
-AP_GWT,Airport,GWT,Sylt (Westerland),8.34047,54.9132
-AP_LBC,Airport,LBC,Lubeck,10.7192,53.8054
-AP_ERF,Airport,ERF,Erfurt-Weimar,10.9581,50.9798
-AP_CPH,Airport,CPH,Copenhagen,12.656,55.6179
-AP_RNN,Airport,RNN,Bornholm,14.7596,55.0633
-AP_AAR,Airport,AAR,Aarhus,10.619,56.3
-AP_KRP,Airport,KRP,Karup,9.12463,56.2975
-AP_AAL,Airport,AAL,Aalborg,9.84924,57.0928
-AP_BLL,Airport,BLL,Billund,9.15178,55.7403
-AP_SGD,Airport,SGD,Sonderborg,9.79173,54.9644
-AP_TLL,Airport,TLL,Tallinn (Lennart Meri Tallinn),24.8328,59.4133
-AP_EPU,Airport,EPU,Parnu,24.4728,58.419
-AP_AGP,Airport,AGP,Malaga,-4.49911,36.6749
-AP_GRX,Airport,GRX,Federico Garcia Lorca (Granada Jaen),-3.77736,37.1887
-AP_LEI,Airport,LEI,Almeria,-2.3701,36.8439
-AP_ODB,Airport,ODB,Cordoba,-4.84888,37.842
-AP_SVQ,Airport,SVQ,Seville,-5.89311,37.418
-AP_XRY,Airport,XRY,Jerez (La Parra),-6.06011,36.7446
-AP_ZAZ,Airport,ZAZ,Zaragoza,-1.04155,41.6662
-AP_OVD,Airport,OVD,Asturias (Oviedo),-6.03462,43.5636
-AP_SDR,Airport,SDR,Santander,-3.82001,43.4271
-AP_LEN,Airport,LEN,Leon,-5.65556,42.589
-AP_RGS,Airport,RGS,Burgos,-3.62076,42.3576
-AP_SLM,Airport,SLM,Salamanca,-5.50199,40.9521
-AP_VLL,Airport,VLL,Valladolid,-4.85194,41.7061
-AP_ABC,Airport,ABC,Albacete,-1.86352,38.9485
-AP_BCN,Airport,BCN,Barcelona El Prat,2.07846,41.2971
-AP_GRO,Airport,GRO,Girona-Costa Brava,2.76055,41.901
-AP_ILD,Airport,ILD,Lleida-Alguaire,0.535023,41.7282
-AP_LEU,Airport,LEU,Andorra–La Seu d'Urgell,1.40917,42.3386
-AP_REU,Airport,REU,Reus,1.16717,41.1474
-AP_LCG,Airport,LCG,A Coruna,-8.37726,43.3021
-AP_SCQ,Airport,SCQ,Santiago de Compostela,-8.41514,42.8963
-AP_VGO,Airport,VGO,Vigo-Peinador,-8.62677,42.2318
-AP_IBZ,Airport,IBZ,Ibiza,1.37312,38.8729
-AP_MAH,Airport,MAH,Menorca (Mahon),4.21865,39.8626
-AP_PMI,Airport,PMI,Palma de Mallorca,2.73881,39.5517
-AP_RJL,Airport,RJL,Logrono-Agoncilo,-2.32224,42.461
-AP_MAD,Airport,MAD,Adolfo Suarez Madrid-Barajas,-3.56264,40.4719
-AP_RMU,Airport,RMU,Region de Murcia International,-1.125,37.803
-AP_PNA,Airport,PNA,Pamplona,-1.64633,42.77
-AP_BIO,Airport,BIO,Bilbao,-2.91061,43.3011
-AP_VIT,Airport,VIT,Vitoria,-2.72447,42.8828
-AP_ALC,Airport,ALC,Alicante-Elche,-0.558156,38.2822
-AP_CDT,Airport,CDT,Castellon-Costa Azahar,0.073333,40.2139
-AP_VLC,Airport,VLC,Valencia,-0.481625,39.4893
-AP_KAJ,Airport,KAJ,Kajaani,27.6924,64.2855
-AP_JYV,Airport,JYV,Jyvaskyla,25.6783,62.3995
-AP_KEM,Airport,KEM,Kemi-Tornio,24.5821,65.7787
-AP_TMP,Airport,TMP,Tampere-Pirkkala,23.6044,61.4141
-AP_OUL,Airport,OUL,Oulu,25.3546,64.9301
-AP_KUO,Airport,KUO,Kuopio,27.7978,63.0071
-AP_HEL,Airport,HEL,Helsinki (Helsinki-Vantaa),24.9633,60.3172
-AP_MHQ,Airport,MHQ,Mariehamn,19.8982,60.1222
-AP_TKU,Airport,TKU,Turku,22.2628,60.5141
-AP_AUR,Airport,AUR,Aurillac - Tronquieres,2.42194,44.8914
-AP_CFE,Airport,CFE,Clermont-Ferrand Auvergne,3.16917,45.7867
-AP_CMF,Airport,CMF,Chambery-Savoie,5.88023,45.6381
-AP_GNB,Airport,GNB,Grenoble-Isere,5.32937,45.3629
-AP_LYS,Airport,LYS,Lyon-Saint-Exupery,5.08111,45.7256
-AP_DLE,Airport,DLE,Dole-Jura,5.43506,47.0427
-AP_BES,Airport,BES,Brest Bretagne,-4.41854,48.4479
-AP_RNS,Airport,RNS,Rennes-Saint-Jacques,-1.73479,48.0695
-AP_UIP,Airport,UIP,Quimper-Cornouaille,-4.16779,47.975
-AP_TUF,Airport,TUF,Tours Val de Loire,0.727606,47.4322
-AP_AJA,Airport,AJA,Ajaccio Napoleon Bonaparte,8.80292,41.9236
-AP_FSC,Airport,FSC,Figari-Sud Corse,9.09778,41.5006
-AP_ETZ,Airport,ETZ,Metz-Nancy-Lorraine,6.25132,48.9821
-AP_MLH,Airport,MLH,Europort Mulhouse (Basel),7.5291,47.5986
-AP_SXB,Airport,SXB,Strasbourg,7.62823,48.5383
-AP_XCR,Airport,XCR,Chalons Vatry,4.1883,48.7806
-AP_BVA,Airport,BVA,Beauvais–Tillé,2.11277,49.45444
-AP_LIL,Airport,LIL,Lille (Lille-Lesquin),3.08689,50.5633
-AP_CDG,Airport,CDG,Paris Charles de Gaulle,2.54778,49.0097
-AP_ORY,Airport,ORY,Aéroport de Paris-Orly,2.35944,48.7231
-AP_CFR,Airport,CFR,Caen - Carpiquet,-0.45,49.1733
-AP_DOL,Airport,DOL,Deauville - Saint-Gatien,0.154306,49.3653
-AP_LEH,Airport,LEH,Le Havre - Octeville,0.088056,49.5339
-AP_BIQ,Airport,BIQ,Biarritz Pays Basque,-1.53111,43.4683
-AP_BOD,Airport,BOD,Bordeaux-Merignac,-0.715556,44.8283
-AP_BVE,Airport,BVE,Brive-Souillac,1.48556,45.0397
-AP_EGC,Airport,EGC,Bergerac Dordogne Perigord,0.518611,44.8253
-AP_LIG,Airport,LIG,Limoges - Bellegarde,1.17944,45.8628
-AP_LRH,Airport,LRH,La Rochelle - Ile de Re,-1.19528,46.1792
-AP_PIS,Airport,PIS,Poitiers-Biard,0.306666,46.5877
-AP_PUF,Airport,PUF,Pau Pyrenees,-0.418611,43.38
-AP_BZR,Airport,BZR,Beziers Cap d'Agde,3.3539,43.3235
-AP_CCF,Airport,CCF,Carcassonne,2.30632,43.216
-AP_DCM,Airport,DCM,Castres-Mazamet,2.28918,43.5563
-AP_FNI,Airport,FNI,Nimes-Ales-Camargue-Cevennes (Garons),4.41635,43.7574
-AP_LDE,Airport,LDE,Tarbes-Lourdes-Pyrenees,-0.006439,43.1787
-AP_MPL,Airport,MPL,Montpellier-Mediterranee (Frejorgues),3.96301,43.5762
-AP_PGF,Airport,PGF,Perpignan-Rivesaltes,2.87067,42.7404
-AP_RDZ,Airport,RDZ,Rodez-Marcillac,2.48267,44.4079
-AP_TLS,Airport,TLS,Toulouse-Blagnac,1.36382,43.6291
-AP_NTE,Airport,NTE,Nantes Atlantique,-1.61073,47.1532
-AP_MRS,Airport,MRS,Marseille Provence,5.22142,43.4393
-AP_TLN,Airport,TLN,Toulon-Hyeres (Hyeres Le Palyvestre),6.14603,43.0973
-AP_BHX,Airport,BHX,Birmingham,-1.74803,52.4539
-AP_BOH,Airport,BOH,Bournemouth,-1.8425,50.78
-AP_BRS,Airport,BRS,Bristol,-2.71909,51.3827
-AP_CBG,Airport,CBG,Cambridge,0.175,52.205
-AP_DSA,Airport,DSA,Robin Hood Doncaster Sheffield,-1.01066,53.4805
-AP_EMA,Airport,EMA,East Midlands,-1.32806,52.8311
-AP_EXT,Airport,EXT,Exeter International,-3.41389,50.7344
-AP_HUY,Airport,HUY,Humberside,-0.350833,53.5744
-AP_LBA,Airport,LBA,Leeds Bradford,-1.66057,53.8659
-AP_LGW,Airport,LGW,Gatwick,-0.190278,51.1481
-AP_LHR,Airport,LHR,Heathrow,-0.461389,51.4775
-AP_LPL,Airport,LPL,Liverpool John Lennon,-2.84972,53.3336
-AP_LTN,Airport,LTN,London Luton,-0.368333,51.8747
-AP_MAN,Airport,MAN,Manchester,-2.27495,53.3537
-AP_MME,Airport,MME,Teesside International,-1.42941,54.5092
-AP_NCL,Airport,NCL,Newcastle,-1.69167,55.0375
-AP_NQY,Airport,NQY,Cornwall Newquay,-4.99541,50.4406
-AP_NWI,Airport,NWI,Norwich International,1.28278,52.6758
-AP_SEN,Airport,SEN,London Southend,0.693333,51.5703
-AP_SOU,Airport,SOU,Southampton,-1.3568,50.9503
-AP_STN,Airport,STN,London Stansted,0.235,51.885
-AP_BFS,Airport,BFS,Belfast International,-6.21583,54.6575
-AP_BHD,Airport,BHD,George Best Belfast City,-5.8725,54.6181
-AP_ABZ,Airport,ABZ,Aberdeen,-2.19778,57.2019
-AP_EDI,Airport,EDI,Edinburgh,-3.3725,55.95
-AP_PIK,Airport,PIK,Glasgow Prestwick,-4.58667,55.5094
-AP_CWL,Airport,CWL,Cardiff,-3.34333,51.3967
-AP_KVA,Airport,KVA,Kavala International (Alexander the Great),24.6192,40.9133
-AP_ATH,Airport,ATH,Athens International (Eleftherios Venizelos),23.9445,37.9364
-AP_GPA,Airport,GPA,Araxos,21.4256,38.1511
-AP_ZTH,Airport,ZTH,Zakynthos International (Dionysios SolomosAirport),20.8843,37.7509
-AP_SKG,Airport,SKG,Thessaloniki,22.9709,40.5197
-AP_CHQ,Airport,CHQ,Chania International,24.1497,35.5317
-AP_HER,Airport,HER,Heraklion International (Nikos Kazantzakis),25.1803,35.3397
-AP_JSY,Airport,JSY,Syros Island National,24.9509,37.4228
-AP_KLX,Airport,KLX,Kalamata International,22.0255,37.0683
-AP_SKU,Airport,SKU,Skyros Island National,24.4872,38.9676
-AP_JSI,Airport,JSI,Skiathos Island National,23.5037,39.1771
-AP_VOL,Airport,VOL,Nea Anchialos National,22.7943,39.2196
-AP_ZAG,Airport,ZAG,Zagreb,16.0688,45.7429
-AP_PUY,Airport,PUY,Pula,13.9222,44.8935
-AP_OSI,Airport,OSI,Osijek,18.8102,45.4627
-AP_RJK,Airport,RJK,Rijeka,14.5703,45.2169
-AP_BWK,Airport,BWK,Bol (Brac),16.6797,43.2857
-AP_SPU,Airport,SPU,Split,16.298,43.5389
-AP_ZAD,Airport,ZAD,Zadar,15.3467,44.1083
-AP_BUD,Airport,BUD,Budapest Ferenc Liszt International,19.2611,47.4298
-AP_DEB,Airport,DEB,Debrecen International,21.6153,47.4889
-AP_SOB,Airport,SOB,Heviz-Balaton,17.1591,46.6864
-AP_SNN,Airport,SNN,Shannon,-8.92482,52.702
-AP_ORK,Airport,ORK,Cork,-8.49111,51.8413
-AP_DUB,Airport,DUB,Dublin,-6.27007,53.4213
-AP_KIR,Airport,KIR,Kerry (Farranfore),-9.52378,52.1809
-AP_PSR,Airport,PSR,Abruzzo,14.1811,42.4317
-AP_CRV,Airport,CRV,Crotone (Sant'Anna),17.0802,38.9972
-AP_REG,Airport,REG,Reggio di Calabria,15.6516,38.0712
-AP_SUF,Airport,SUF,Lamezia Terme International,16.2423,38.9054
-AP_NAP,Airport,NAP,Naples International,14.2908,40.886
-AP_QSR,Airport,QSR,Salerno Costa d'Amalfi (Pontecagnano),14.9113,40.6204
-AP_BLQ,Airport,BLQ,Bologna Guglielmo Marconi,11.2887,44.5354
-AP_FRL,Airport,FRL,Forli International (Luigi Ridolfi),12.0701,44.1948
-AP_PMF,Airport,PMF,Giuseppe Verdi Parma International,10.2974,44.82122
-AP_RMI,Airport,RMI,Federico Fellini International,12.6117,44.0203
-AP_TRS,Airport,TRS,Trieste - Friuli Venezia Giulia,13.4722,45.8275
-AP_CIA,Airport,CIA,Rome-Ciampino International,12.5929,41.7991
-AP_FCO,Airport,FCO,Rome–Fiumicino International,12.2389,41.8003
-AP_BGY,Airport,BGY,Milan Bergamo,9.69948,45.66546
-AP_LIN,Airport,LIN,Milan-Linate,9.2783,45.4494
-AP_MXP,Airport,MXP,Milan-Malpensa,8.72811,45.6306
-AP_AOI,Airport,AOI,Ancona Falconara,13.3623,43.6163
-AP_CUF,Airport,CUF,Cuneo International,7.62322,44.547
-AP_TRN,Airport,TRN,Turin (Caselle),7.64963,45.2008
-AP_BDS,Airport,BDS,Brindisi - Salento,17.947,40.6576
-AP_BRI,Airport,BRI,Bari Karol Wojtyla,16.7606,41.1389
-AP_AHO,Airport,AHO,Alghero-Fertilia,8.29077,40.6321
-AP_CAG,Airport,CAG,Cagliari Elmas,9.05428,39.2515
-AP_OLB,Airport,OLB,Olbia Costa Smeralda,9.51763,40.8987
-AP_CIY,Airport,CIY,Comiso,14.6072,36.9946
-AP_CTA,Airport,CTA,Catania-Fontanarossa,15.0664,37.4668
-AP_TPS,Airport,TPS,Vincenzo Florio,12.488,37.9114
-AP_FLR,Airport,FLR,Florence,11.2051,43.81
-AP_PSA,Airport,PSA,Pisa International (Galileo Galilei),10.3927,43.6839
-AP_PEG,Airport,PEG,Perugia San Francesco d'Assisi - Umbria International,12.5132,43.0959
-AP_TSF,Airport,TSF,Treviso-Sant'Angelo,12.1944,45.6484
-AP_VRN,Airport,VRN,Verona Villafranca,10.8885,45.3957
-AP_VNO,Airport,VNO,Vilnius,25.2858,54.6341
-AP_KUN,Airport,KUN,Kaunas International,24.0848,54.9639
-AP_SQQ,Airport,SQQ,Siauliai International,23.395,55.8939
-AP_LUX,Airport,LUX,Luxembourg Findel,6.20444,49.6233
-AP_RIX,Airport,RIX,Riga International,23.9711,56.9236
-AP_MST,Airport,MST,Maastricht Aachen,5.77014,50.9117
-AP_EIN,Airport,EIN,Eindhoven,5.37453,51.4501
-AP_AMS,Airport,AMS,Amsterdam Schiphol,4.76389,52.3086
-AP_RTM,Airport,RTM,Rotterdam The Hague,4.43722,51.9569
-AP_OSL,Airport,OSL,Oslo,11.1004,60.1939
-AP_BGO,Airport,BGO,Bergen,5.21814,60.2934
-AP_KSU,Airport,KSU,Kristiansund,7.82452,63.1118
-AP_TRD,Airport,TRD,Trondheim,10.924,63.4578
-AP_SVG,Airport,SVG,Stavanger,5.63778,58.8767
-AP_TRF,Airport,TRF,Sandefjord,10.2586,59.1867
-AP_WRO,Airport,WRO,Copernicus Wroclaw,16.8858,51.1027
-AP_BZG,Airport,BZG,Bydgoszcz Ignacy Jan Paderewski,17.9777,53.0968
-AP_LCJ,Airport,LCJ,Lodz Wladyslaw Reymont,19.3981,51.7219
-AP_LUZ,Airport,LUZ,Lublin,22.7136,51.2403
-AP_IEG,Airport,IEG,Zielona Gora,15.7986,52.1385
-AP_KRK,Airport,KRK,John Paul II International Krakow-Balice,19.7848,50.0777
-AP_RDO,Airport,RDO,Radom,21.2133,51.3892
-AP_WAW,Airport,WAW,Warsaw Chopin,20.9671,52.1657
-AP_WMI,Airport,WMI,Warsaw Modlin,20.6518,52.4511
-AP_RZE,Airport,RZE,Rzeszow-Jasionka,22.019,50.11
-AP_GDN,Airport,GDN,Gdansk Lech Walesa,18.4662,54.3776
-AP_KTW,Airport,KTW,Katowice International,19.08,50.4743
-AP_SZY,Airport,SZY,Olsztyn-Mazury Regional,20.9377,53.4819
-AP_POZ,Airport,POZ,Poznań–Ławica Henryk Wieniawski,16.8263,52.421
-AP_SZZ,Airport,SZZ,Solidarity Szczecin-Goleniow,14.9022,53.5847
-AP_FAO,Airport,FAO,Faro,-7.96591,37.0144
-AP_LIS,Airport,LIS,Lisbon Portela,-9.13592,38.7813
-AP_OPO,Airport,OPO,Francisco Sá Carneiro,-8.67806,41.2356
-AP_BCM,Airport,BCM,Bacau International,26.9103,46.5219
-AP_OMR,Airport,OMR,Oradea International,21.9025,47.0253
-AP_GHV,Airport,GHV,Brasov,25.5172,45.6942
-AP_BBU,Airport,BBU,Aurel Vlaicu International,26.0814,44.496
-AP_CLJ,Airport,CLJ,Cluj-Napoca International,23.6862,46.7852
-AP_CRA,Airport,CRA,Craiova International,23.8886,44.3181
-AP_IAS,Airport,IAS,Iasi International,27.6206,47.1785
-AP_OTP,Airport,OTP,Bucharest Henri Coandă International,26.085,44.5711
-AP_BAY,Airport,BAY,Baia Mare,23.4673,47.6606
-AP_TGM,Airport,TGM,Targu Mures International,24.4125,46.4677
-AP_SUJ,Airport,SUJ,Satu Mare International,22.8857,47.7033
-AP_SBZ,Airport,SBZ,Sibiu International,24.0913,45.7856
-AP_SCV,Airport,SCV,Suceava International (Stefan cel Mare Int'l),26.3541,47.6875
-AP_TSR,Airport,TSR,Timisoara Traian Vuia International,21.3379,45.8099
-AP_HAD,Airport,HAD,Halmstad (Halmstad City),12.8202,56.6911
-AP_ORB,Airport,ORB,Orebro,15.038,59.2237
-AP_LPI,Airport,LPI,Linkoping City,15.6805,58.4062
-AP_AGH,Airport,AGH,Angelholm-Helsingborg,12.8471,56.2961
-AP_MMX,Airport,MMX,Malmo,13.3704,55.5346
-AP_NYO,Airport,NYO,Stockholm Skavsta,16.9122,58.7886
-AP_ARN,Airport,ARN,Stockholm Arlanda,17.9186,59.6519
-AP_BMA,Airport,BMA,Stockholm Bromma,17.9436,59.3556
-AP_KSD,Airport,KSD,Karlstad,13.3374,59.4447
-AP_VST,Airport,VST,Stockholm Vasteras,16.6284,59.6018
-AP_GOT,Airport,GOT,Goteborg Landvetter,12.2798,57.6628
-AP_LJU,Airport,LJU,Ljubljana Joze Pucnik (Brnik),14.4576,46.2237
-AP_MBX,Airport,MBX,Maribor Edvard Rusjan,15.6861,46.4799
-AP_BTS,Airport,BTS,M. R. Stefanik,17.2127,48.1702
-AP_KSC,Airport,KSC,Kosice International,21.2411,48.6631
-AP_TAT,Airport,TAT,Poprad-Tatry,20.2411,49.0736
+AIR_KLU,Airport,KLU,Klagenfurt,14.3377,46.6425
+AIR_VIE,Airport,VIE,Vienna International,16.5697,48.1103
+AIR_LNZ,Airport,LNZ,Linz (Blue Danube),14.1875,48.2332
+AIR_SZG,Airport,SZG,Salzburg,13.0043,47.7933
+AIR_GRZ,Airport,GRZ,Graz,15.4396,46.9911
+AIR_INN,Airport,INN,Innsbruck (Kranebitten),11.344,47.2602
+AIR_ANR,Airport,ANR,Antwerp International,4.46028,51.1894
+AIR_BRU,Airport,BRU,Brussels (Zaventem),4.48444,50.9014
+AIR_CRL,Airport,CRL,Brussels South Charleroi,4.45382,50.4592
+AIR_KJK,Airport,KJK,Kortrijk-Wevelgem International,3.20472,50.8172
+AIR_OST,Airport,OST,Ostend-Bruges International,2.86222,51.1989
+AIR_BOJ,Airport,BOJ,Burgas,27.5152,42.5696
+AIR_PDV,Airport,PDV,Plovdiv,24.8508,42.0678
+AIR_SOF,Airport,SOF,Sofia,23.4114,42.6967
+AIR_VAR,Airport,VAR,Varna,27.8251,43.2321
+AIR_BSL,Airport,BSL,EuroAirport Basel Mulhouse Freiburg,7.52916,47.59
+AIR_BRN,Airport,BRN,Bern,7.49715,46.9141
+AIR_GVA,Airport,GVA,Geneva,6.10895,46.2381
+AIR_ZRH,Airport,ZRH,Zurich,8.54917,47.4647
+AIR_JCL,Airport,JCL,Ceske Budejovice (Plana),14.4275,48.9464
+AIR_BRQ,Airport,BRQ,Brno-Turany,16.6944,49.1513
+AIR_KLV,Airport,KLV,Karlovy Vary,12.915,50.203
+AIR_OSR,Airport,OSR,Leos Janacek,18.1111,49.6963
+AIR_PED,Airport,PED,Pardubice,15.7386,50.0134
+AIR_PRG,Airport,PRG,Vaclav Havel Prague,14.26,50.1008
+AIR_FDH,Airport,FDH,Friedrichshafen (Bodensee),9.51149,47.6713
+AIR_FKB,Airport,FKB,Karlsruhe/Baden-Baden,8.0805,48.7794
+AIR_STR,Airport,STR,Stuttgart,9.22196,48.6899
+AIR_FMM,Airport,FMM,Memmingen,10.2395,47.9888
+AIR_MUC,Airport,MUC,Munich,11.7861,48.3538
+AIR_NUE,Airport,NUE,Nuremberg,11.0781,49.4987
+AIR_BER,Airport,BER,Berlin Brandenburg,13.4939,52.3514
+AIR_BRE,Airport,BRE,Bremen,8.78667,53.0475
+AIR_HAM,Airport,HAM,Hamburg,9.98823,53.6304
+AIR_FRA,Airport,FRA,Frankfurt,8.57056,50.0333
+AIR_KSF,Airport,KSF,Kassel,9.38497,51.4173
+AIR_HDF,Airport,HDF,Heringsdorf,14.1523,53.8787
+AIR_RLG,Airport,RLG,Rostock-Laage,12.2783,53.9182
+AIR_BWE,Airport,BWE,Braunschweig-Wolfsburg,10.5561,52.3192
+AIR_HAJ,Airport,HAJ,Hannover,9.68508,52.4611
+AIR_CGN,Airport,CGN,Cologne Bonn,7.14274,50.8659
+AIR_DTM,Airport,DTM,Dortmund,7.61224,51.5183
+AIR_DUS,Airport,DUS,Dusseldorf,6.76678,51.2895
+AIR_FMO,Airport,FMO,Munster Osnabruck International,7.68483,52.1346
+AIR_GKE,Airport,GKE,NATO Air Base Geilenkirchen,6.04242,50.9608
+AIR_NRN,Airport,NRN,Weeze (Niederrhein),6.14217,51.6024
+AIR_PAD,Airport,PAD,Paderborn Lippstadt,8.61632,51.6141
+AIR_HHN,Airport,HHN,Frankfurt-Hahn,7.26389,49.9487
+AIR_SCN,Airport,SCN,Saarbrucken,7.10951,49.2146
+AIR_DRS,Airport,DRS,Dresden,13.7672,51.1328
+AIR_LEJ,Airport,LEJ,Leipzig/Halle,12.2364,51.4239
+AIR_GWT,Airport,GWT,Sylt (Westerland),8.34047,54.9132
+AIR_LBC,Airport,LBC,Lubeck,10.7192,53.8054
+AIR_ERF,Airport,ERF,Erfurt-Weimar,10.9581,50.9798
+AIR_CPH,Airport,CPH,Copenhagen,12.656,55.6179
+AIR_RNN,Airport,RNN,Bornholm,14.7596,55.0633
+AIR_AAR,Airport,AAR,Aarhus,10.619,56.3
+AIR_KRP,Airport,KRP,Karup,9.12463,56.2975
+AIR_AAL,Airport,AAL,Aalborg,9.84924,57.0928
+AIR_BLL,Airport,BLL,Billund,9.15178,55.7403
+AIR_SGD,Airport,SGD,Sonderborg,9.79173,54.9644
+AIR_TLL,Airport,TLL,Tallinn (Lennart Meri Tallinn),24.8328,59.4133
+AIR_EPU,Airport,EPU,Parnu,24.4728,58.419
+AIR_AGP,Airport,AGP,Malaga,-4.49911,36.6749
+AIR_GRX,Airport,GRX,Federico Garcia Lorca (Granada Jaen),-3.77736,37.1887
+AIR_LEI,Airport,LEI,Almeria,-2.3701,36.8439
+AIR_ODB,Airport,ODB,Cordoba,-4.84888,37.842
+AIR_SVQ,Airport,SVQ,Seville,-5.89311,37.418
+AIR_XRY,Airport,XRY,Jerez (La Parra),-6.06011,36.7446
+AIR_ZAZ,Airport,ZAZ,Zaragoza,-1.04155,41.6662
+AIR_OVD,Airport,OVD,Asturias (Oviedo),-6.03462,43.5636
+AIR_SDR,Airport,SDR,Santander,-3.82001,43.4271
+AIR_LEN,Airport,LEN,Leon,-5.65556,42.589
+AIR_RGS,Airport,RGS,Burgos,-3.62076,42.3576
+AIR_SLM,Airport,SLM,Salamanca,-5.50199,40.9521
+AIR_VLL,Airport,VLL,Valladolid,-4.85194,41.7061
+AIR_ABC,Airport,ABC,Albacete,-1.86352,38.9485
+AIR_BCN,Airport,BCN,Barcelona El Prat,2.07846,41.2971
+AIR_GRO,Airport,GRO,Girona-Costa Brava,2.76055,41.901
+AIR_ILD,Airport,ILD,Lleida-Alguaire,0.535023,41.7282
+AIR_LEU,Airport,LEU,Andorra–La Seu d'Urgell,1.40917,42.3386
+AIR_REU,Airport,REU,Reus,1.16717,41.1474
+AIR_LCG,Airport,LCG,A Coruna,-8.37726,43.3021
+AIR_SCQ,Airport,SCQ,Santiago de Compostela,-8.41514,42.8963
+AIR_VGO,Airport,VGO,Vigo-Peinador,-8.62677,42.2318
+AIR_IBZ,Airport,IBZ,Ibiza,1.37312,38.8729
+AIR_MAH,Airport,MAH,Menorca (Mahon),4.21865,39.8626
+AIR_PMI,Airport,PMI,Palma de Mallorca,2.73881,39.5517
+AIR_RJL,Airport,RJL,Logrono-Agoncilo,-2.32224,42.461
+AIR_MAD,Airport,MAD,Adolfo Suarez Madrid-Barajas,-3.56264,40.4719
+AIR_RMU,Airport,RMU,Region de Murcia International,-1.125,37.803
+AIR_PNA,Airport,PNA,Pamplona,-1.64633,42.77
+AIR_BIO,Airport,BIO,Bilbao,-2.91061,43.3011
+AIR_VIT,Airport,VIT,Vitoria,-2.72447,42.8828
+AIR_ALC,Airport,ALC,Alicante-Elche,-0.558156,38.2822
+AIR_CDT,Airport,CDT,Castellon-Costa Azahar,0.073333,40.2139
+AIR_VLC,Airport,VLC,Valencia,-0.481625,39.4893
+AIR_KAJ,Airport,KAJ,Kajaani,27.6924,64.2855
+AIR_JYV,Airport,JYV,Jyvaskyla,25.6783,62.3995
+AIR_KEM,Airport,KEM,Kemi-Tornio,24.5821,65.7787
+AIR_TMP,Airport,TMP,Tampere-Pirkkala,23.6044,61.4141
+AIR_OUL,Airport,OUL,Oulu,25.3546,64.9301
+AIR_KUO,Airport,KUO,Kuopio,27.7978,63.0071
+AIR_HEL,Airport,HEL,Helsinki (Helsinki-Vantaa),24.9633,60.3172
+AIR_MHQ,Airport,MHQ,Mariehamn,19.8982,60.1222
+AIR_TKU,Airport,TKU,Turku,22.2628,60.5141
+AIR_AUR,Airport,AUR,Aurillac - Tronquieres,2.42194,44.8914
+AIR_CFE,Airport,CFE,Clermont-Ferrand Auvergne,3.16917,45.7867
+AIR_CMF,Airport,CMF,Chambery-Savoie,5.88023,45.6381
+AIR_GNB,Airport,GNB,Grenoble-Isere,5.32937,45.3629
+AIR_LYS,Airport,LYS,Lyon-Saint-Exupery,5.08111,45.7256
+AIR_DLE,Airport,DLE,Dole-Jura,5.43506,47.0427
+AIR_BES,Airport,BES,Brest Bretagne,-4.41854,48.4479
+AIR_RNS,Airport,RNS,Rennes-Saint-Jacques,-1.73479,48.0695
+AIR_UIP,Airport,UIP,Quimper-Cornouaille,-4.16779,47.975
+AIR_TUF,Airport,TUF,Tours Val de Loire,0.727606,47.4322
+AIR_AJA,Airport,AJA,Ajaccio Napoleon Bonaparte,8.80292,41.9236
+AIR_FSC,Airport,FSC,Figari-Sud Corse,9.09778,41.5006
+AIR_ETZ,Airport,ETZ,Metz-Nancy-Lorraine,6.25132,48.9821
+AIR_MLH,Airport,MLH,Europort Mulhouse (Basel),7.5291,47.5986
+AIR_SXB,Airport,SXB,Strasbourg,7.62823,48.5383
+AIR_XCR,Airport,XCR,Chalons Vatry,4.1883,48.7806
+AIR_BVA,Airport,BVA,Beauvais–Tillé,2.11277,49.45444
+AIR_LIL,Airport,LIL,Lille (Lille-Lesquin),3.08689,50.5633
+AIR_CDG,Airport,CDG,Paris Charles de Gaulle,2.54778,49.0097
+AIR_ORY,Airport,ORY,Aéroport de Paris-Orly,2.35944,48.7231
+AIR_CFR,Airport,CFR,Caen - Carpiquet,-0.45,49.1733
+AIR_DOL,Airport,DOL,Deauville - Saint-Gatien,0.154306,49.3653
+AIR_LEH,Airport,LEH,Le Havre - Octeville,0.088056,49.5339
+AIR_BIQ,Airport,BIQ,Biarritz Pays Basque,-1.53111,43.4683
+AIR_BOD,Airport,BOD,Bordeaux-Merignac,-0.715556,44.8283
+AIR_BVE,Airport,BVE,Brive-Souillac,1.48556,45.0397
+AIR_EGC,Airport,EGC,Bergerac Dordogne Perigord,0.518611,44.8253
+AIR_LIG,Airport,LIG,Limoges - Bellegarde,1.17944,45.8628
+AIR_LRH,Airport,LRH,La Rochelle - Ile de Re,-1.19528,46.1792
+AIR_PIS,Airport,PIS,Poitiers-Biard,0.306666,46.5877
+AIR_PUF,Airport,PUF,Pau Pyrenees,-0.418611,43.38
+AIR_BZR,Airport,BZR,Beziers Cap d'Agde,3.3539,43.3235
+AIR_CCF,Airport,CCF,Carcassonne,2.30632,43.216
+AIR_DCM,Airport,DCM,Castres-Mazamet,2.28918,43.5563
+AIR_FNI,Airport,FNI,Nimes-Ales-Camargue-Cevennes (Garons),4.41635,43.7574
+AIR_LDE,Airport,LDE,Tarbes-Lourdes-Pyrenees,-0.006439,43.1787
+AIR_MPL,Airport,MPL,Montpellier-Mediterranee (Frejorgues),3.96301,43.5762
+AIR_PGF,Airport,PGF,Perpignan-Rivesaltes,2.87067,42.7404
+AIR_RDZ,Airport,RDZ,Rodez-Marcillac,2.48267,44.4079
+AIR_TLS,Airport,TLS,Toulouse-Blagnac,1.36382,43.6291
+AIR_NTE,Airport,NTE,Nantes Atlantique,-1.61073,47.1532
+AIR_MRS,Airport,MRS,Marseille Provence,5.22142,43.4393
+AIR_TLN,Airport,TLN,Toulon-Hyeres (Hyeres Le Palyvestre),6.14603,43.0973
+AIR_BHX,Airport,BHX,Birmingham,-1.74803,52.4539
+AIR_BOH,Airport,BOH,Bournemouth,-1.8425,50.78
+AIR_BRS,Airport,BRS,Bristol,-2.71909,51.3827
+AIR_CBG,Airport,CBG,Cambridge,0.175,52.205
+AIR_DSA,Airport,DSA,Robin Hood Doncaster Sheffield,-1.01066,53.4805
+AIR_EMA,Airport,EMA,East Midlands,-1.32806,52.8311
+AIR_EXT,Airport,EXT,Exeter International,-3.41389,50.7344
+AIR_HUY,Airport,HUY,Humberside,-0.350833,53.5744
+AIR_LBA,Airport,LBA,Leeds Bradford,-1.66057,53.8659
+AIR_LGW,Airport,LGW,Gatwick,-0.190278,51.1481
+AIR_LHR,Airport,LHR,Heathrow,-0.461389,51.4775
+AIR_LPL,Airport,LPL,Liverpool John Lennon,-2.84972,53.3336
+AIR_LTN,Airport,LTN,London Luton,-0.368333,51.8747
+AIR_MAN,Airport,MAN,Manchester,-2.27495,53.3537
+AIR_MME,Airport,MME,Teesside International,-1.42941,54.5092
+AIR_NCL,Airport,NCL,Newcastle,-1.69167,55.0375
+AIR_NQY,Airport,NQY,Cornwall Newquay,-4.99541,50.4406
+AIR_NWI,Airport,NWI,Norwich International,1.28278,52.6758
+AIR_SEN,Airport,SEN,London Southend,0.693333,51.5703
+AIR_SOU,Airport,SOU,Southampton,-1.3568,50.9503
+AIR_STN,Airport,STN,London Stansted,0.235,51.885
+AIR_BFS,Airport,BFS,Belfast International,-6.21583,54.6575
+AIR_BHD,Airport,BHD,George Best Belfast City,-5.8725,54.6181
+AIR_ABZ,Airport,ABZ,Aberdeen,-2.19778,57.2019
+AIR_EDI,Airport,EDI,Edinburgh,-3.3725,55.95
+AIR_PIK,Airport,PIK,Glasgow Prestwick,-4.58667,55.5094
+AIR_CWL,Airport,CWL,Cardiff,-3.34333,51.3967
+AIR_KVA,Airport,KVA,Kavala International (Alexander the Great),24.6192,40.9133
+AIR_ATH,Airport,ATH,Athens International (Eleftherios Venizelos),23.9445,37.9364
+AIR_GPA,Airport,GPA,Araxos,21.4256,38.1511
+AIR_ZTH,Airport,ZTH,Zakynthos International (Dionysios SolomosAirport),20.8843,37.7509
+AIR_SKG,Airport,SKG,Thessaloniki,22.9709,40.5197
+AIR_CHQ,Airport,CHQ,Chania International,24.1497,35.5317
+AIR_HER,Airport,HER,Heraklion International (Nikos Kazantzakis),25.1803,35.3397
+AIR_JSY,Airport,JSY,Syros Island National,24.9509,37.4228
+AIR_KLX,Airport,KLX,Kalamata International,22.0255,37.0683
+AIR_SKU,Airport,SKU,Skyros Island National,24.4872,38.9676
+AIR_JSI,Airport,JSI,Skiathos Island National,23.5037,39.1771
+AIR_VOL,Airport,VOL,Nea Anchialos National,22.7943,39.2196
+AIR_ZAG,Airport,ZAG,Zagreb,16.0688,45.7429
+AIR_PUY,Airport,PUY,Pula,13.9222,44.8935
+AIR_OSI,Airport,OSI,Osijek,18.8102,45.4627
+AIR_RJK,Airport,RJK,Rijeka,14.5703,45.2169
+AIR_BWK,Airport,BWK,Bol (Brac),16.6797,43.2857
+AIR_SPU,Airport,SPU,Split,16.298,43.5389
+AIR_ZAD,Airport,ZAD,Zadar,15.3467,44.1083
+AIR_BUD,Airport,BUD,Budapest Ferenc Liszt International,19.2611,47.4298
+AIR_DEB,Airport,DEB,Debrecen International,21.6153,47.4889
+AIR_SOB,Airport,SOB,Heviz-Balaton,17.1591,46.6864
+AIR_SNN,Airport,SNN,Shannon,-8.92482,52.702
+AIR_ORK,Airport,ORK,Cork,-8.49111,51.8413
+AIR_DUB,Airport,DUB,Dublin,-6.27007,53.4213
+AIR_KIR,Airport,KIR,Kerry (Farranfore),-9.52378,52.1809
+AIR_PSR,Airport,PSR,Abruzzo,14.1811,42.4317
+AIR_CRV,Airport,CRV,Crotone (Sant'Anna),17.0802,38.9972
+AIR_REG,Airport,REG,Reggio di Calabria,15.6516,38.0712
+AIR_SUF,Airport,SUF,Lamezia Terme International,16.2423,38.9054
+AIR_NAP,Airport,NAP,Naples International,14.2908,40.886
+AIR_QSR,Airport,QSR,Salerno Costa d'Amalfi (Pontecagnano),14.9113,40.6204
+AIR_BLQ,Airport,BLQ,Bologna Guglielmo Marconi,11.2887,44.5354
+AIR_FRL,Airport,FRL,Forli International (Luigi Ridolfi),12.0701,44.1948
+AIR_PMF,Airport,PMF,Giuseppe Verdi Parma International,10.2974,44.82122
+AIR_RMI,Airport,RMI,Federico Fellini International,12.6117,44.0203
+AIR_TRS,Airport,TRS,Trieste - Friuli Venezia Giulia,13.4722,45.8275
+AIR_CIA,Airport,CIA,Rome-Ciampino International,12.5929,41.7991
+AIR_FCO,Airport,FCO,Rome–Fiumicino International,12.2389,41.8003
+AIR_BGY,Airport,BGY,Milan Bergamo,9.69948,45.66546
+AIR_LIN,Airport,LIN,Milan-Linate,9.2783,45.4494
+AIR_MXP,Airport,MXP,Milan-Malpensa,8.72811,45.6306
+AIR_AOI,Airport,AOI,Ancona Falconara,13.3623,43.6163
+AIR_CUF,Airport,CUF,Cuneo International,7.62322,44.547
+AIR_TRN,Airport,TRN,Turin (Caselle),7.64963,45.2008
+AIR_BDS,Airport,BDS,Brindisi - Salento,17.947,40.6576
+AIR_BRI,Airport,BRI,Bari Karol Wojtyla,16.7606,41.1389
+AIR_AHO,Airport,AHO,Alghero-Fertilia,8.29077,40.6321
+AIR_CAG,Airport,CAG,Cagliari Elmas,9.05428,39.2515
+AIR_OLB,Airport,OLB,Olbia Costa Smeralda,9.51763,40.8987
+AIR_CIY,Airport,CIY,Comiso,14.6072,36.9946
+AIR_CTA,Airport,CTA,Catania-Fontanarossa,15.0664,37.4668
+AIR_TPS,Airport,TPS,Vincenzo Florio,12.488,37.9114
+AIR_FLR,Airport,FLR,Florence,11.2051,43.81
+AIR_PSA,Airport,PSA,Pisa International (Galileo Galilei),10.3927,43.6839
+AIR_PEG,Airport,PEG,Perugia San Francesco d'Assisi - Umbria International,12.5132,43.0959
+AIR_TSF,Airport,TSF,Treviso-Sant'Angelo,12.1944,45.6484
+AIR_VRN,Airport,VRN,Verona Villafranca,10.8885,45.3957
+AIR_VNO,Airport,VNO,Vilnius,25.2858,54.6341
+AIR_KUN,Airport,KUN,Kaunas International,24.0848,54.9639
+AIR_SQQ,Airport,SQQ,Siauliai International,23.395,55.8939
+AIR_LUX,Airport,LUX,Luxembourg Findel,6.20444,49.6233
+AIR_RIX,Airport,RIX,Riga International,23.9711,56.9236
+AIR_MST,Airport,MST,Maastricht Aachen,5.77014,50.9117
+AIR_EIN,Airport,EIN,Eindhoven,5.37453,51.4501
+AIR_AMS,Airport,AMS,Amsterdam Schiphol,4.76389,52.3086
+AIR_RTM,Airport,RTM,Rotterdam The Hague,4.43722,51.9569
+AIR_OSL,Airport,OSL,Oslo,11.1004,60.1939
+AIR_BGO,Airport,BGO,Bergen,5.21814,60.2934
+AIR_KSU,Airport,KSU,Kristiansund,7.82452,63.1118
+AIR_TRD,Airport,TRD,Trondheim,10.924,63.4578
+AIR_SVG,Airport,SVG,Stavanger,5.63778,58.8767
+AIR_TRF,Airport,TRF,Sandefjord,10.2586,59.1867
+AIR_WRO,Airport,WRO,Copernicus Wroclaw,16.8858,51.1027
+AIR_BZG,Airport,BZG,Bydgoszcz Ignacy Jan Paderewski,17.9777,53.0968
+AIR_LCJ,Airport,LCJ,Lodz Wladyslaw Reymont,19.3981,51.7219
+AIR_LUZ,Airport,LUZ,Lublin,22.7136,51.2403
+AIR_IEG,Airport,IEG,Zielona Gora,15.7986,52.1385
+AIR_KRK,Airport,KRK,John Paul II International Krakow-Balice,19.7848,50.0777
+AIR_RDO,Airport,RDO,Radom,21.2133,51.3892
+AIR_WAW,Airport,WAW,Warsaw Chopin,20.9671,52.1657
+AIR_WMI,Airport,WMI,Warsaw Modlin,20.6518,52.4511
+AIR_RZE,Airport,RZE,Rzeszow-Jasionka,22.019,50.11
+AIR_GDN,Airport,GDN,Gdansk Lech Walesa,18.4662,54.3776
+AIR_KTW,Airport,KTW,Katowice International,19.08,50.4743
+AIR_SZY,Airport,SZY,Olsztyn-Mazury Regional,20.9377,53.4819
+AIR_POZ,Airport,POZ,Poznań–Ławica Henryk Wieniawski,16.8263,52.421
+AIR_SZZ,Airport,SZZ,Solidarity Szczecin-Goleniow,14.9022,53.5847
+AIR_FAO,Airport,FAO,Faro,-7.96591,37.0144
+AIR_LIS,Airport,LIS,Lisbon Portela,-9.13592,38.7813
+AIR_OPO,Airport,OPO,Francisco Sá Carneiro,-8.67806,41.2356
+AIR_BCM,Airport,BCM,Bacau International,26.9103,46.5219
+AIR_OMR,Airport,OMR,Oradea International,21.9025,47.0253
+AIR_GHV,Airport,GHV,Brasov,25.5172,45.6942
+AIR_BBU,Airport,BBU,Aurel Vlaicu International,26.0814,44.496
+AIR_CLJ,Airport,CLJ,Cluj-Napoca International,23.6862,46.7852
+AIR_CRA,Airport,CRA,Craiova International,23.8886,44.3181
+AIR_IAS,Airport,IAS,Iasi International,27.6206,47.1785
+AIR_OTP,Airport,OTP,Bucharest Henri Coandă International,26.085,44.5711
+AIR_BAY,Airport,BAY,Baia Mare,23.4673,47.6606
+AIR_TGM,Airport,TGM,Targu Mures International,24.4125,46.4677
+AIR_SUJ,Airport,SUJ,Satu Mare International,22.8857,47.7033
+AIR_SBZ,Airport,SBZ,Sibiu International,24.0913,45.7856
+AIR_SCV,Airport,SCV,Suceava International (Stefan cel Mare Int'l),26.3541,47.6875
+AIR_TSR,Airport,TSR,Timisoara Traian Vuia International,21.3379,45.8099
+AIR_HAD,Airport,HAD,Halmstad (Halmstad City),12.8202,56.6911
+AIR_ORB,Airport,ORB,Orebro,15.038,59.2237
+AIR_LPI,Airport,LPI,Linkoping City,15.6805,58.4062
+AIR_AGH,Airport,AGH,Angelholm-Helsingborg,12.8471,56.2961
+AIR_MMX,Airport,MMX,Malmo,13.3704,55.5346
+AIR_NYO,Airport,NYO,Stockholm Skavsta,16.9122,58.7886
+AIR_ARN,Airport,ARN,Stockholm Arlanda,17.9186,59.6519
+AIR_BMA,Airport,BMA,Stockholm Bromma,17.9436,59.3556
+AIR_KSD,Airport,KSD,Karlstad,13.3374,59.4447
+AIR_VST,Airport,VST,Stockholm Vasteras,16.6284,59.6018
+AIR_GOT,Airport,GOT,Goteborg Landvetter,12.2798,57.6628
+AIR_LJU,Airport,LJU,Ljubljana Joze Pucnik (Brnik),14.4576,46.2237
+AIR_MBX,Airport,MBX,Maribor Edvard Rusjan,15.6861,46.4799
+AIR_BTS,Airport,BTS,M. R. Stefanik,17.2127,48.1702
+AIR_KSC,Airport,KSC,Kosice International,21.2411,48.6631
+AIR_TAT,Airport,TAT,Poprad-Tatry,20.2411,49.0736
 STN_0000,Rail station,0,Bucureşti Nord Gr.A,26.073654,44.446693
 STN_0005,Multimodal station,5,Timişoara Nord,21.205246,45.750652
 STN_0013,Rail station,13,Ploieşti Vest,25.994612,44.924545

@@ -38,7 +38,7 @@ city_nodes = (
 )
 airport_nodes = (
     airports.assign(
-        node_id="AP_" + airports["iata"],
+        node_id="AIR_" + airports["iata"],
         kind="Airport",
         local_id=airports["iata"],
         name=airports["name"],
@@ -106,7 +106,7 @@ pt_links = (
 #%% Directed car connectors between cities and transport hubs
 connectors = C.load("connectors")
 connectors["hub_id"] = [
-    f"AP_{hub}" if kind == "Airport" else f"STN_{int(hub):04}"
+    f"AIR_{hub}" if kind == "Airport" else f"STN_{int(hub):04}"
     for hub, kind in zip(connectors["hub"], connectors["kind"])
 ]
 connectors = connectors[connectors["hub_id"].isin(nodes["node_id"])]
@@ -133,9 +133,11 @@ edges = (
         ignore_index=True)
     .query("src != trg").reset_index(drop=True)
     .astype({"src": str, "trg": str, "kind": "category",
-             "mode": "category", "operator": "string",
-             "time": F32, "freq": F32})
+             "mode": "category", "time": F32, "freq": F32})
 )#.view()
+edges["operator"] = (edges["operator"].fillna("<NA>")
+                     .astype(str).astype("category"))
+edges
 
 #%% Export
 C.save(nodes, "3m-nodes")
