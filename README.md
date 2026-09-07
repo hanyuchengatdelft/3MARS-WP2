@@ -47,12 +47,12 @@ It is a directed multigraph connecting major cities (FUAs) and their transport h
 It is illustrated in the figure below:
 ![3MG Schematic|1000](3MG-schematic.png)
 
-It consists of two types of nodes (currently in [**m3-nodes.csv**](nodes.csv)):
+It consists of two types of nodes (currently in [**nodes.csv**](nodes.csv)):
 
 - **Cities**: These serve as the demand producers and attractors. They are located by their population-weighted centroids over their boundary.
 - **Transport hubs**: These nodes serve as the supply providers for demand distribution. These consist of airports and public transport (PT) stations, i.e., bus and train stations, some of which have both bus and train connections ("intermodal stations").
 
-3MG has three types of links (currently in [**m3-links.csv**](links.csv)):
+3MG has three types of links (currently in [**links.csv**](links.csv)):
 
 - **Intercity**: They connect a transport hub of a city to a hub of another city by a unique travel mode and agency/operator (directed). Four modes are considered:
   - **Car** (driving between city centroids)
@@ -63,7 +63,7 @@ It consists of two types of nodes (currently in [**m3-nodes.csv**](nodes.csv)):
 
 3MG is a static supply graph in P-space representation, meaning all nodes that have a direct connection by a single service or route are connected by a direct link. The modal tables provide travel time, routed distance and service frequency, while the final graph currently retains travel time and frequency. These metrics provide the basis for later multi-class estimates of generalised travel cost (GTC), such as different perceived costs for travellers with different income levels or trip purposes. Fares and capacities are not yet included.
 
-The current development snapshot contains 1,370 nodes and 191,476 links; the release-blocking endpoint issue described under [Limitations](#limitations) still applies.
+The current development snapshot contains 1,371 nodes and 190,921 links; the release-blocking endpoint issue described under [Limitations](#limitations) still applies.
 
 The following map shows the included countries, FUAs and intercity bus and rail segments:
 
@@ -71,21 +71,12 @@ The following map shows the included countries, FUAs and intercity bus and rail 
 
 ## How to use
 
-### Use the current 3MG snapshot
-```python
-import pandas as pd
+### Use current graph
+The provided 3MG snapshot network is stored in two tables: [nodes.csv](nodes.csv) and [links.csv](links.csv).
 
-nodes = pd.read_csv("nodes.csv")
-edges = pd.read_csv("links.csv", dtype={"operator": str})
+Load, inspect and validate the current network by running `python inspect-graph.py`. The graph loads well if the script passes all assertion checks and displays summary statistics.
 
-assert nodes["node_id"].is_unique
-assert edges["src"].isin(nodes["node_id"]).all()
-assert edges["trg"].isin(nodes["node_id"]).all()
-assert edges["time"].ge(0).all()
-assert edges["src"].ne(edges["trg"]).all()
-```
-
-### Recreate 3MG
+### Build 3MG from scratch
 
 1. Clone this repository to a clean local working directory.
 ```bash
@@ -138,9 +129,9 @@ env R_LIBS_USER=$R_LIB \
 ```
 4. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) and run it for [OSRM](https://project-osrm.org)-based shortest path routing for car travel times. Verify installation with `docker --version`.
 
-5. Create an environment file (`env.yml`) and add your paths/credentials:
+5. Specify the data directory for processed outputs along with the other credentials in an environment file. Make sure the data directory has read/write permissions and sufficient local storage for raw GTFS archives, country PBF files, OSRM working files and the multi-million-row Parquet tables:
 ```bash
-dataDir="absolute/path/to/your/target/data/directory"
+dataDir="path/to/your/target/data/directory"
 mkdir -p $dataDir
 chmod -R u+rw $dataDir
 echo "
@@ -153,12 +144,13 @@ MDB_API_KEY: personal_MDB_API_key
 CARTO_TOKEN: personal_CartoDB_token
 " > env.yml
 ```
+<!-- 6. Some GTFS feeds require manual data download and processing.  -->
 
-6. Place manually acquired datasets in your target data directory: `{DATA}`. It should have sufficient local storage for raw GTFS archives, country PBF files, OSRM working files and the multi-million-row Parquet tables. In most scripts, the utility import `import config as C` loads it from [env.yml](env.yml) as the global constant `C.DATA`. Put the following datasets as follows:
-   - Manually acquired GTFS feed zip files in `{DATA}/gtfs/feeds/`, renamed with prefix `man-` (see the [Manual GTFS feeds](#manually-acquired-and-converted-feeds) section).
-   - UK ATOC input at `{DATA}/gtfs/uk-atoc.zip` if the UK feed is rebuilt;
-   - Mapping of agencies to operators in `{DATA}/gtfs/agency2toc.xlsx`;
-   - [Proprietary] Flight schedules as `{DATA}/oag-schedules.zip` (see [Aviation data](#aviation-data-proprietary));
+6. Place manually acquired datasets in the target data directory. In most scripts, the utility import `import config as C` loads this directory from [env.yml](env.yml) as the global constant `C.DATA`. Put the following datasets as follows:
+   - Manually acquired GTFS feed zip files of the  in `{C.DATA}/gtfs/feeds/`, renamed with prefix `man-` (see the [Manual GTFS feeds](#manually-acquired-and-converted-feeds) section).
+   - UK ATOC input at `{C.DATA}/gtfs/uk-atoc.zip` if the UK feed is rebuilt;
+   - Mapping of agencies to operators in `{C.DATA}/gtfs/agency2toc.xlsx`;
+   - [Proprietary] Flight schedules as `{C.DATA}/oag-schedules.zip` (see [Aviation data](#aviation-data-proprietary));
 
 7. Run the scripts from this directory in the following order:
 
