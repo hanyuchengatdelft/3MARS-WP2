@@ -247,4 +247,3 @@ for icc, df in (pbar := tqdm(fuas.groupby("icc"))):
             city_json.unlink()
     grp_json.unlink()
     grp_osm.unlink()
-grp_osm.parent.unlink()
