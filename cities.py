@@ -5,7 +5,7 @@ import pandas as pd
 
 import config as C
 
-P = C.load_params()
+params = C.load_params()
 
 #%% FUA boundaries: Europe – JRC
 """FUA boundaries for most study countries come from the EU Joint Research 
@@ -59,6 +59,7 @@ if popu is None:
         .rename(columns={"CNTR_ID": "icc", "TOT_P_2018": "popu"})
         .astype({"icc": "category", "popu": np.int32})
         .set_index(["icc", "popu"])
+        .centroid.rename("geometry")
         .get_coordinates().astype(np.int32)
         .reset_index()
     )#.view()
@@ -76,7 +77,7 @@ df["centre"] = (gpd.points_from_xy(df["x"], df["y"], crs=C.CRS_EU)
                 .to_crs(C.CRS_DEG))
 fuas2 = (
     fuas.merge(df[["popu", "centre"]], on="name")
-    .query(f"popu >= {P.MIN_FUA_POPU}")
+    .query(f"popu >= {params.MIN_FUA_POPU}")
     .reset_index(drop=True)
     .sort_values("name", ignore_index=True)
     .rename_axis("id")
@@ -84,5 +85,5 @@ fuas2 = (
     .to_crs(C.CRS_DEG)
     .astype({"id": np.int16, "popu": np.int32})
     [["id", "name", "icc", "popu", "centre", "geometry"]]
-)#.view()
+).view()
 C.save(fuas2, "fuas")

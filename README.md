@@ -237,7 +237,7 @@ python tocs.py # update intercity network for only major TOCs
 python seg-geometry.py # approximate modal interstation segment geometry
 ```
 
-12. Prepare bus/rail network links and connector links:
+12. Prepare bus/rail network links and connector links, with median travel times and trip count-weighted frequencies by mode and operator:
 ```bash
 python pt-links.py # prepare public transport interstation links
 ```
