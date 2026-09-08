@@ -690,7 +690,7 @@ def build_spjp_map(netex_xml_path: str) -> dict[str, str]:
 
 
 if __name__ == "__main__":
-    ROOT = C.DATA / "gtfs"
+    ROOT = C.mkdir(C.DATA / "gtfs")
     # ## Download the NeTEx feed from the CCISS website
     if not (xml_gz_path := ROOT / "trenitalia.xml.gz").exists():
         urlretrieve("https://www.cciss.it/nap/mmtis/public/api/v1/download/"
@@ -723,4 +723,6 @@ if __name__ == "__main__":
         for file in gtfs_dir.glob("*.txt"):
             zf.write(file, arcname=file.name)
     xml_path.unlink()
+    xml_gz_path.unlink()
+    zip_path.unlink()
     shutil.rmtree(gtfs_dir)
