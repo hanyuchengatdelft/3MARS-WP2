@@ -12,67 +12,11 @@ stns = C.load("ic-stations").set_index("stn")#.view()
 lines = C.load("ic-lines").set_index("line")#.view()
 seg = C.load("ic-segments")[["src", "trg", "line"]]#.view()
 
-#%% Agencies having intercity lines
-ic_agency = (
-    lines.explode("stn").astype({"stn": int}).reset_index()
-    .merge(stns[["fua"]], on="stn")
-    [["line", "agency", "rail", "fua"]].drop_duplicates()
-    .groupby(["line", "agency", "rail"])
-    ["fua"].agg(lambda x: tuple(sorted(list(x)))).reset_index()
-    .groupby(["agency", "rail", "fua"])
-    ["line"].agg(list).reset_index()
-    .pipe(lambda df: df[df["fua"].apply(len) > 1])
-    .assign(od=lambda df: [list(zip(x[:-1], x[1:])) for x in df["fua"]])
-    .explode("od", ignore_index=True)
-    .groupby(["rail", "agency"])["od"].agg(["count", list])
-    .set_axis(["n_od", "od"], axis=1).reset_index()
-    .sort_values("n_od", ascending=False, ignore_index=True)
-)#.view()
-
-#%% Important agencies with covered countries
-imp_agencies = []
-for mode, is_rail in [("Bus", False), ("Rail", True)]:
-    od_by_agency = (
-        ic_agency.query(f"rail == {is_rail}")
-        [["agency", "od"]].explode("od").assign(_=True)
-        .pivot_table("_", "agency", "od", sort=False)
-        .fillna(0).astype(bool)
-    )
-    ods = set()
-    df = []
-    for agency, r in od_by_agency.iterrows():
-        ods.update(new := (set(r[r].index) - ods))
-        df.append({"agency": agency, "n_ods": len(new)})
-    df = pd.DataFrame(df).sort_values("n_ods", ascending=0)
-    df = df.query("n_ods > 0").assign(mode=mode)
-    imp_agencies.append(df[["agency", "mode", "n_ods"]])
-imp_agencies = (
-    pd.concat(imp_agencies)
-    .sort_values("n_ods", ascending=False, ignore_index=True)
-)
-## Codes of countries covered by agencies
-seg["src_icc"] = seg["src"].map(stns["fua"].map(fuas["icc"]))
-seg["trg_icc"] = seg["trg"].map(stns["fua"].map(fuas["icc"]))
-icc = (
-    seg.explode("line")
-    .merge(lines[["agency", "rail"]], on="line")
-    [["agency", "rail", "src_icc", "trg_icc"]]
-    .melt(["agency", "rail"], value_name="icc")
-    .groupby(["agency", "rail"])
-    ["icc"].agg(lambda x: ",".join(sorted(set(x))[:5]))
-    .rename("country").reset_index()
-)
-icc["mode"] = icc.pop("rail").map({False: "Bus", True: "Rail"})
-imp_agencies = imp_agencies.merge(icc, on=["agency", "mode"])#.view()
-
-#%% Export major agencies
-imp_agencies.to_csv(C.DATA / "gtfs/imp-agencies.csv", index=False)
-
-#%% Manually map agency to operator
+#%% Load the manual mapping of agencies to TOCs
 agency2toc = (
-    pd.read_excel(C.DATA / "gtfs/agency2toc.xlsx")
+    pd.read_csv(C.DATA / "gtfs/agency2toc.csv")
     .assign(rail=lambda df: df["mode"] == "Rail")
-    [["agency", "rail", "operator", "domicile"]]
+    [["agency", "rail", "operator"]]
 )#.view(5)
 print("Total operators:", agency2toc["operator"].nunique())
 

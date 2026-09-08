@@ -42,23 +42,25 @@ The current repository covers part of the first submodule: base 3MG generation.
 ## Network description
 
 **3MG** refers to the "Multi-modal, multi-agency, multi-label (3M) graph" developed as part of the first major task of 3MARS WP2.
-It combines Functional Urban Areas (FUAs), population, airports, intercity bus and rail services, scheduled flights, the road network and local access links into a common node-link model.
+It combines [Functional Urban Areas (FUAs)](https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Territorial_typologies_manual_-_cities,_commuting_zones_and_functional_urban_areas), population, airports, intercity bus and rail timetables in the [General Transit Feed Specification (GTFS)](https://gtfs.org/) format, flight schedules (from proprietary [OAG database](https://www.oag.com/)) and the road network and local access links from [OpenStreetMap (OSM)](https://www.openstreetmap.org) into a common node-link model.
 It is a directed multigraph connecting major cities (FUAs) and their transport hubs with intracity and intercity links by multiple modes and agencies/operators.
+
 It is illustrated in the figure below:
+
 ![3MG Schematic|1000](3MG-schematic.png)
 
-It consists of two types of nodes (currently in [**nodes.csv**](nodes.csv)):
+3MG consists of two types of nodes:
 
 - **Cities**: These serve as the demand producers and attractors. They are located by their population-weighted centroids over their boundary.
 - **Transport hubs**: These nodes serve as the supply providers for demand distribution. These consist of airports and public transport (PT) stations, i.e., bus and train stations, some of which have both bus and train connections ("intermodal stations").
 
-3MG has three types of links (currently in [**links.csv**](links.csv)):
+It has three types of links:
 
 - **Intercity**: They connect a transport hub of a city to a hub of another city by a unique travel mode and agency/operator (directed). Four modes are considered:
   - **Car** (driving between city centroids)
   - **Bus and rail** (by different operators)
   - **Air** (by different airlines)
-- **Local**: They represent the connections among the transport hubs of a city (FUA), used mainly for network connectivity (directed). They are assumed to be used by agency-agnostic local public transportation.
+- **Intraurban**: They represent the connections among the transport hubs of a city (FUA), used mainly for network connectivity (directed). They are assumed to be used by agency-agnostic local public transportation.
 - **Connector**: These virtual access/egress links serve as the topological connection between the demand generators/attractors (i.e., population distribution of an FUA) and the supply nodes (i.e., the transport hubs of that FUA). They are assumed to be used by car and do not contain any service information. Note that an airport can be linked to multiple FUAs and may lie outside the FUA boundary.
 
 3MG is a static supply graph in P-space representation, meaning all nodes that have a direct connection by a single service or route are connected by a direct link. The modal tables provide travel time, routed distance and service frequency, while the final graph currently retains travel time and frequency. These metrics provide the basis for later multi-class estimates of generalised travel cost (GTC), such as different perceived costs for travellers with different income levels or trip purposes. Fares and capacities are not yet included.
@@ -77,103 +79,8 @@ The provided 3MG snapshot network is stored in two tables: [nodes.csv](nodes.csv
 Load, inspect and validate the current network by running `python inspect-graph.py`. The graph loads well if the script passes all assertion checks and displays summary statistics.
 
 ### Build 3MG from scratch
+The 3MG can be built from scratch using open-source/publicly available geometry and public transport schedule data, though proprietary flight schedules data (purchased from OAG as part of the 3MARS project) must be used to prepare the aviation layer. The code workflow is shown below. Use the following steps to reproduce the graph.
 
-1. Clone this repository to a clean local working directory.
-```bash
-git clone https://github.com/rvanxer/3MARS-WP2.git
-cd 3MARS-WP2
-```
-2. Create a [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) environment and install the dependencies:
-```bash
-conda create -n 3mars -c conda-forge --strict-channel-priority \
-  python=3.14 pip \
-  pyrosm=0.13.1 osmium-tool gdal \
-  r-base=4.5 r-remotes r-zip r-sf
-
-conda activate 3mars
-python -m pip install -r requirements.txt
-
-# Verify the dependencies
-python -m pip check
-python -c "from pyrosm import OSM; print('Pyrosm OK')"
-osmium --version | head -2
-ogr2ogr --version
-```
-3. The UK rail timetable needs processing differently. [Optional] Install R dependecies using base R (currently tested on macOS):
-```bash
-BASE_R="/Library/Frameworks/R.framework/Resources/bin/Rscript"
-R_LIB="$HOME/Library/R/arm64/4.5-3mars"
-mkdir -p $R_LIB
-
-env R_LIBS_USER=$R_LIB \
-"$BASE_R" --vanilla -e '
-  lib <- .libPaths()[1]
-  install.packages(
-    c("pak", "yaml"),
-    repos = "https://cloud.r-project.org",
-    lib = lib,
-    quiet = TRUE
-  )
-  pak::pkg_install(
-    "ITSLeeds/UK2GTFS@87d0545a38f040be7ada5d7088f3169dd3da7e9b",
-    lib = lib,
-    dependencies = NA,
-    ask = FALSE
-  )
-  library(UK2GTFS, lib.loc = lib)
-  cat(
-    "UK2GTFS", as.character(packageVersion("UK2GTFS")),
-    "loaded from", find.package("UK2GTFS"), "\n"
-  )
-'
-```
-4. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) and run it for [OSRM](https://project-osrm.org)-based shortest path routing for car travel times. Verify installation with `docker --version`.
-
-5. Specify the data directory for processed outputs along with the other credentials in an environment file. Make sure the data directory has read/write permissions and sufficient local storage for raw GTFS archives, country PBF files, OSRM working files and the multi-million-row Parquet tables:
-```bash
-dataDir="path/to/your/target/data/directory"
-mkdir -p $dataDir
-chmod -R u+rw $dataDir
-echo "
-# Main data directory for the project (must have read & write permissions)
-# (if left blank, it defaults to '{PWD}/data')
-DATA_DIR: $dataDir
-# MobilityDatabase API key (needed for GTFS catalogue and data download)
-MDB_API_KEY: personal_MDB_API_key
-# CartoDB API token (optional; mainly used for plotting basemap)
-CARTO_TOKEN: personal_CartoDB_token
-" > env.yml
-```
-<!-- 6. Some GTFS feeds require manual data download and processing.  -->
-
-6. Place manually acquired datasets in the target data directory. In most scripts, the utility import `import config as C` loads this directory from [env.yml](env.yml) as the global constant `C.DATA`. Put the following datasets as follows:
-   - Manually acquired GTFS feed zip files of the  in `{C.DATA}/gtfs/feeds/`, renamed with prefix `man-` (see the [Manual GTFS feeds](#manually-acquired-and-converted-feeds) section).
-   - UK ATOC input at `{C.DATA}/gtfs/uk-atoc.zip` if the UK feed is rebuilt;
-   - Mapping of agencies to operators in `{C.DATA}/gtfs/agency2toc.xlsx`;
-   - [Proprietary] Flight schedules as `{C.DATA}/oag-schedules.zip` (see [Aviation data](#aviation-data-proprietary));
-
-7. Run the scripts from this directory in the following order:
-
-| Order | Script | Objective |
-|--|--|--|
-| 1 | [countries.py](countries.py) | Obtain boundaries for target countries from [NUTS](https://ec.europa.eu/eurostat/web/nuts) and [ITL](https://www.ons.gov.uk/methodology/geography/ukgeographies/eurostat) (for the UK). |
-| 2 | [cities.py](cities.py) | Obtain FUA boundaries and population grid from [JRC](https://commission.europa.eu/about/departments-and-executive-agencies/joint-research-centre_en) and [GISCO](https://ec.europa.eu/eurostat/web/gisco). |
-| 3 | [osm.py](osm.py) | Download national OSM geodatabase extracts from [GeoFabrik](https://www.geofabrik.de), extract railway and highway networks and filter OSM PBF files for FUA boundaries. |
-| 4 | [mdb.py](mdb.py) | Download GTFS feeds from [Mobility Database](https://mobilitydatabase.org) for the study countries. |
-| 4 | [trenitalia.py](trenitalia.py) | Convert Trenitalia timetable data from [NeTEx](https://transmodel-cen.eu/index.php/netex) format to GTFS. |
-| 4 | [uk-rail.r](uk-rail.r) | Convert UK rail timetable data from legacy ATOC format to GTFS. |
-| 5 | [gtfs-db.py](gtfs-db.py) | Harmonise and clean the obtained GTFS ZIP files into a compact GTFS database. |
-| 6 | [intercity.py](intercity.py) | Filter intercity network and timetable from GTFS database. |
-| 7 | [tocs.py](tocs.py) | Map GTFS agencies to major public transport operators. |
-| 8 | [seg-geometry.py](seg-geometry.py) | Approximate interstation segment geometry by routing along modal OSM network. |
-| - | [ic-gtfs-feed.py](ic-gtfs-feed.py) | [Optional] Export the prepared intercity network to a GTFS feed. |
-| 9 | [pt-links.py](pt-links.py) | Obtain public transport (PT) inter- and intracity links for 3MG. |
-| 10 | [air-times.py](air-times.py) | Identify airports and air links for 3MG using the [OAG](https://www.oag.com) data. |
-| 11 | [car-times.py](car-times.py) | Compute intercity car travel times using [OSRM](https://project-osrm.org) routing. |
-| 12 | [connectors.py](connectors.py) | Compute population-weighted connector car travel times using OSRM routing. |
-| 13 | [m3-graph.py](m3-graph.py) | Prepare the 3MG using air, car and PT links. |
-
-A more appropriate workflow diagram is shown below:
 ```mermaid
 ---
 config:
@@ -247,7 +154,131 @@ flowchart LR
     linkStyle default stroke:#222,stroke-width:1.5px;
 ```
 
-8. Verify the final graph stored in `{C.DATA}/3m-{table}.parquet` for table ∈ {`nodes`, `edges`}.
+1. Clone this repository to a clean local working directory.
+```bash
+git clone https://github.com/rvanxer/3MARS-WP2.git
+cd 3MARS-WP2
+```
+2. Create a [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) environment and install the dependencies:
+```bash
+conda create -n 3mg -c conda-forge --strict-channel-priority \
+  python=3.14 pip \
+  pyrosm=0.13.1 osmium-tool gdal \
+  r-base=4.5 r-remotes r-zip r-sf
+
+conda activate 3mg
+python -m pip install -r requirements.txt
+
+# Verify the dependencies
+python -m pip check
+python -c "from pyrosm import OSM; print('Pyrosm OK')"
+osmium --version | head -2
+ogr2ogr --version
+```
+
+3. Specify two key user-specific inputs in an environment file: (i) the path of the target data directory for processed outputs with sufficient storage (~35-40 GB) and read/write permissions (defaults to `./data`) and (ii) your [(MDB) API refresh token](https://mobilitydatabase.org/account/api-access) needed to request data from the MobilityDatabase:
+```bash
+DATA="path/to/your/target/data/directory"
+MDB_API_KEY="your_personal_MDB_API_key"
+mkdir -p $DATA
+chmod -R u+rw $DATA
+echo "DATA_DIR: $DATA
+MDB_API_KEY: $MDB_API_KEY" > env.yml
+```
+
+4. Download and prepare geometry data: country and FUA boundaries, population grid and highway/railway networks (both overall and city-wise):
+```bash
+python countries.py # download country boundaries based on NUTS & ITL regions
+python cities.py # download FUA boundaries and filter based on population grid
+python osm.py # download national OSM extracts and prepare rail/road networks
+```
+
+5. Compute standard intercity car travel times and distances using the [Open-Source Routing Machine (OSRM)](https://project-osrm.org) which requires [Docker](https://www.docker.com/products/docker-desktop) to be installed and running. Run the following:
+```bash
+docker --version # check if Docker is properly installed
+python car-times.py # compute intercity car travel times
+```
+
+6. Prepare the aviation layer of 3MG using the following script. **Note**: Skip this step if you do not have access to the proprietary OAG [flight schedules dataset](#aviation-data-proprietary). In the current version, it is obtained as a single timetable file stored in `{DATA}/oag-schedules.zip`.
+```bash
+python air-times.py # prepare airports and inter-airport links
+```
+
+7. For the bus and rail timetable, download GTFS data feeds from [MobilityDatabase](https://mobilitydatabase.org/) (MDB) by running:
+```bash
+python mdb.py # download GTFS feeds from the MDB
+```
+This first generates a catalogue of available datasets closest in date to a fixed snapshot date (currently 30 Aug 2026) and then downloads them in `{DATA}/gtfs/feeds` identified by their MDB feed ID. This may take about 40-50 minutes depending on the network speed.
+
+8. Some GTFS feeds require manual data download and different processing. Their reference/direct download URLs are listed in the [Manual feeds](#manually-acquired-and-converted-feeds) section (which may not be stable over time). Move the manually downloaded GTFS zip files (except Trenitalia and UK rail) to a `gtfs/feeds` folder inside your data directory (in step 4) prefixed with `man-` to distinguish them as manual downloads. For example, download the EuroStar feed from the [French data portal](https://transport.data.gouv.fr/datasets/eurostar-gtfs-plan-de-transport-et-temps-reel) and move to `{DATA}/gtfs/feeds/man-EuroStar.zip`. There are two exceptions:
+
+   - The **Trenitalia** GTFS feed is obtained in [NeTEx](https://transmodel-cen.eu/index.php/netex) format from the [Italian NAP](https://www.cciss.it/nap/mmtis/public/en/catalog/Dataset/1077621) and needs to be converted to GTFS format. Note that the stations in this XML feed do not have coordinates, which have to be mapped from the [Trainline station list](https://github.com/trainline-eu/stations). To do this, run:
+   ```bash
+   python trenitalia.py # download and clean the Trenitalia NeTEx feed
+   ```
+   - The **UK rail** feed is obtained from the [Rail Data Marketplace](https://raildata.org.uk/dataProduct/P-04b05b6e-c14d-4a53-ba34-76ee7c48cc72/overview) which needs an account login (free sign up). It is updated monthly in a legacy [ATOC](https://citygeographics.org/r5r-workshop/uk-transit-data-transxchange-and-atoc/) format. Download the feed and store it as `{DATA}/gtfs/uk-atoc.zip`. On macOS, Ubuntu or Debian, run the following launcher which installs R 4.5.2 when needed, restores the locked R packages and writes the converted GTFS feed:
+   ```bash
+   bash uk-rail.sh # convert the UK rail feed from ATOC to GTFS format
+   ```
+
+9. Compute the intercity bus/rail service/timetable data using the MDB and manually downloaded GTFS feeds. The following creates multiple tables of the format `{DATA}/ic-*.parquet` along with a list of major intercity PT agencies in `{DATA}/gtfs/ic-agencies.csv`.
+```bash
+python gtfs-db.py # clean the GTFS feeds and organise in a database
+python intercity.py # filter intercity services from the GTFS database
+```
+
+10. Filter the important public transport operating companies (TOCs) by manually mapping GTFS agencies to a list of preset TOCs ("operators"). This step is optional but recommended to limit the number of operators and thus links in the 3MG. To do this, manually assign a suitable TOC to each agency in `{DATA}/gtfs/ic-agencies.csv` which by default is the same as the agency name. The mapping used in the current snapshot of 3MG can be found in [major-ic-agencies.csv](major-ic-agencies.csv). Save the manual mapping to another file `{DATA}/gtfs/agency2toc.csv` to prevent accidental overwrites. Then, run the following to update the intercity network:
+```bash
+python tocs.py # update intercity network for only major TOCs
+```
+
+11. Estimate interstation segment geometry of bus and rail routes by finding the shortest paths between consecutive stations along the highway and railway networks respectively obtained from OSM extracts in step 4 and using the OSRM routing backend. To do this, run:
+```bash
+python seg-geometry.py # approximate modal interstation segment geometry
+```
+
+12. Prepare bus/rail network links and connector links:
+```bash
+python pt-links.py # prepare public transport interstation links
+```
+
+13.  Generate virtual connector links between city centroids (demand centres) and all transport hubs (airports and stations) by identifying shortest car path travel times between all population grid cells of a city and all transport hubs and then computing a population-weighted average travel time value for each connector:
+```bash
+python connectors.py # compute connector link travel times
+```
+
+14.  Create the 3MG network files by combining air, PT and car intercity links with PT intrahub and connector links in a single graph stored in two files: [nodes.csv](nodes.csv) and [links.csv](links.csv) by running:
+```bash
+python 3m-graph.py # generate the 3MG network
+```
+
+15.  Validate the proper loading and properties of the generated 3MG network using:
+```bash
+python inspect-graph.py # validate the 3MG network
+```
+
+<!-- 16. Run the scripts from this directory in the following order:
+
+| Order | Script | Objective |
+|--|--|--|
+| 1 | [countries.py](countries.py) | Obtain boundaries for target countries from [NUTS](https://ec.europa.eu/eurostat/web/nuts) and [ITL](https://www.ons.gov.uk/methodology/geography/ukgeographies/eurostat) (for the UK). |
+| 2 | [cities.py](cities.py) | Obtain FUA boundaries and population grid from [JRC](https://commission.europa.eu/about/departments-and-executive-agencies/joint-research-centre_en) and [GISCO](https://ec.europa.eu/eurostat/web/gisco). |
+| 3 | [osm.py](osm.py) | Download national OSM geodatabase extracts from [GeoFabrik](https://www.geofabrik.de), extract railway and highway networks and filter OSM PBF files for FUA boundaries. |
+| 4 | [38:10] [mdb.py](mdb.py) | Download GTFS feeds from [Mobility Database](https://mobilitydatabase.org) for the study countries. |
+| 4 | [0:32] [trenitalia.py](trenitalia.py) | Convert Trenitalia timetable data from [NeTEx](https://transmodel-cen.eu/index.php/netex) format to GTFS. |
+| 4 | [3:18] [uk-rail.sh](uk-rail.sh) | Prepare the R environment and convert the UK rail timetable from legacy ATOC format to GTFS. |
+| 5 | [gtfs-db.py](gtfs-db.py) | Harmonise and clean the obtained GTFS ZIP files into a compact GTFS database. |
+| 6 | [intercity.py](intercity.py) | Filter intercity network and timetable from GTFS database. |
+| 7 | [tocs.py](tocs.py) | Map GTFS agencies to major public transport operators. |
+| 8 | [seg-geometry.py](seg-geometry.py) | Approximate interstation segment geometry by routing along modal OSM network. |
+| - | [ic-gtfs-feed.py](ic-gtfs-feed.py) | [Optional] Export the prepared intercity network to a GTFS feed. |
+| 9 | [pt-links.py](pt-links.py) | Obtain public transport (PT) inter- and intracity links for 3MG. |
+| 10 | [air-times.py](air-times.py) | Identify airports and air links for 3MG using the [OAG](https://www.oag.com) data. |
+| 11 | [car-times.py](car-times.py) | Compute intercity car travel times using [OSRM](https://project-osrm.org) routing. |
+| 12 | [connectors.py](connectors.py) | Compute population-weighted connector car travel times using OSRM routing. |
+| 13 | [m3-graph.py](m3-graph.py) | Prepare the 3MG using air, car and PT links. | -->
+
+<!-- 1. Verify the final graph stored in `{C.DATA}/3m-{table}.parquet` for table ∈ {`nodes`, `edges`}.
 ```python
 import config as C
 
@@ -260,7 +291,7 @@ assert edges["src"].isin(nodes["node_id"]).all()
 assert edges["trg"].isin(nodes["node_id"]).all()
 assert edges["time"].ge(0).all()
 assert edges["src"].ne(edges["trg"]).all()
-```
+``` -->
 
 ## Data sources
 
@@ -302,11 +333,11 @@ These zip files are renamed to `man-{feed_name}.zip` ("man" for "manual") to dis
 | Elron | ⬇︎ [Estonian rail: Elron](https://eu-gtfs.remix.com/elron.zip) | Operator GTFS archive |
 | Estonia | [Estonian public transport](https://peatus.ee/content/Veebilehest%20ja%20%C3%BChistranspordi%20avaandmetest) | The former national archive has been replaced by separate regional and operator feeds; combine the required bus feeds with the Elron feed listed above |
 | EuroStar | [EuroStar high-speed rail](https://transport.data.gouv.fr/datasets/eurostar-gtfs-plan-de-transport-et-temps-reel) | Multi-agency GTFS archive |
-| Finland | ⬇︎ [Finland full feed](https://mobility.mobility-database.fintraffic.fi/en) | National GTFS archive |
+| Finland | ⬇︎ [Finland full feed](https://mobility.mobility-database.fintraffic.fi/en) | From [European transport feeds](https://eu.data.public-transport.earth) |
 | Latvia | ⬇︎ [Latvia rail (Vivi)](https://vivi.lv/uploads/GTFS.zip) | Operator GTFS archive |
-| Lithuania | ⬇︎ [Lithuania full feed](https://data.public-transport.earth/gtfs/lt) | National GTFS archive |
+| Lithuania | ⬇︎ [Lithuania full feed](https://data.public-transport.earth/gtfs/lt) | From [European transport feeds](https://eu.data.public-transport.earth) |
 | MAV | [Hungary bus-rail: MÁV](https://www.mavcsoport.hu/en/gtfs-request) | National operator archive (needs sign up) |
-| Norway | ⬇︎ [Norway full feed](https://data.public-transport.earth/gtfs/no) | National aggregated GTFS archive |
+| Norway | ⬇︎ [Norway full feed](https://data.public-transport.earth/gtfs/no) | From [European transport feeds](https://eu.data.public-transport.earth) |
 | OBB | [Austria ÖBB bus-rail](https://mobilitaetsdaten.gv.at/en/daten/gtfs-fahrplan) | Aggregated GTFS archive |
 | PKPIntercity | ⬇︎ [Poland intercity rail](https://mkuran.pl/gtfs/pkpic.zip) | Operator GTFS archive |
 | Poland-rail | ⬇︎ [Poland rail](https://mkuran.pl/gtfs/polish_trains.zip) | Operator GTFS archive |
