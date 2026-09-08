@@ -368,7 +368,7 @@ seg["src_icc"] = seg["src"].map(stns["fua"].map(fuas["icc"]))
 seg["trg_icc"] = seg["trg"].map(stns["fua"].map(fuas["icc"]))
 icc = (
     seg.explode("line")
-    .merge(lines2[["agency", "rail"]], on="line")
+    .merge(lines2[["line", "agency", "rail"]], on="line")
     [["agency", "rail", "src_icc", "trg_icc"]]
     .melt(["agency", "rail"], value_name="icc")
     .groupby(["agency", "rail"])

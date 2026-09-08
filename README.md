@@ -65,7 +65,7 @@ It has three types of links:
 
 3MG is a static supply graph in P-space representation, meaning all nodes that have a direct connection by a single service or route are connected by a direct link. The modal tables provide travel time, routed distance and service frequency, while the final graph currently retains travel time and frequency. These metrics provide the basis for later multi-class estimates of generalised travel cost (GTC), such as different perceived costs for travellers with different income levels or trip purposes. Fares and capacities are not yet included.
 
-The current development snapshot contains 1,371 nodes and 190,921 links; the release-blocking endpoint issue described under [Limitations](#limitations) still applies.
+The current development snapshot contains 1,371 nodes and 190,921 links; its validation results and remaining qualifications are described under [Limitations](#limitations).
 
 The following map shows the included countries, FUAs and intercity bus and rail segments:
 
@@ -113,7 +113,7 @@ flowchart LR
     airTimes["air-times.py"]
     ptLinks["pt-links.py"]
     connectors["connectors.py"]
-    m3graph["m3-graph.py"]
+    m3graph["3m-graph.py"]
 
     countries --> cities
     countries --> gtfsSources
@@ -267,7 +267,7 @@ python inspect-graph.py # validate the 3MG network
 | 4 | [38:10] [mdb.py](mdb.py) | Download GTFS feeds from [Mobility Database](https://mobilitydatabase.org) for the study countries. |
 | 4 | [0:32] [trenitalia.py](trenitalia.py) | Convert Trenitalia timetable data from [NeTEx](https://transmodel-cen.eu/index.php/netex) format to GTFS. |
 | 4 | [3:18] [uk-rail.sh](uk-rail.sh) | Prepare the R environment and convert the UK rail timetable from legacy ATOC format to GTFS. |
-| 5 | [gtfs-db.py](gtfs-db.py) | Harmonise and clean the obtained GTFS ZIP files into a compact GTFS database. |
+| 5 | [35:21] [gtfs-db.py](gtfs-db.py) | Harmonise and clean the obtained GTFS ZIP files into a compact GTFS database. |
 | 6 | [intercity.py](intercity.py) | Filter intercity network and timetable from GTFS database. |
 | 7 | [tocs.py](tocs.py) | Map GTFS agencies to major public transport operators. |
 | 8 | [seg-geometry.py](seg-geometry.py) | Approximate interstation segment geometry by routing along modal OSM network. |
@@ -276,7 +276,7 @@ python inspect-graph.py # validate the 3MG network
 | 10 | [air-times.py](air-times.py) | Identify airports and air links for 3MG using the [OAG](https://www.oag.com) data. |
 | 11 | [car-times.py](car-times.py) | Compute intercity car travel times using [OSRM](https://project-osrm.org) routing. |
 | 12 | [connectors.py](connectors.py) | Compute population-weighted connector car travel times using OSRM routing. |
-| 13 | [m3-graph.py](m3-graph.py) | Prepare the 3MG using air, car and PT links. | -->
+| 13 | [3m-graph.py](3m-graph.py) | Prepare the 3MG using air, car and PT links. | -->
 
 <!-- 1. Verify the final graph stored in `{C.DATA}/3m-{table}.parquet` for table ∈ {`nodes`, `edges`}.
 ```python
@@ -295,35 +295,31 @@ assert edges["src"].ne(edges["trg"]).all()
 
 ## Data sources
 
-The network combines administrative geography, population, transport infrastructure and scheduled services. Source dates are not interchangeable: the current configuration targets 30 August 2026 for the OSM and MobilityDatabase acquisition stages, while the underlying GTFS feeds retain their own publisher-specific service periods. A rebuilt network is therefore a new data version unless the same raw archives and manual inputs are retained.
+3MG combines administrative geography and population with road and rail infrastructure, public transport timetables, flight schedules and airport metadata. These inputs are maintained by different publishers and do not share a common reference date. The current configuration uses 30 August 2026 as the acquisition cut-off for OpenStreetMap and MobilityDatabase data, while each GTFS and OAG source retains its own validity period. Consequently, every rebuild constitutes a new data version unless the raw source files, curated inputs and parameter values are preserved.
 
 ### Countries and urban areas
 
-The study area covers 28 countries: 25 EU member states other than Cyprus and Malta, together with Norway, Switzerland and the United Kingdom. Country boundaries for all study countries except the United Kingdom are taken from the 2024 level-0 [Eurostat GISCO NUTS](https://ec.europa.eu/eurostat/web/gisco/geodata/statistical-units/territorial-units-statistics) layer. The United Kingdom boundary is formed by dissolving the 2025 ITL-1 generalised clipped boundaries from the [UK Open Geography Portal](https://geoportal.statistics.gov.uk/).
+The study area comprises 28 countries: 25 EU member states, excluding Cyprus and Malta, plus Norway, Switzerland and the United Kingdom. Country boundaries are taken from the 2024 level-0 [Eurostat GISCO NUTS](https://ec.europa.eu/eurostat/web/gisco/geodata/statistical-units/territorial-units-statistics) layer, except for the United Kingdom, whose boundary is obtained by dissolving the 2025 ITL-1 generalised clipped boundaries from the [UK Open Geography Portal](https://geoportal.statistics.gov.uk/).
 
-Functional Urban Area (FUA) boundaries are drawn primarily from the JRC [LUISA REF-2014 FUA dataset](https://data.jrc.ec.europa.eu/dataset/jrc-luisa-ui-boundaries-fua). The 2021 [GISCO Urban Audit](https://gisco-services.ec.europa.eu/distribution/v2/urau/) layer supplements coverage for Norway and Switzerland. Population is taken from the JRC/Eurostat 2018 one-kilometre [population grid](https://ec.europa.eu/eurostat/web/gisco/geodata/grids). Grid-cell population is spatially allocated to FUAs, then used both to retain FUAs above the population threshold and to calculate population-weighted city centres and access times.
+Functional Urban Area (FUA) boundaries are drawn primarily from the JRC [LUISA REF-2014 FUA dataset](https://data.jrc.ec.europa.eu/dataset/jrc-luisa-ui-boundaries-fua). The 2021 [GISCO Urban Audit](https://gisco-services.ec.europa.eu/distribution/v2/urau/) layer supplements coverage for Norway and Switzerland. Population comes from the 2018 one-kilometre [JRC/Eurostat population grid](https://ec.europa.eu/eurostat/web/gisco/geodata/grids). The grid supports FUA selection, population-weighted city-centre estimation and city-to-hub access-time calculations.
 
 ### Highway and railway network
 
-Road and rail infrastructure is derived from dated country extracts supplied by [Geofabrik](https://download.geofabrik.de/europe.html) from [OpenStreetMap](https://www.openstreetmap.org/copyright). The active configuration requests the 30 August 2026 snapshot for each study country. The road layer retains `motorway`, `motorway_link`, `trunk`, `trunk_link`, `primary` and `primary_link` ways. The rail layer retains `railway=rail`; light rail, metro and tram infrastructure are not included in the intercity rail-routing graph.
-
-The retained networks provide routing substrates rather than observed vehicle trajectories. Three cross-water road connections are added as explicit modelling links: the Channel crossing, the Strait of Messina and the Gulf of Finland. A rail connection is added across the Strait of Messina. Their purpose is to prevent otherwise disconnected graph components; the associated road distances and times are manual assumptions and must not be interpreted as OSM observations.
+Road and rail infrastructure is derived from dated country extracts supplied by [Geofabrik](https://download.geofabrik.de/europe.html) from [OpenStreetMap](https://www.openstreetmap.org/copyright). The active configuration requests the 30 August 2026 extract for each study country. The road-routing layer retains `motorway`, `motorway_link`, `trunk`, `trunk_link`, `primary` and `primary_link` ways. The rail-routing layer retains `railway=rail`; light rail, metro and tram infrastructure are excluded. These layers are routing substrates rather than observations of the paths followed by individual services.
 
 ### Public transport schedule
 
-Public transport schedules use [GTFS Schedule](https://gtfs.org/documentation/schedule/reference/) archives. MobilityDatabase is the main catalogue and archive source, supplemented by national, operator and converted feeds where the catalogue did not provide adequate intercity coverage. The pipeline reads agencies, routes, stops, trips, stop times and service calendars; fare, transfer, shape and real-time information are not used in the present graph. Because licences are assigned by individual publishers, the presence of a feed in the local collection does not by itself grant redistribution rights.
+Public transport schedules are assembled from [GTFS Schedule](https://gtfs.org/documentation/schedule/reference/) archives. [MobilityDatabase](https://mobilitydatabase.org/) is the principal catalogue and archive source, supplemented by national, operator-published and converted feeds where it does not provide adequate intercity coverage. The pipeline uses agency, route, stop, trip, stop-time and service-calendar information. It does not use fares, transfers, shapes or real-time updates. Data licences remain those of the individual feed publishers.
 
 #### MobilityDatabase processing
 
-For every study country, the MobilityDatabase API is queried for GTFS Schedule feeds. The pipeline selects the most recent dataset downloaded on or before the configured snapshot date `MDB_SNAPSHOT_DATE`, rather than requesting the latest dataset at execution time. The feed identifier, provider, dataset download date, service-date range, hosted URL and expected SHA-256 hash are retained in the dated catalogue. Downloads are streamed to temporary files and moved into the feed collection only after hash verification. Archives whose names begin with `man-` are preserved when stale catalogue downloads are removed.
+For each study country, the MobilityDatabase API is queried for GTFS Schedule feeds. The pipeline selects the most recent archived dataset downloaded on or before `MDB_SNAPSHOT_DATE`, rather than whichever version is latest when the code is run. A dated catalogue records the feed identifier, provider, download date, service-date range, hosted URL and expected SHA-256 hash. Each archive is downloaded to a temporary file, checked against the catalogue hash and moved into the feed collection only after verification. Files prefixed with `man-` are preserved when obsolete catalogue downloads are removed.
 
-This process fixes the catalogue cut-off but does not create a single European timetable date. Each selected archive has its own production date, validity period, completeness and licence. Reproducing the snapshot therefore requires preservation of the downloaded ZIP files and the dated catalogue, not merely re-running the API request.
+This procedure fixes the catalogue cut-off, not a single European operating day. Reproducing a network version therefore requires the selected ZIP archives and dated catalogue as well as the code and parameters.
 
 #### Manually acquired and converted feeds
-Several feeds are obtained manually outside of MobilityDatabase.
-They are listed in the table below along with download links (wherever possible) and additional notes.
-Note that unlike MDB feeds, these feeds are downloaded once and not anchored to a fixed snapshot date, meaning their versions may be different on user-side data reproduction.
-These zip files are renamed to `man-{feed_name}.zip` ("man" for "manual") to distinguish from the MDB feeds and stored in `{DATA}/gtfs/feeds`.
+
+The following feeds are acquired outside MobilityDatabase because they require direct download, registration, format conversion or assembly from several sources. They are stored in `{DATA}/gtfs/feeds` as `man-{feed_name}.zip`. Unless users preserve the acquired files themselves, later downloads may not reproduce the versions used for the published network.
 <!-- The following supplemental archives were present in the audited local snapshot. Publisher names and links come from embedded `feed_info.txt` or `agency.txt` metadata where available; they describe provenance, not verified redistribution permission. -->
 
 | Feed name | Region/operator with data URL <br>(⬇︎: direct download)</br> | Preparation note |
@@ -350,13 +346,13 @@ These zip files are renamed to `man-{feed_name}.zip` ("man" for "manual") to dis
 | Trenitalia | [Italian rail: Trenitalia](https://www.cciss.it/nap/mmtis/public/en/catalog/Dataset/1077621) | NeTEx converted to GTFS; station names and coordinates matched to the [Trainline station database](https://github.com/trainline-eu/stations) |
 | UK_rail | [British rail](https://raildata.org.uk/dataProduct/P-04b05b6e-c14d-4a53-ba34-76ee7c48cc72/overview) | ATOC timetable converted with [UK2GTFS](https://github.com/ITSLeeds/UK2GTFS) |
 
-The operator mapping in `gtfs/agency2toc.xlsx` is a project-curated input. It translates heterogeneous GTFS agency names into the operator and domicile labels used in 3MG and, because the merge retains only mapped agencies, also determines which candidate intercity services enter the final public transport network.
+The repository also provides [agency2toc.csv](agency2toc.csv), a project-curated mapping from heterogeneous GTFS agency names to the operator labels used in 3MG. A working copy is placed at `{DATA}/gtfs/agency2toc.csv` during a rebuild. Because only mapped intercity agencies are retained, this file is both a harmonisation table and an explicit model-selection input.
 
 ### Aviation data [Proprietary]
 
-Scheduled aviation services are supplied through a licensed [OAG schedule product](https://www.oag.com/flight-info-api). The input contains carrier, flight number, origin and destination airport, local departure and arrival time, operating weekdays, effective dates, number of stops and economy-seat capacity. The source archive is proprietary and is not distributed with this repository; an authorised OAG dataset is required to rebuild the aviation layer.
+Scheduled aviation services are supplied through a licensed [OAG schedule product](https://www.oag.com/flight-info-api). The input records the carrier and flight number, origin and destination airports, local departure and arrival times, operating weekdays, effective dates, number of stops and economy-seat capacity. The source archive is proprietary and is not distributed with this repository; an authorised OAG dataset is required to rebuild the aviation layer.
 
-Airport codes, names and coordinates are obtained from the [IP2Location IATA/ICAO list](https://github.com/ip2location/ip2location-iata-icao), which is published under CC BY-SA 4.0. Airports are retained when they appear in the OAG schedule and fall within a study country. Each airport is associated with every FUA whose population-weighted centre lies within the configured 150 km catchment radius.
+Airport codes, names and coordinates come from the [IP2Location IATA/ICAO list](https://github.com/ip2location/ip2location-iata-icao), published under CC BY-SA 4.0. An airport is retained if it appears in the OAG schedule, lies in a study country and is within 150 km of at least one population-weighted FUA centre. The upstream airport table records every FUA satisfying this catchment rule.
 
 ## Parameters
 
@@ -399,67 +395,80 @@ Study-defining parameters are stored in [params.yml](params.yml). Values in the 
 
 ### Overview
 
-The workflow constructs 3MG in three linked layers. First, it defines the study geography by combining country and FUA boundaries with gridded population, producing the demand-producing city nodes and their population-weighted centres. Second, it derives transport supply from schedule and infrastructure data: GTFS feeds are harmonised into a common public transport database, OAG records provide scheduled flights and OpenStreetMap supplies the road and rail networks used for routing. Third, mode-specific nodes and links are standardised and combined into a directed multigraph.
+The pipeline constructs 3MG in three stages. It first defines the study geography and demand nodes from country boundaries, FUA polygons and gridded population. It then harmonises scheduled bus, rail and air services and estimates paths on mode-specific infrastructure networks. Finally, it standardises the modal outputs and combines them into a directed multigraph.
 
-Public transport is represented in P-space. A link joins two stations when a traveller can remain on one line between them, even if the service calls at intermediate stations. Directional link time, frequency and operator are derived from the underlying timetables, while distance is accumulated along routed consecutive segments. Air links are carrier-specific schedule aggregates, road links are fastest routes between FUA centres and connectors are population-weighted road access links between cities and their hubs.
-
-The resulting graph is deliberately static and service-aggregated. It preserves modal and operator alternatives needed for later pathset, demand-loading and assignment work, while the detailed calendar and timetable tables remain available upstream. It does not yet constitute a time-dependent, capacity-constrained assignment network.
+Public transport is represented in P-space: two stations are linked when they can be reached on the same line without a transfer, including when the service calls at intermediate stations. The final network is static and service-aggregated, while the upstream tables retain the detailed journeys, timetables and service calendars needed for later temporal modelling.
 
 ### Study geography and city nodes
 
-Country boundaries are first restricted to the 28-country study area. JRC and GISCO FUA polygons are transformed to ETRS89-LAEA Europe before population processing. Each 2018 one-kilometre population-grid point is spatially assigned to an FUA. Cell coordinates are weighted by cell population to locate the FUA centre, total population is summed and FUAs below 200,000 residents are removed. The retained polygons and centres are stored in WGS 84.
+Country boundaries are restricted to the 28-country study area and the JRC and GISCO FUA layers are harmonised in WGS 84. For metric operations, FUA polygons and the 2018 population grid are transformed to ETRS89-LAEA Europe (EPSG:3035). Population-grid points are spatially assigned to FUAs, their populations are summed and their coordinates are population-weighted to locate each city node. FUAs below the configured threshold of 200,000 residents are excluded. The retained polygons and centres are stored in WGS 84 (EPSG:4326).
 
-### Schedule harmonisation
+### Schedule harmonisation and source-specific adjustments
 
-Each local GTFS ZIP is inventoried for the seven core schedule tables. Stops with identifiers and coordinates, routes with agencies and timezones, service calendars, trips and stop times are then read into feed-local tables. Original identifiers are replaced by compact integer identifiers within each feed. Repeated stop sequences, relative time sequences and service-date sets are deduplicated, allowing the continental database to store references rather than repeat long arrays for every trip. Arrival and departure clock values are converted to seconds, while service calendars are expanded between the configured baseline dates.
+Each GTFS archive is inventoried for the seven schedule tables used by the project. Stops, routes, agencies, trips, stop times and calendar records are read into feed-local tables. Source identifiers are replaced by compact integer identifiers within each feed, while repeated stop sequences, relative time sequences and service-date sets are deduplicated. Clock times are converted to seconds and recurring calendars are expanded within the configured 2020–2030 baseline window; additions and removals in `calendar_dates.txt` are then applied.
+
+One feed-specific temporal adjustment is implemented during this stage. The available Hellenic Train archive (`man-TrainOSE`) contains a recurring 2019 calendar. Its dates generated from `calendar.txt` are shifted forward by six years, from 2019 to 2025, before the project service window is applied. This deterministic adjustment admits the Greek rail topology and recurring service pattern to the study-period network; it should not be interpreted as evidence that the source archive describes the 2025 timetable.
+
+The two non-GTFS rail sources also require deterministic conversion rules. The Trenitalia converter declares every extracted service active on every day of the NeTEx `ValidBetween` interval, then matches Italian stop names and coordinates to the Trainline station table through UIC-derived codes. The British ATOC timetable is converted with R 4.5.2 and the UK2GTFS revision pinned by the repository. These transformations make the sources usable in the common GTFS pipeline and form part of the documented network-construction method.
 
 ### Public transport network extraction
 
-Stops are spatially joined to retained FUAs and GTFS route types are reduced to bus or rail using the configured lists. A stop sequence is considered intercity if it serves at least two retained FUAs. Stops that form the first or last call of an intercity-qualified sequence are clustered with DBSCAN using a 400 m radius; the mean cluster location defines the station. Stops within 400 m of these stations are subsequently used to recover local services that connect retained hubs.
+Stops are spatially joined to retained FUAs and route types are classified as bus or rail using the lists in `params.yml`. A stop sequence qualifies as intercity when it serves at least two retained FUAs. Terminal stops from qualifying sequences are clustered across feeds with DBSCAN at a 400 m radius. Each cluster becomes a station at the mean stop location. Stops within a separate 400 m station buffer are then considered when recovering local services between retained hubs.
 
-Candidate stations are reduced without changing the set of mode-specific FUA pairs supplied by the schedule. Stations with the smallest contribution are considered first and removed only when every affected bus or rail city pair retains another station-pair witness. Lines are then defined by agency, mode, timezone offset and ordered station sequence. Service times are converted to UTC minutes using the agency timezone offset evaluated on 15 January 2025 and service calendars are restricted to 2023–2026.
+Candidate stations are reduced while preserving the set of mode-specific FUA pairs observed in the schedules. Stations with the smallest contribution are considered first and removed only if every affected bus or rail FUA pair retains another station-pair witness. Lines are defined by agency, mode, fixed timezone offset and ordered station sequence. The offset is evaluated for each agency timezone on 15 January 2025 and applied throughout the dataset to express timetable values in GMT minutes. Service calendars are subsequently restricted to 1 January 2023–31 December 2026.
 
 ### Operator selection and routed segment geometry
 
-Candidate intercity agencies are ranked by the additional FUA pairs they contribute. A manually curated mapping assigns the retained agency names to major operators and domiciles. Intercity lines without a mapping are excluded; local lines that connect at least two retained major stations are retained under the common `.Local` operator label.
+Candidate intercity agencies are ranked by the additional FUA pairs they contribute. The project-curated `agency2toc.csv` then assigns heterogeneous agency names to the major operator labels used in 3MG. Intercity lines without a mapping are excluded. Local lines that serve at least two retained major stations remain in the graph under the common `.Local` operator label.
 
-Consecutive station pairs are routed separately on simplified bus and rail infrastructure graphs. The graphs are undirected and weighted by length. Degree-two chains are contracted for efficiency, stations are snapped to their nearest modal graph node within 5 km and shortest-path geometries are calculated within connected components. The result is an inferred infrastructure path and distance, not an observed vehicle trajectory or timetable-specific track assignment.
+Consecutive station pairs are routed separately on bus and rail infrastructure graphs. Both graphs are undirected and weighted by length. Degree-two chains are contracted for computational efficiency. The largest connected components are retained separately for the mainland, Ireland and Sardinia so the two island systems are not discarded by a mainland-only filter. Stations are then snapped to the nearest node of the relevant graph within 5 km and shortest paths are calculated within connected components. This produces an inferred infrastructure path and distance rather than an observed vehicle trajectory or a timetable-specific track assignment.
+
+Four explicit infrastructure connections are added during network preparation. Bidirectional road geometries are added across the Channel Tunnel, the Strait of Messina and the Gulf of Finland, while a bidirectional rail geometry is added across the Strait of Messina. Each geometry joins the nearest retained network endpoints to the hardcoded coordinates in `osm.py`. These additions maintain cross-water continuity where the extracted OSM ways alone do not provide a routable connection.
 
 ### Mode-specific link construction
 
-For bus and rail, every ordered pair of stations on the same line is expanded into a P-space candidate. Travel time is the elapsed timetable time from departure at the origin station to arrival at the destination station. Values are aggregated by station pair, mode and operator using the median, with the population standard deviation retained as a variability indicator. Distance is the cumulative sum of consecutive routed segments and remains missing if any required segment is unavailable. Daily frequency is calculated from the line–journey–dateset incidence matrices and stored as the median positive frequency over dates on which the link is active.
+For bus and rail, every ordered downstream pair of stations on the same line is expanded into a P-space candidate. Travel time is the elapsed time from departure at the origin to arrival at the destination. Candidate values are aggregated by station pair, mode and operator using the median, with the population standard deviation retained as a variability indicator. Distance is accumulated over consecutive routed segments and remains missing if any constituent segment could not be routed. Daily frequency is derived from the line–journey–dateset incidence matrices and reported as the median positive frequency over dates on which the link is active.
 
-Air services are filtered to airports within the study countries. Operating-weekday strings and effective-date ranges are expanded to flight counts. Carrier-specific airport links store the flight-count-weighted mean scheduled duration and the mean number of flights per day over the combined effective period. Intercity car links use the fastest OSRM route between every reachable pair of FUA centres, augmented by the three explicit cross-water assumptions described above.
+Air services are limited to retained airports and their operating weekdays and effective-date ranges are expanded to flight counts. Overnight services are identified when the scheduled arrival clock time does not exceed departure and 24 hours are added before converting both values to minutes. A fixed code-to-name mapping harmonises selected OAG carrier codes; records with unmapped carriers are excluded. Each carrier-specific airport link stores the flight-count-weighted mean scheduled duration and the mean number of flights per day across its combined effective period.
 
-Connector links are estimated from every populated grid cell in an FUA to each airport or public transport station within the same FUA. OSRM supplies road distance and time, after which cell results are aggregated to a population-weighted mean for each city–hub pair. The final graph duplicates these connector links in both directions and combines them with intercity road, air and public transport links. Node identifiers use the prefixes `FUA_`, `AP_` and `STN_`; edge records retain link class, mode, operator, travel time and frequency.
+Intercity car links are the fastest OSRM routes between reachable ordered pairs of FUA centres. Because the base OSM routing matrix does not span the three cross-water discontinuities, it is augmented with the following fixed directional connections:
 
-The complete field-level catalogue is stored in `schema.json`. It records each active Parquet table, physical data type, field meaning, units, row count for the audited snapshot and CRS metadata for spatial fields. Rebuilds should regenerate or revalidate this file because both schemas and row counts can change.
+| Connection | Direction A → B | Direction B → A |
+|---|---:|---:|
+| Medway–Dunkerque (Channel Tunnel) | 178 km; 164 min | 183 km; 161 min |
+| Messina–Reggio di Calabria | 24 km; 58 min | 24 km; 49 min |
+| Helsinki–Tallinn | 180 km; 87.7 min | 182 km; 88.3 min |
+
+Routes between other FUAs on either side combine the applicable fixed connection with their corresponding OSRM legs.
+
+Connector links are estimated from every populated grid cell in an FUA to each retained airport or public transport station located within the same FUA. OSRM supplies road distance and time, which are aggregated to a population-weighted mean for each city–hub pair. The connectors are duplicated in both directions, then combined with the intercity car, air and public transport links. Node identifiers use the prefixes `FUA_`, `AIR_` and `STN_`; final links retain link class, mode, operator, travel time and frequency.
+
+The generated CSVs are checked for unique node identifiers, valid coordinates, resolved link endpoints, positive finite travel times, positive non-car frequencies and lossless loading into a directed NetworkX multigraph. The current snapshot passes these checks. The bundled [schema.json](schema.json) records physical data types, field definitions, units, row counts and coordinate reference systems for an audited pipeline snapshot. It should be regenerated or revalidated for each release because both schemas and row counts may change.
 
 ## Limitations and next steps
 
-The pipeline joins European geography, population, intercity bus and rail, aviation, road routing and local access into an analysable supply graph. Its strongest present uses are structural network analysis, accessibility screening and preparation of modal skim inputs. The limitations below define the boundary between that usable research object and the full time-dependent assignment model envisaged in 3MARS WP2.
+3MG is suitable for structural network analysis, accessibility screening and the preparation of modal skim inputs. It is not yet the time-dependent, capacity-constrained assignment network envisaged for the later stages of 3MARS WP2. The following limitations define that boundary.
 
 ### Limitations
 
-- GTFS coverage, validity periods, completeness and licences vary by publisher. The MobilityDatabase cut-off is reproducible at feed level, but it does not represent a single synchronised European operating date. The manual feeds do not yet have a complete acquisition and checksum manifest and two local files require review: `man-Poland-rail` is mislabelled and `man-TrainOSE` exposes 2019 service dates.
-- Bus and rail classifications depend on a project-defined subset of GTFS route types. Agency-to-operator matching is manual and unmapped agencies are excluded from the retained intercity network. Changes to either list can materially alter coverage.
-- Stations are synthetic clusters, not authoritative interchange facilities. The 400 m rule ignores barriers and walking routes. The subsequent reduction preserves the supported mode-specific FUA pairs but does not preserve every stop, station pair or service pattern and station names are inherited from heterogeneous source feeds.
-- Public transport times use one agency offset evaluated in winter 2025. Daylight-saving transitions and timezone changes across the full service period are not represented. P-space links further aggregate detailed calendars and departures into median time, variability and active-day frequency.
-- Aviation durations are calculated from local timetable-clock values without airport-specific timezone conversion. OAG data are proprietary and the final graph does not yet expose the available seat field as capacity.
-- OSM paths are shortest routes on simplified undirected infrastructure graphs. Direction, turn restrictions, access permissions, rail gauge, electrification, operating rights, track capacity and timetable-specific paths are not modelled. Manual cross-water links are connectivity assumptions. The current download URL construction also drops the two-digit year from `OSM_SNAPSHOT_DATE`; this must be corrected before a clean rebuild. In the current snapshot, 715 of 36,162 public transport links have no routed distance.
-- City–hub connectors represent population-weighted road access and are copied symmetrically. They do not model walking, local public transport, congestion or asymmetric access conditions. Per-FUA connector caches are present for 360 of 384 FUAs; a missing file may indicate either no retained hub or an unsuccessful routing run and should be resolved explicitly.
-- The final edge table omits distance, geometry, fares, capacity, service dates, reliability, emissions and passenger flows. Airports and stations connect through the FUA node rather than through explicit airport–station transfer links.
-- The current `3m-edges.parquet` snapshot is not release-valid: 14,754 air edges use the `AIR_` prefix while airport nodes use `AP_`, so their endpoints do not resolve. This identifier mismatch must be corrected and the graph regenerated before publication.
+- Source coverage is uneven. GTFS validity periods, completeness and licences vary by publisher and the fixed MobilityDatabase cut-off does not create a synchronised European operating day. Manually acquired feeds are not yet governed by a complete, versioned manifest of retrieval dates and checksums.
+- Public transport coverage depends on the selected GTFS route types and the curated agency-to-operator mapping. Unmapped agencies are excluded, so changes to these inputs can alter the retained services and operators.
+- Stations are synthetic spatial clusters rather than authoritative interchange facilities. The 400 m clustering and buffer rules do not account for pedestrian routes or physical barriers. Station reduction preserves mode-specific FUA-pair coverage, but not every source stop, station pair or service pattern.
+- Public transport uses a single winter timezone offset per agency across the service window, so daylight-saving changes are not represented. P-space aggregation further reduces detailed departures and calendars to median link time, variability and active-day frequency.
+- Aviation durations are derived from local timetable clocks without airport-specific timezone conversion. The proprietary OAG source also limits independent reproduction and redistribution of the aviation layer.
+- Bus and rail geometries are shortest paths on simplified, undirected infrastructure graphs. They do not represent directionality, turn and access restrictions, rail gauge, electrification, operating rights, capacity or service-specific routing. In the current upstream table, 715 of 36,162 public transport links have no complete routed distance.
+- Connector links represent symmetric, population-weighted road access. They omit walking, local public transport, congestion and directional differences. Although the airport table records every FUA centre within the 150 km catchment, the connector stage currently links only hubs located inside the FUA polygon. The consolidated table contains connectors for 315 of 384 FUAs; an absent connector may mean that no retained hub lies within the FUA or that no route was returned.
+- The final graph does not retain distance, geometry, fares, capacity, service dates, reliability, emissions or passenger flows. Airport–station transfers are represented indirectly through city nodes rather than as explicit interchange links.
+- The current graph is internally valid but not fully connected. It contains six weakly connected components and two isolated airport nodes, Quimper-Cornouaille (`AIR_UIP`) and Maribor Edvard Rusjan (`AIR_MBX`).
 
 ### Next steps
 
-1. Correct the air-node prefix, regenerate the graph and make endpoint, uniqueness, range and schema checks mandatory release gates.
-2. Create a versioned provenance manifest containing the code revision, parameter file, raw-file hashes, retrieval dates, original URLs and source-specific licences; replace or exclude the two questionable manual feeds.
-3. Apply date-aware timezone conversion to public transport and aviation schedules, then retain representative service calendars or construct an event-based temporal layer.
-4. Complete and classify the missing FUA connector cases, introduce explicit airport–station transfers and represent access, egress and interchange by their actual modes.
-5. Carry routed distance and geometry into the final edges and add fare, capacity, reliability, emissions and demand-class attributes where defensible sources are available.
-6. Quantify how feed selection, route-type mapping, operator filtering, station clustering and connectivity-preserving station reduction affect modal coverage and network indicators.
-7. Use the validated temporal multilayer graph to generate pathsets, load multi-class demand and implement the congestion-agnostic mode–route choice and assignment stages planned for WP2.
+1. Publish a versioned provenance manifest containing the code revision, parameters, raw-file hashes, retrieval dates, source URLs and source-specific licences.
+2. Quantify the sensitivity of coverage and network indicators to feed selection, route-type classification, operator filtering, station clustering and station reduction.
+3. Introduce date-aware timezone conversion for public transport and aviation, then retain representative service calendars or construct an event-based temporal layer.
+4. Classify unresolved connector and routing cases, add explicit airport–station transfers and represent access, egress and interchange using the relevant modes.
+5. Carry routed distance and geometry into the final graph and add fares, capacity, reliability, emissions and demand-class attributes where defensible sources are available.
+6. Use the resulting temporal multilayer graph to generate pathsets, load multi-class demand and implement the congestion-agnostic mode–route choice and assignment stages planned for WP2.
 
 ## Licensing and attribution
 
