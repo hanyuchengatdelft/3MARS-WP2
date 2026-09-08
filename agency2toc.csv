@@ -1,0 +1,217 @@
+﻿agency,mode,n_ods,country,operator
+FlixBus-eu,Bus,1869,"AT,BE,BG,CH,CZ",FlixBus
+DB Fernverkehr AG,Rail,606,"AT,BE,CH,DE,FR",DB
+SNCF VOYAGEURS,Rail,253,"BE,CH,DE,ES,FR",SNCF
+PKP Intercity,Rail,153,"AT,CZ,DE,HU,LT",PKP
+Trenitalia,Rail,110,"FR,IT",Trenitalia
+National Express,Bus,97,"DE,IE,UK",National Express (UK)
+CrossCountry,Rail,95,UK,CrossCountry
+BlaBlaCar Bus,Bus,89,"AT,BE,CH,CZ,DE",BlaBlaCar Bus
+Österreichische Bundesbahnen,Rail,82,"AT,BE,CH,CZ,DE",ÖBB
+RENFE OPERADORA,Rail,78,"ES,FR,PT",Renfe
+Flixbus,Bus,58,"AT,BE,BG,CH,CZ",FlixBus
+Northern,Rail,45,UK,DFTO
+NS,Rail,44,NL,NS
+Schweizerische Bundesbahnen SBB,Rail,43,"AT,CH,CZ,DE,FR",SBB
+OEBB Personenverkehr AG Kundenservice,Rail,37,"AT,BE,CH,CZ,DE",ÖBB
+Avanti West Coast,Rail,32,UK,Avanti West Coast
+Great Western Railway,Rail,29,UK,FirstGroup
+Aéroport Nantes Atlantique,Bus,28,"BE,CH,CZ,DE,DK",Nantes Atlantique Airport transport
+NMBS/SNCB,Rail,27,"AT,BE,DE,FR,LU",SNCB
+FlixBus-de,Bus,26,"AT,BE,BG,CH,CZ",FlixBus
+CFR Călători,Rail,26,RO,CFR
+Snälltåget,Rail,23,"AT,DE,DK,NO,SE",Snälltåget
+Nahreisezug,Bus,21,"DE,PL",Unresolved German bus operator
+East Midlands Railway,Rail,21,UK,EMR
+NS Int,Rail,20,"AT,BE,CH,DE,FR",NS
+DB Regio AG Bayern,Rail,16,"AT,DE",DB
+London North Eastern Railway,Rail,16,UK,DFTO
+European Sleeper,Rail,15,"BE,CZ,DE,FR,IT",European Sleeper
+"Železničná spoločnosť Slovensko, a.s.",Rail,15,"AT,CH,CZ,DE,HR",ZSSK
+PolRegio,Rail,14,"DE,PL",Polregio
+Hessische Landesbahn GmbH,Rail,11,DE,HLB
+DB Regio AG NRW,Rail,11,"BE,DE,NL",DB
+TransPennine Express,Rail,11,UK,DFTO
+MÁV Személyszállítási Zrt. - Helyközi busz,Bus,11,HU,MÁV
+SJ,Rail,11,"DE,DK,NO,SE",SJ
+DB AG,Rail,9,"CH,DE",DB
+MÁV,Rail,9,HU,MÁV
+SÜWEX,Rail,8,"DE,LU",DB
+Vr,Rail,8,FI,VR
+Société Nationale des Chemins de fer Français,Rail,8,"CH,FR",SNCF
+DB Fernverkehr (Codesharing),Rail,7,"AT,CH,CZ,DE,NL",DB
+Hessische Landesbahn GmbH,Bus,7,DE,HLB
+DB Regio AG Südost,Rail,7,DE,DB
+ÖBB,Rail,6,"AT,BE,CH,CZ,DE",ÖBB
+Eurostar,Rail,6,"BE,DE,FR,NL,UK",Eurostar
+Bulgarian State Railways,Rail,6,BG,BDZ
+DB Regio Mitte,Bus,6,DE,DB
+Nachtzug,Rail,6,"AT,DE",Unresolved night-train agency
+Greater Anglia,Rail,6,UK,DFTO
+Transport for Wales,Rail,6,UK,Transport for Wales
+Comboios de Portugal,Rail,6,PT,CP
+National Express,Rail,5,DE,National Express Rail
+DB Regio AG Nordost,Rail,5,"DE,PL",DB
+Hamburger Verkehrsverbund (hvv),Rail,5,DE,HVV
+OCEdefault,Rail,5,"CH,DE,ES,FR",SNCF
+Société Nationale des Chemins de fer Français,Bus,5,"CH,FR",SNCF
+Bravo (Arriva),Bus,5,"BE,NL",Arriva
+Thameslink,Rail,5,UK,DFTO
+Northern,Bus,5,UK,DFTO
+agilis,Rail,4,DE,agilis
+DB ZugBus Regionalverkehr Alb-Bodensee GmbH,Bus,4,"CH,DE",DB
+DB Regio AG Baden-Württemberg,Rail,4,"CH,DE,FR",DB
+DB Regio AG Mitte Region Südwest,Rail,4,"DE,LU",DB
+DB Regio AG Nord,Bus,4,DE,DB
+"Bilmanbus,S.L.",Bus,4,ES,Bilman Bus
+Trains Express Régionaux,Bus,4,"CH,DE,FR,LU",SNCF
+Grand Central,Rail,4,UK,Grand Central
+South Western Railway,Rail,4,UK,DFTO
+Oebb Personenverkehr AG Kundenservice,Rail,3,"AT,BE,CZ,DE,FR",ÖBB
+NMBS/SNCB,Bus,3,BE,SNCB
+Eurobahn,Rail,3,"DE,NL",Eurobahn
+DB Fernverkehr AG,Bus,3,"CH,CZ,DE",DB
+DB Regio AG Nord,Rail,3,DE,DB
+OnniBus,Bus,3,FI,Koiviston Auto
+Mitteldeutsche Regiobahn,Rail,3,DE,Transdev
+CAR_HDF_59_2,Bus,3,FR,Hauts-de-France Mobilités
+East Midlands Railway,Bus,3,UK,EMR
+Trenord,Rail,3,IT,Trenord
+RRReis,Bus,3,NL,RRReis
+SBB Infrastruktur AG Bahnersatz,Bus,2,CH,SBB
+Ceske Drahy,Rail,2,"AT,CZ,HU,SK",ČD
+LEO Express,Rail,2,"CZ,DE",Leo Express
+Leo Express,Rail,2,"CZ,DE,PL",Leo Express
+MEGABUSTRANS s.r.o.,Bus,2,CZ,MEGABUSTRANS
+FlixBus,Bus,2,"BE,CZ,DE,DK,FR",FlixBus
+Eurobahn,Bus,2,"DE,NL",Eurobahn
+DB Regio Stuttgart GmbH,Rail,2,DE,DB
+Deutsche Bahn AG,Rail,2,DE,DB
+FlixTrain-de,Rail,2,"CH,DE",FlixTrain
+Abellio Rail Mitteldeutschland GmbH,Rail,2,DE,Abellio Rail Mitteldeutschland
+Flixbus Polska sp.o.o,Bus,2,"CZ,EE,LT,LV,PL",FlixBus
+DB Regio AG Bayern,Bus,2,DE,DB
+Schwäbische Alb-Bahn,Rail,2,DE,SAB
+vlexx,Rail,2,DE,NETINERA
+Bus6,Bus,2,DE,Unresolved German bus operator
+Nebenbahn Gaildorf-Untergröningen,Rail,2,DE,Nebenbahn Gaildorf-Untergröningen
+Bus8,Bus,2,DE,Unresolved German bus operator
+NVBW,Rail,2,"CH,DE,FR",NVBW
+RMV,Bus,2,DE,RMV
+rab,Bus,2,"CH,DE",DB
+MittelSachsen,Bus,2,"CZ,DE",VMS
+OCEdefault,Bus,2,"CH,FR,LU",SNCF
+Mälartåg ersättningstrafik,Rail,2,SE,Transdev
+NordWestBahn,Bus,2,DE,Transdev
+Bayerische Regiobahn,Rail,2,"AT,DE",Transdev
+NordWestBahn,Rail,2,DE,Transdev
+SNCF VOYAGEURS,Bus,2,"CH,FR,LU",SNCF
+CrossCountry,Bus,2,UK,CrossCountry
+Southern,Rail,2,UK,DFTO
+Greater Anglia,Bus,2,UK,DFTO
+Arriva,Rail,2,"BE,DE,NL",Arriva
+Iarnród Éireann / Irish Rail,Rail,2,"IE,UK",Iarnród Éireann
+TPER spa,Bus,2,IT,TPER
+TRENITALIA S.p.A.,Rail,2,IT,Trenitalia
+Eu Sleeper,Rail,2,"BE,CZ,DE,NL",European Sleeper
+Qbuzz,Bus,2,NL,Qbuzz
+NS,Bus,2,"BE,NL",NS
+Vy Buss,Bus,2,NO,Vy
+Vy,Rail,2,"NO,SE",Vy
+SJ AB,Rail,2,"DE,DK,NO,SE",SJ
+OEBB Personenverkehr AG Kundenservice,Bus,1,"AT,CH,SK",ÖBB
+TEC Namur - Luxembourg,Bus,1,BE,TEC
+Schweizerische Südostbahn (sob),Rail,1,CH,SOB
+THURBO,Rail,1,"CH,DE",THURBO
+REGABUS s.r.o.,Bus,1,CZ,REGABUS
+"D.M.D-GROUP, spol. s r.o.",Bus,1,CZ,D.M.D-GROUP
+MUSIL TOUR spol. s.r.o.,Bus,1,CZ,MUSIL TOUR
+DB Regio AG,Rail,1,"DE,PL",DB
+Arverio Baden-Württemberg,Rail,1,DE,Arverio
+DB SEV GmbH,Bus,1,DE,DB
+DB RegioNetz Verkehrs GmbH Südostbayernbahn,Rail,1,DE,DB
+DB RegioNetz Verkehrs GmbH Kurhessenbahn,Rail,1,DE,DB
+trilex-express - Die Länderbahn GmbH DLB,Rail,1,"CZ,DE",NETINERA
+trilex  - Die Länderbahn GmbH DLB,Rail,1,"CZ,DE",NETINERA
+NIAG,Bus,1,"DE,NL",NIAG
+Erfurter Bahn,Rail,1,DE,Erfurter Bahn
+agilis,Bus,1,DE,agilis
+WestfalenBahn,Rail,1,DE,WestfalenBahn
+WestfalenBahn,Bus,1,DE,WestfalenBahn
+erixx,Bus,1,DE,NETINERA
+Go-Ahead Bayern GmbH,Rail,1,DE,Arverio
+go.on Gesellschaft für Bus- und Schienenverkehr mbH,Bus,1,DE,go.on
+Busverkehr-Rhein-Neckar,Bus,1,DE,DB
+Ostdeutsche Eisenbahn GmbH,Rail,1,DE,NETINERA
+Ostdeutsche Eisenbahn GmbH,Bus,1,DE,NETINERA
+FlixBus Sverige AB,Bus,1,"AT,BE,CZ,DE,DK",FlixBus
+FlixBus-gb,Bus,1,"BE,CZ,DE,FR,NL",FlixBus
+VIAS GmbH,Rail,1,DE,RATH
+BusClassic / Weiglein,Bus,1,DE,Weiglein Reisen
+Hamburger Verkehrsverbund (hvv),Bus,1,DE,HVV
+Verkehrsverbund Rhein-Neckar,Bus,1,DE,VRN
+Münchner Verkehrs- und Tarifverbund,Bus,1,DE,MVV
+Gerdes Reisen,Bus,1,DE,Gerdes Reisen
+Verkehrsverbund Oberelbe,Bus,1,"CZ,DE",VVO
+Verkehrsgemeinschaft Müritz-Oderhaff,Bus,1,"DE,PL",VMO
+Ingolstadt,Bus,1,DE,VGI
+ZVON Oberlausitz-Niederschlesien,Bus,1,"CZ,DE",ZVON
+Dänische Staatsbahnen,Rail,1,"DE,DK",DSB
+ELRON,Rail,1,"EE,LV",Elron
+Euskotren Trena,Rail,1,ES,Euskotren
+Ebrobus SLU,Bus,1,ES,Ebrobus
+València - Alacant/Elx,Bus,1,ES,Unresolved Valencian coach operator
+Elx Rodalia,Bus,1,ES,Elx Rodalia
+FUENGIROLA,Bus,1,ES,Unresolved Spanish regional bus
+Transporte Público de Galicia,Bus,1,ES,Transporte Público de Galicia
+Red de Consorcios de Transporte de Andalucía - Bahía de Cádiz,Bus,1,ES,CTMC Bahía de Cádiz
+Álavabus,Bus,1,ES,Álavabus
+Tåg i Bergslagen,Bus,1,SE,VR
+Nysse,Bus,1,FI,Nysse
+Blauwnet Keolis,Rail,1,NL,Keolis
+SNCF,Rail,1,"DE,FR",SNCF
+SNCF,Bus,1,"DE,FR",SNCF
+Trains Express Régionaux,Rail,1,"BE,CH,DE,FR,LU",SNCF
+S-Bahn Hannover,Bus,1,DE,Transdev
+Mälartåg ersättningstrafik,Bus,1,SE,Transdev
+Bayerische Regiobahn,Bus,1,"AT,DE",Transdev
+SNCF / TER,Rail,1,"BE,CH,DE,FR,LU",SNCF
+CAR_HDF_59_3,Bus,1,FR,Hauts-de-France Mobilités
+Aléop Lignes Express régionales,Bus,1,FR,Aléop
+Aléop en Loire-Atlantique,Bus,1,FR,Aléop
+LER ! ZOU,Bus,1,FR,ZOU!
+Cars Régionaux 87 - Haute Vienne,Bus,1,FR,Nouvelle-Aquitaine Mobilités
+Great Western Railway,Bus,1,UK,FirstGroup
+Thameslink,Bus,1,UK,DFTO
+Grand Union Trains,Rail,1,UK,FirstGroup
+Aircoach,Bus,1,"IE,UK",FirstGroup
+London North Eastern Railway,Bus,1,UK,DFTO
+Preston Bus,Bus,1,UK,Rotala
+Arriva Yorkshire,Bus,1,UK,Arriva
+Stagecoach Yorkshire,Bus,1,UK,Stagecoach
+Stagecoach South West,Bus,1,UK,Stagecoach
+Stagecoach Merseyside and South Lancashire,Bus,1,UK,Stagecoach
+ScotRail,Rail,1,UK,ScotRail
+TransPennine Express,Bus,1,UK,DFTO
+Transport for Wales,Bus,1,UK,Transport for Wales
+Arriva,Bus,1,"DE,NL,UK",Arriva
+JH Coaches,Bus,1,UK,JH Coaches
+TRAINOSE SA,Rail,1,EL,Hellenic Train
+HZZP,Rail,1,"AT,DE,HR,SI",HŽPP
+HŽ Putnicki prijevoz,Rail,1,HR,HŽPP
+VD-EXPRESS,Bus,1,IT,VD-EXPRESS
+Diamant Travel,Bus,1,IT,Diamant Travel
+LOGUDORO TOURS S.R.L.,Bus,1,IT,Logudoro Tours
+LTG Link,Rail,1,"LT,LV",LTG Link
+CFL,Rail,1,"BE,DE,LU",CFL
+Go-Ahead Norge AS,Rail,1,NO,Go-Ahead Norge
+VY Bus4You,Bus,1,"DK,NO,SE",Vy
+PolRegio,Bus,1,"DE,PL",Polregio
+PKP Intercity,Bus,1,PL,PKP
+Łódzka Kolej Aglomeracyjna,Rail,1,PL,ŁKA
+InterRegional Călători,Rail,1,RO,InterRegional Călători
+Snälltåget,Bus,1,"DE,DK,SE",Snälltåget
+SJ Nord,Rail,1,NO,SJ
+Länstrafiken Örebro AB,Rail,1,SE,Länstrafiken Örebro
+UL,Bus,1,SE,UL
+Trainose Sa,Rail,1,EL,Hellenic Train

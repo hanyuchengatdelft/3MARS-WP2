@@ -227,7 +227,7 @@ python gtfs-db.py # clean the GTFS feeds and organise in a database
 python intercity.py # filter intercity services from the GTFS database
 ```
 
-10. Filter the important public transport operating companies (TOCs) by manually mapping GTFS agencies to a list of preset TOCs ("operators"). This step is optional but recommended to limit the number of operators and thus links in the 3MG. To do this, manually assign a suitable TOC to each agency in `{DATA}/gtfs/ic-agencies.csv` which by default is the same as the agency name. The mapping used in the current snapshot of 3MG can be found in [major-ic-agencies.csv](major-ic-agencies.csv). Save the manual mapping to another file `{DATA}/gtfs/agency2toc.csv` to prevent accidental overwrites. Then, run the following to update the intercity network:
+10. Filter the important public transport operating companies (TOCs) by manually mapping GTFS agencies to a list of preset TOCs ("operators"). This step is optional but recommended to limit the number of operators and thus links in the 3MG. To do this, manually assign a suitable TOC to each agency in `{DATA}/gtfs/ic-agencies.csv` which by default is the same as the agency name. Save this manual mapping to an isolated file `{DATA}/gtfs/agency2toc.csv` to prevent accidental overwrites. For reference, the mapping used in the current snapshot of 3MG is in [agency2toc.csv](agency2toc.csv), though it is not guaranteed to be completely accurate and your version can be different based on your domain knowledge. Once the mapping is prepared, run the following to update the intercity network:
 ```bash
 python tocs.py # update intercity network for only major TOCs
 ```
@@ -242,17 +242,17 @@ python seg-geometry.py # approximate modal interstation segment geometry
 python pt-links.py # prepare public transport interstation links
 ```
 
-13.  Generate virtual connector links between city centroids (demand centres) and all transport hubs (airports and stations) by identifying shortest car path travel times between all population grid cells of a city and all transport hubs and then computing a population-weighted average travel time value for each connector:
+13. Generate virtual connector links between city centroids (demand centres) and all transport hubs (airports and stations) by identifying shortest car path travel times between all population grid cells of a city and all transport hubs and then computing a population-weighted average travel time value for each connector:
 ```bash
 python connectors.py # compute connector link travel times
 ```
 
-14.  Create the 3MG network files by combining air, PT and car intercity links with PT intrahub and connector links in a single graph stored in two files: [nodes.csv](nodes.csv) and [links.csv](links.csv) by running:
+14. Create the 3MG network files by combining air, PT and car intercity links with PT intrahub and connector links in a single graph stored in two files: [nodes.csv](nodes.csv) and [links.csv](links.csv) by running:
 ```bash
 python 3m-graph.py # generate the 3MG network
 ```
 
-15.  Validate the proper loading and properties of the generated 3MG network using:
+15. Validate the proper loading and properties of the generated 3MG network using:
 ```bash
 python inspect-graph.py # validate the 3MG network
 ```
