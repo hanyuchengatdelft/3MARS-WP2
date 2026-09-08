@@ -9,7 +9,7 @@ from typing import Union
 import geopandas as gpd
 from IPython.display import display
 import logging
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import pyarrow.parquet as pq
@@ -202,17 +202,17 @@ pyplot_params = {
     "ytick.minor.visible": True,
 }
 
-def imsave(title=None, fig=None, ax=None, dpi=300,
-           root=FIG, ext="png", opaque=True):
-    """Save the current matplotlib figure to disk."""
-    fig = fig or plt.gcf()
-    ax = ax or fig.axes[0]
-    time = datetime.now().strftime("%Y-%m-%d_%H-%m-%S")
-    title = title or fig._suptitle or ax.get_title() or f"Untitled {time}"
-    fig.savefig(
-        f"{mkdir(root)}/{title}.{ext}",
-        dpi=dpi,
-        bbox_inches="tight",
-        transparent=not opaque,
-        facecolor="white" if opaque else "auto",
-    )
+# def imsave(title=None, fig=None, ax=None, dpi=300,
+#            root=FIG, ext="png", opaque=True):
+#     """Save the current matplotlib figure to disk."""
+#     fig = fig or plt.gcf()
+#     ax = ax or fig.axes[0]
+#     time = datetime.now().strftime("%Y-%m-%d_%H-%m-%S")
+#     title = title or fig._suptitle or ax.get_title() or f"Untitled {time}"
+#     fig.savefig(
+#         f"{mkdir(root)}/{title}.{ext}",
+#         dpi=dpi,
+#         bbox_inches="tight",
+#         transparent=not opaque,
+#         facecolor="white" if opaque else "auto",
+#     )
