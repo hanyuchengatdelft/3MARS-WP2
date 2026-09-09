@@ -1,0 +1,172 @@
+feed,provider,agencies,icc,nearest_fua,model,n_products,n_od_pairs,currency,price_min,price_max,n_stops,lon,lat,tables,modes
+mdb-3427,Turistička agencija Li-Bus d.o.o. (Livnobus),Turistička agencija Li-Bus d.o.o.,,Split (91 km),Zone-to-zone OD,410,398,BAM,2.5,216.0,37,17.2103,44.1819,"fare_attributes,fare_rules",Bus
+mdb-891,Alilaguna,Alilaguna S.p.A.,,Venezia (9 km),Zone-to-zone OD,3,219,EUR,10.0,18.0,34,12.3363,45.4395,"fare_attributes,fare_rules",Other
+mdb-3046,Transport Public Ungheni,Transport Public Ungheni,,Iasi (19 km),Zone-to-zone OD,35,30,MDL,4.5,151.2,382,27.8108,47.2274,"fare_attributes,fare_rules",Bus
+mdb-2921,Transtejo Soflusa (TTSL),TTSL - Transtejo Soflusa,,Lisboa (8 km),Per-route,5,0,EUR,1.5,3.25,10,-9.1468,38.6911,"fare_attributes,fare_rules",Other
+tdg-83311,Sailcoop,Sailcoop,,Lorient (49 km),Per-route,4,0,EUR,15.0,59.0,3,-3.9829,47.861,"fare_attributes,fare_rules",Other
+mdb-992,Valsts SIA Autotransporta Direkcija (ATD),,,,Flat,0,0,,,,0,,,"fare_attributes,fare_rules",Bus+Rail
+tdg-83891,Communauté de Communes du Centre-Ouest,Transport et Mobilités Centre-Ouest,,Irakleio (5241 km),Declared only,0,0,,,,62,45.1155,-12.825,"fare_attributes,fare_rules",Bus
+mdb-2036,Bean Shuttle,Bean Shuttle; CK Shuttle,AT,Linz (22 km),Per-route,6,0,CZK,600.0,1300.0,11,14.2681,48.1208,"fare_attributes,fare_rules",Bus
+mdb-1860,DeWaterbus,DeWaterbus,BE,Antwerpen (3 km),Zone-to-zone OD,7,2,EUR,1.0,10.0,13,4.3962,51.2367,"fare_attributes,fare_rules",Other
+mdb-684,De Lijn,De Lijn,BE,Bruxelles / Brussel (21 km),Declared only,0,0,,,,30587,4.3948,50.999,"areas,stop_areas",Bus+Other
+mdb-685,De Waterbus,DeWaterbus,BE,Antwerpen (9 km),Declared only,0,0,,,,8,4.3177,51.2419,"fare_attributes,fare_rules",Other
+mdb-2848,Urban Mobility Center - Sofia Traffic,Център за градска мобилност,BG,Sofia (1 km),Flat,2,0,EUR,0.8,1.1,4468,23.3231,42.69,fare_attributes,Bus+Other
+mdb-2119,Trolleybus Transport Pleven,Тролейбусен транспорт ЕООД - Плевен,BG,Craiova (120 km),Flat,1,0,EUR,0.8,0.8,186,24.6229,43.4106,fare_attributes,Bus+Other
+mdb-767,Prazska integrovana doprava (PID),Pražská integrovaná doprava,CZ,Praha (1 km),Per-route,17,0,CZK,0.0,200.0,19381,14.492,50.0602,"fare_attributes,fare_rules",Bus+Other+Rail
+mdb-1901,"Dopravní podnik města Olomouce, a. s.","Dopravní podnik města Olomouce, a.s.",CZ,Olomouc (5 km),Declared only,0,0,,,,376,17.2567,49.5921,"fare_attributes,fare_rules",Bus+Other
+mdb-3368,"Alukvik OÜ, Ekspressbussiliinid osaühing, GoBus AS, HANSABUSS AS, SEBE Aktsiasel",Alukvik OÜ; Ekspressbussiliinid osaühing +3,EE,Tallinn (95 km),Zone-to-zone OD,13,67,EUR,1.0,5.9,18094,25.6224,58.6944,"fare_attributes,fare_rules",Bus
+mdb-3371,"GoBus AS, HANSABUSS AS",HANSABUSS AS; GoBus AS,EE,Tallinn (96 km),Zone-to-zone OD,3,25,USD,1.0,1.7,18237,25.6222,58.683,"fare_attributes,fare_rules",Bus
+mdb-3235,"ABuss OÜ, Aktsiaselts Hansa Bussiliinid, Aktsiaselts MK Autobuss, Alukvik OÜ, Ar",GoBus AS; MEELIS HEEK +30,EE,Tallinn (96 km),Flat,16,0,EUR,1.0,5.9,18233,25.6223,58.6831,fare_attributes,Bus+Other+Rail
+mdb-2718,Autobuses La Unión (ALU),"Autobuses La Unión, S.A.",ES,Bilbao (3 km),Zone-to-zone OD,661,744,EUR,1.45,15.0,102,-2.9825,43.3098,"fare_attributes,fare_rules",Bus
+mdb-2715,Euskotren,Euskotren Funicular Larreineta; Euskotren Tranbia Bilbao +2,ES,Bilbao (23 km),Zone-to-zone OD,122,122,EUR,1.95,7.9,801,-2.6785,43.2671,"fare_attributes,fare_rules",Other+Rail
+mdb-2824,Alavabus,Álavabus; Transporte Comarcal,ES,Vitoria/Gasteiz (1 km),Zone-to-zone OD,61,52,EUR,1.55,12.3,693,-2.6929,42.8523,"fare_attributes,fare_rules",Bus
+mdb-1135,Bizkaibus,Bizkaibus,ES,Bilbao (4 km),Zone-to-zone OD,29,25,EUR,2.0,5.0,2335,-2.9118,43.2933,"fare_attributes,fare_rules",Bus
+mdb-3052,Metro Bilbao,Metro Bilbao,ES,Bilbao (3 km),Zone-to-zone OD,3,25,EUR,2.0,2.25,191,-2.9868,43.3057,"fare_attributes,fare_rules",Other
+mdb-2923,Santa Eulalia Ferry,Santa Eulalia Ferry,ES,Palma de Mallorca (120 km),Zone-to-zone OD,5,20,EUR,900.0,1500.0,5,1.5372,38.9833,"fare_attributes,fare_rules",Other
+mdb-2793,Erandio City Council (Erandio! Busa),Erandiobusa,ES,Bilbao (3 km),Zone-to-zone OD,9,16,EUR,0.33,1.2,55,-2.9601,43.308,"fare_attributes,fare_rules",Bus
+mdb-2781,Metro de Sevilla,Metro de Sevilla,ES,Sevilla (1 km),Zone-to-zone OD,16,9,EUR,0.49,30.0,42,-5.9742,37.3714,"fare_attributes,fare_rules",Other
+mdb-2682,dBus (Donostiabus),Dbus,ES,Donostia-San Sebastián (2 km),Zone-to-zone OD,49,1,EUR,1.95,2.65,542,-1.9799,43.3122,"fare_attributes,fare_rules",Bus
+mdb-1162,El Transbordador de Vizcaya,Puente Bizkaia,ES,Bilbao (6 km),Zone-to-zone OD,18,1,EUR,0.55,15.0,2,-3.0172,43.3232,"fare_attributes,fare_rules",Other
+mdb-2789,El Transbordador de Vizcaya (Bizkaia Bridge Ferry),Puente Bizkaia,ES,Bilbao (6 km),Zone-to-zone OD,18,1,EUR,0.55,15.0,2,-3.0172,43.3232,"fare_attributes,fare_rules",Other
+mdb-2680,Funicular de Artxanda,Artxandako Funikularra,ES,Bilbao (4 km),Zone-to-zone OD,10,1,EUR,0.0,5.0,2,-2.9229,43.2715,"fare_attributes,fare_rules",Other
+mdb-2681,Bilbobus,Bilbobus,ES,Bilbao (4 km),Zone-to-zone OD,9,1,EUR,0.32,30.0,538,-2.9346,43.2589,"fare_attributes,fare_rules",Bus
+mdb-2790,Sopela Town Hall,Sopelbus,ES,Bilbao (11 km),Zone-to-zone OD,6,1,EUR,0.19,1.0,18,-2.9875,43.3815,"fare_attributes,fare_rules",Bus
+mdb-2792,Etxebarri Town Hall,Etxebarri Bus,ES,Bilbao (7 km),Zone-to-zone OD,4,1,EUR,0.39,0.7,24,-2.8923,43.2475,"fare_attributes,fare_rules",Bus
+mdb-2733,Lurraldebus Arrasate,Lurraldebus Urbano De Arrasate,ES,Vitoria/Gasteiz (28 km),Zone-to-zone OD,1,1,EUR,1.35,1.35,54,-2.4897,43.0651,"fare_attributes,fare_rules",Bus
+mdb-2734,Lurraldebus - Hernani Urban (Hernani city bus),Lurraldebus Urbano De Hernani,ES,Donostia-San Sebastián (3 km),Zone-to-zone OD,1,1,EUR,0.7,0.7,27,-1.9712,43.2683,"fare_attributes,fare_rules",Bus
+mdb-2735,Lurraldebus Eibar,Udalbus Eibar,ES,Vitoria/Gasteiz (41 km),Zone-to-zone OD,1,1,EUR,1.35,1.35,38,-2.4693,43.1861,"fare_attributes,fare_rules",Bus
+mdb-2737,Oñati urban (Oñatiko herribusa),Oñatiko Herribusa,ES,Vitoria/Gasteiz (29 km),Zone-to-zone OD,1,1,EUR,1.35,1.35,32,-2.4136,43.0327,"fare_attributes,fare_rules",Bus
+mdb-2758,Tolosa City Council (Urbano de Tolosa),Tolosa Hiribusa,ES,Donostia-San Sebastián (20 km),Zone-to-zone OD,1,1,EUR,1.35,1.35,26,-2.0742,43.1332,"fare_attributes,fare_rules",Bus
+mdb-2759,Lurraldebus Urbano de Errentería (Errenteria Urbanoa),Lurraldebus Urbano De Errenteria,ES,Donostia-San Sebastián (5 km),Zone-to-zone OD,1,1,EUR,1.55,1.55,82,-1.9057,43.3109,"fare_attributes,fare_rules",Bus
+mdb-2760,Lurraldebus Lasarte,Urbano De Lasarte-oria,ES,Donostia-San Sebastián (6 km),Zone-to-zone OD,1,1,EUR,1.35,1.35,39,-2.0183,43.2643,"fare_attributes,fare_rules",Bus
+mdb-2788,Kbus (Barakaldo urban),Kbus,ES,Bilbao (2 km),Zone-to-zone OD,1,1,EUR,1.3,1.3,88,-2.9889,43.2879,"fare_attributes,fare_rules",Bus
+mdb-2791,Leioa City Council (Lejoan Busa),Lejoan Busa,ES,Bilbao (5 km),Zone-to-zone OD,1,1,EUR,1.0,1.0,30,-2.9925,43.3258,"fare_attributes,fare_rules",Bus
+mdb-2799,Bermibusa,Bermibusa,ES,Bilbao (24 km),Zone-to-zone OD,1,1,EUR,1.0,1.0,20,-2.7273,43.4197,"fare_attributes,fare_rules",Bus
+mdb-797,TUVISA (Transportes Urbanos de Vitoria),Tuvisa,ES,Vitoria/Gasteiz (1 km),Per-route,3,0,EUR,1.4,1.85,368,-2.6818,42.8491,"fare_attributes,fare_rules",Bus
+mdb-2784,Public Works Agency of the Andalusian Regional Government (Metro de Grenada),Metropolitano de Granada,ES,Granada (1 km),Flat,1,0,EUR,1.35,1.35,26,-3.6136,37.182,fare_attributes,Other
+mdb-2812,Pinto City Council,AUTÓMNIBUS INTERURBANOS S.A,ES,Madrid (18 km),Per-route,1,0,EUR,1.3,1.3,59,-3.6987,40.2492,"fare_attributes,fare_rules",Bus
+mdb-892,Àrea Metropolitana de Barcelona (AMB),Soler i Sauret; DIREXIS TGO +9,ES,Barcelona (4 km),GTFS-Fares v2,1,0,EUR,7.75,7.75,4949,2.1122,41.4055,"areas,fare_attributes,fare_leg_rules,fare_media,fare_products,fare_rules,networks,route_networks,stop_areas",Bus
+mdb-2150,Gobierno de Navarra (Navarra intercity bus),Conda S.A.; Inter-Arriaga S.L. +1,ES,Pamplona/Iruña (32 km),Declared only,0,0,,,,222,-1.6916,42.5318,"fare_attributes,fare_rules",Bus
+mdb-2720,Consorcio Regional de Transportes de Madrid CRTM Commuter Network (Red de Cercan,Consorcio Regional de Transportes de Madrid,ES,Madrid (1 km),Declared only,0,0,,,,97,-3.7077,40.4211,"fare_attributes,fare_rules",Rail
+mdb-2752,Autocares Rías Baixas (Rías Baixas Coaches),Autocares Rias Baixas S. L.; TREN TURÍSTICO,ES,Santiago de Compostela (25 km),Declared only,0,0,,,,2443,-8.4859,42.6469,"fare_attributes,fare_rules",Bus
+mdb-2774,Autocares Baraza (Baraza Coaches),Autocares Baraza,ES,Almería (67 km),Declared only,0,0,,,,50,-1.8296,37.2184,"fare_attributes,fare_rules",Bus
+mdb-2778,Rodil,UTE Rodil,ES,Coruña (A) (97 km),Declared only,0,0,,,,84,-7.2014,43.3486,"fare_attributes,fare_rules",Bus
+mdb-2780,Costa Coaches,Autocares Costa S. L.,ES,Santiago de Compostela (33 km),Declared only,0,0,,,,446,-8.8957,43.0195,"fare_attributes,fare_rules",Bus
+mdb-2794,Lázara Coaches,UTE XG-863 LÁZARA-RÍAS BAIXAS,ES,Santiago de Compostela (20 km),Declared only,0,0,,,,1321,-8.3766,42.7487,"fare_attributes,fare_rules",Bus
+mdb-2802,Consorcio Regional de Transportes de Madrid CRTM Light Rail Network (Red de Metr,Consorcio Regional de Transportes de Madrid,ES,Madrid (5 km),Declared only,0,0,,,,96,-3.7637,40.4212,"fare_attributes,fare_rules",Other
+mdb-2820,Consorcio Regional de Transportes de Madrid CRTM Madrid City Bus (Autobús urbano,Consorcio Regional de Transportes de Madrid,ES,Madrid (4 km),Declared only,0,0,,,,8406,-3.7443,40.4263,"fare_attributes,fare_rules",Bus
+mdb-2826,Autoridad de Transporte Metropolitano del Área de Barcelona (ATM) Buses and trai,Hispano Igualadina; ALSINA GRAELLS +175,ES,Barcelona (6 km),Declared only,0,0,,,,28983,2.1192,41.4938,"fare_attributes,fare_rules",Bus+Other+Rail
+mdb-2832,Autoridad de Transporte Metropolitano del Área de Barcelona (ATM) Buses and trai,Hispano Igualadina; ALSINA GRAELLS +169,ES,Barcelona (3 km),Declared only,0,0,,,,23191,2.1071,41.4582,"fare_attributes,fare_rules",Bus+Other+Rail
+mdb-791,Consorcio Regional de Transportes de Madrid CRTM Intercity Buses (Madrid Interci,Consorcio Regional de Transportes de Madrid,ES,Madrid (4 km),Declared only,0,0,,,,8406,-3.7443,40.4263,"fare_attributes,fare_rules",Bus
+mdb-794,Metro de Madrid,Consorcio Regional de Transportes de Madrid,ES,Madrid (2 km),Declared only,0,0,,,,1050,-3.6931,40.423,"fare_attributes,fare_rules",Other
+tld-650,"Conda, INTER-ARRIAGA  S.L., La Burundesa",Conda S.A.; Inter-Arriaga S.L. +1,ES,Pamplona/Iruña (32 km),Declared only,0,0,,,,222,-1.6916,42.5318,"fare_attributes,fare_rules",Bus
+mdb-868,Kuopio,VILKKU; Tahko Skibus,FI,Jyväskylä (124 km),Zone-to-zone OD,20,1,EUR,0.0,8.9,1910,27.6715,62.9196,"fare_attributes,fare_rules",Bus
+man-Finland,,Helsingin seudun liikenne; Nysse/Vekka Group Oy +265,FI,Tampere (71 km),GTFS-Fares v2,12,0,EUR,3.3,10.9,89902,25.0442,61.6765,"areas,fare_attributes,fare_rules,rider_categories,stop_areas",Bus+Other+Rail
+mdb-865,Helsingin seudun liikenne (HSL),Helsingin seudun liikenne,FI,Helsinki (4 km),Per-route,10,0,EUR,3.3,6.1,8375,24.932,60.2388,"areas,fare_attributes,fare_rules,stop_areas",Bus+Other+Rail
+mdb-866,Tampereen joukkoliikenne (JOLI),Nysse,FI,Tampere (2 km),Flat,3,0,EUR,3.5,5.5,3444,23.8065,61.4897,"fare_attributes,fare_rules",Bus+Other
+tdg-81617,Syndicat Mixte des Mobilités de l'Aire Grenobloise,Mobilités M - Covoit Lignes +,FR,Grenoble (5 km),Zone-to-zone OD,1,276,EUR,0.0,0.0,92,5.7759,45.2108,"fare_attributes,fare_rules",Bus
+tdg-84096,Ecov,Covoit'ici,FR,Nantes (12 km),Zone-to-zone OD,1,60,EUR,0.0,0.0,14,-1.7025,47.2741,"fare_attributes,fare_rules",Other
+tdg-83024,Bordeaux Métropole,TBM,FR,Bordeaux (2 km),GTFS-Fares v2,61,0,EUR,1.0,669.6,7385,-0.5976,44.8516,"fare_leg_rules,fare_media,fare_products,fare_transfer_rules,networks,rider_categories,route_networks",Bus+Other
+tdg-79220,CTS - Compagnie des Transports Strasbourgeois,CTS,FR,Strasbourg (5 km),GTFS-Fares v2,57,0,EUR,0.0,56.0,1350,7.7337,48.5791,"fare_leg_rules,fare_media,fare_products,fare_transfer_rules,rider_categories",Bus+Other
+tdg-81026,Région Occitanie / Pyrénées Méditerranée,.liO 09; .liO 11 +12,FR,Toulouse (82 km),GTFS-Fares v2,24,0,EUR,0.0,420.0,12295,2.4216,43.6057,"fare_leg_rules,fare_media,fare_products,fare_transfer_rules,networks,rider_categories,route_networks",Bus
+tdg-81995,Métropole Européenne de Lille ,ILEVIA,FR,Lille (3 km),Flat,13,0,EUR,0.0,20.2,4435,3.0905,50.6635,fare_attributes,Bus+Other
+tdg-83146,TRANSPORT PHOENIX,Transport Phoenix,FR,Sassari (130 km),Per-route,10,0,EUR,1.5,30.0,46,8.7812,41.8927,"fare_attributes,fare_rules",Bus
+tdg-83632,Pau Béarn Pyrénées Mobilités,IDELIS (Pau),FR,Pau (0 km),Per-route,8,0,EUR,0.0,10.0,822,-0.3691,43.3104,"fare_attributes,fare_rules",Bus
+tdg-83178,Métropole Nice Côte d'Azur,Lignes d'Azur,FR,Nice (6 km),Flat,7,0,EUR,1.7,60.0,4575,7.2381,43.7155,fare_attributes,Bus+Other
+tdg-79420,Palmbus,Palm à la demande; Palmbus,FR,Nice (20 km),Per-route,5,0,EUR,0.0,1.8,1529,7.0016,43.5588,"fare_attributes,fare_rules",Bus
+tdg-83846,Intercom de la Vire au Noireau,Tiva_urbain (Intercom de la Vire au Noireau),FR,Caen (52 km),Flat,5,0,EUR,1.0,150.0,31,-0.8841,48.8459,fare_attributes,Bus
+tdg-81678,Toulouse métropole,Tisséo,FR,Toulouse (2 km),Per-route,4,0,EUR,1.8,9.0,5771,1.429,43.592,"fare_attributes,fare_rules",Bus+Other
+tdg-81943,SYTRAL Mobilités,TCL; Rhonexpress,FR,Lyon (6 km),Per-route,4,0,EUR,2.1,5.0,8916,4.7991,45.7591,"fare_attributes,fare_rules",Bus+Other
+tdg-79528,Transdev • Bretagne ,Distribus,FR,Saint-Brieuc (19 km),Per-route,3,0,EUR,0.0,1.5,215,-2.5108,48.5569,"fare_attributes,fare_rules",Bus
+tdg-80586,Transdev • Pays de la Loire,illyGO,FR,Le Mans (2 km),Per-route,3,0,EUR,0.0,2.6,159,0.2342,47.9851,"fare_attributes,fare_rules",Bus
+tdg-80721,Région des Pays de la Loire,Aléop en Loire-Atlantique; Aléop en Maine-et-Loire +5,FR,Angers (25 km),Flat,3,0,EUR,0.0,0.0,9779,-0.8785,47.4736,fare_attributes,Bus+Other
+tdg-81575,Sète Agglopole Méditerranée,Keolis Bassin de Thau,FR,Montpellier (26 km),GTFS-Fares v2,3,0,EUR,0.0,1.6,523,3.6892,43.4285,"fare_attributes,fare_leg_rules,fare_media,fare_products,fare_rules,fare_transfer_rules,networks",Bus
+tdg-83881,Saint-Nazaire agglo - La CARENE,Aléop en Loire-Atlantique; Aléop TER +2,FR,Saint-Nazaire (4 km),Flat,3,0,EUR,0.0,0.0,2218,-2.2133,47.3088,fare_attributes,Bus+Rail
+tdg-82604,Communauté de communes du Guillestrois et du Queyras,CCGQ,FR,Torino (79 km),Per-route,2,0,EUR,0.0,5.0,134,6.7805,44.7222,"fare_attributes,fare_rules",Bus
+tdg-83155,Communauté de Communes Pyrénées Vallées des Gaves,Communauté de communes Pyrénées Vallées des Gaves,FR,Pau (40 km),Per-route,2,0,EUR,0.0,2.0,33,-0.136,42.9881,"fare_attributes,fare_rules",Bus
+tdg-84101,Nantes Métropole,Naolib,FR,Nantes (1 km),Per-route,2,0,EUR,1.8,10.0,3679,-1.5568,47.2199,"fare_attributes,fare_rules",Bus+Other
+mdb-898,Transdev — Pays de la Loire,Brévibus,FR,Saint-Nazaire (13 km),Per-route,1,0,EUR,0.0,0.0,123,-2.1568,47.2419,"fare_attributes,fare_rules",Bus
+tdg-64280,Transdev Fougères • SURF,SURF,FR,Rennes (47 km),Per-route,1,0,EUR,1.1,1.1,238,-1.1958,48.3522,"fare_attributes,fare_rules",Bus
+tdg-79151,Transdev • Pays de la Loire,Brévibus,FR,Saint-Nazaire (13 km),Per-route,1,0,EUR,0.0,0.0,123,-2.1568,47.2419,"fare_attributes,fare_rules",Bus
+tdg-79483,Communauté d'agglomération du grand Gueret,Agglo’Bus (Grand Guéret),FR,Limoges (60 km),Flat,1,0,EUR,1.0,1.0,69,1.8721,46.1715,fare_attributes,Bus
+tdg-79537,Transdev • Pays de la Loire,Réso,FR,Le Mans (43 km),Per-route,1,0,EUR,0.0,0.0,109,-0.326,47.8388,"fare_attributes,fare_rules",Bus
+tdg-79544,EVEOLE,EVEOLE; TAD EVEOLE,FR,Douai (1 km),Flat,1,0,EUR,0.0,0.0,1471,3.112,50.3657,fare_attributes,Bus
+tdg-79545,Transdev • Bretagne ,Dinamo!,FR,Rennes (48 km),Per-route,1,0,EUR,0.0,0.0,390,-2.0631,48.4563,"fare_attributes,fare_rules",Bus
+tdg-79576,Transdev • Centre-Val de Loire,Nosbus (Nogent-le-Rotrou),FR,Le Mans (59 km),Per-route,1,0,EUR,0.0,0.0,106,0.818,48.3175,"fare_attributes,fare_rules",Bus
+tdg-81255,Tout'enbus,AUBENAS - Tout'enbus,FR,Valence (52 km),Per-route,1,0,EUR,1.1,1.1,245,4.3891,44.6181,"fare_attributes,fare_rules",Bus
+tdg-81432,Communauté d'Agglomération du Grand Cahors,Évidence Grand Cahors,FR,Toulouse (96 km),Flat,1,0,EUR,0.0,0.0,179,1.4354,44.452,fare_attributes,Bus
+tdg-81618,Syndicat Mixte des Mobilités de l'Aire Grenobloise,OT Grenoble,FR,Grenoble (1 km),Flat,1,0,EUR,6.5,6.5,4,5.7253,45.1958,fare_attributes,Other
+tdg-81794,Syndicat Mixte des Mobilités de l'Aire Grenobloise,M Réso - Grésivaudan,FR,Grenoble (21 km),Flat,1,0,EUR,1.0,1.0,1341,5.952,45.2983,"fare_attributes,fare_rules",Bus
+tdg-81898,Communauté d'Agglomération du Grand Sénonais INTERCOM,INTERCOM,FR,Troyes (58 km),Per-route,1,0,EUR,1.4,1.4,367,3.2961,48.1919,"fare_attributes,fare_rules",Bus
+tdg-82553,Transdev GMVA Mobilités • Kicéo,Kicéo,FR,Lorient (45 km),Per-route,1,0,EUR,1.5,1.5,2631,-2.7572,47.6609,"fare_attributes,fare_rules",Bus
+tdg-82554,Transdev Vierzon Mobilités • Le Vib,Le VIB (Vierzon),FR,Orléans (76 km),Per-route,1,0,EUR,1.0,1.0,281,2.0721,47.2231,"fare_attributes,fare_rules",Bus
+tdg-82555,Transdev SMA Mobilités • MAT,MAT,FR,Saint-Brieuc (59 km),Flat,1,0,EUR,2.0,2.0,1153,-1.9697,48.6338,fare_attributes,Bus
+tdg-83281,STAR,STAR,FR,Rennes (2 km),Flat,1,0,EUR,1.7,1.7,1524,-1.6758,48.1098,fare_attributes,Bus+Other
+tdg-83282,STAR,STAR,FR,Rennes (2 km),Flat,1,0,EUR,1.7,1.7,1804,-1.6793,48.1089,fare_attributes,Bus+Other
+tdg-83300,Auray Quiberon Terre Atlantique,GLAZGO,FR,Lorient (31 km),Per-route,1,0,EUR,1.0,1.0,444,-3.0277,47.5961,"fare_attributes,fare_rules",Bus
+tdg-83459,Syndicat Mixte des Mobilités de l'Aire Grenobloise,M Réso - Métropole Grenobloise,FR,Grenoble (3 km),Flat,1,0,EUR,2.0,2.0,2554,5.7223,45.1801,"fare_attributes,fare_rules",Bus+Other
+tdg-83462,Syndicat Mixte des Mobilités de l'Aire Grenobloise,M Réso - Pays Voironnais,FR,Grenoble (21 km),Flat,1,0,EUR,1.2,1.2,1193,5.5868,45.3652,"fare_attributes,fare_rules",Bus
+tdg-83762,Transdev CapAtlantique Mobilités • Lila Presqu'île,Lila Presqu'île,FR,Saint-Nazaire (10 km),Per-route,1,0,EUR,2.0,2.0,1900,-2.3719,47.3536,"fare_attributes,fare_rules",Bus
+tdg-83769,Intercom de la Vire au Noireau,Tiva_scolaire (Intercom de la Vire au Noireau),FR,Caen (52 km),Flat,1,0,EUR,2.0,2.0,23,-0.8833,48.8461,fare_attributes,Bus
+tdg-83770,Intercom de la Vire au Noireau,Tiva_à la demande (Intercom de la Vire au Noireau),FR,Caen (51 km),Per-route,1,0,EUR,2.0,2.0,24,-0.8725,48.8515,"areas,fare_attributes,fare_rules",Bus
+tdg-84024,Département de Loire-Atlantique,Compagnie des Bacs de Loire,FR,Nantes (12 km),Per-route,1,0,EUR,0.0,0.0,4,-1.7137,47.2004,"fare_attributes,fare_rules",Other
+tdg-79814,Communauté de Communes de l'Ouest Vosgien,Reseau NEOBUS,FR,Nancy (50 km),Declared only,0,0,,,,26,5.6926,48.3568,"fare_attributes,fare_rules",Bus
+tdg-81394,Région des Pays de la Loire,Aleop à la demande,FR,Angers (34 km),Declared only,0,0,,,,2645,-0.928,47.6252,"networks,route_networks",Bus
+tdg-82097,Pays de Saint Gilles Croix de Vie Agglomération,Nombalais,FR,Nantes (65 km),Declared only,0,0,,,,116,-1.9308,46.6961,"fare_attributes,fare_rules",Bus
+tdg-83746,Communauté de communes pays d'Evian - vallée d'Abondance,cc-peva; EVAD,FR,Lausanne (19 km),Declared only,0,0,,,,277,6.6121,46.3694,"fare_attributes,fare_rules",Bus
+mdb-862,Weekendbus,Weekendbus,HU,Budapest (9 km),Zone-to-zone OD,6,319,HUF,400.0,550.0,55,19.2196,47.5365,"fare_attributes,fare_rules",Bus
+mdb-1194,"Bus Company S.r.l., Gunetto Autolinee S.r.l., Bus Company S.r.l., GelosoBus S.r.",Bus Company S.r.l.; Gunetto Autolinee S.r.l. +12,IT,Torino (58 km),Zone-to-zone OD,169,555277,EUR,0.55,9.2,5296,7.7174,44.5548,"fare_attributes,fare_rules",Bus+Other
+mdb-3041,Trasporto Passeggeri Emilia-Romagna,Marconi Express,IT,Bologna (4 km),Zone-to-zone OD,2,3,EUR,2.3,12.8,3,11.3178,44.5179,"areas,fare_attributes,fare_leg_rules,fare_media,fare_products,fare_rules,stop_areas",Other
+mdb-2055,Daytrip Shuttle,Daytrip,IT,Napoli (9 km),Per-route,3,0,EUR,14.0,34.0,4,14.3828,40.8013,"fare_attributes,fare_rules",Bus
+mdb-2373,AMAT Palermo S.P.A.,AMAT Palermo S.p.A.,IT,Palermo (2 km),Per-route,2,0,EUR,1.4,1.8,1653,13.3369,38.1232,"fare_attributes,fare_rules",Bus+Other
+mdb-2687,Gruppo Torinese Trasporti (GTT),GTT Servizio Extraurbano; GTT Servizio Ferroviario +2,IT,Torino (3 km),Per-route,2,0,EUR,2.0,2.0,7073,7.6854,45.0773,"fare_attributes,fare_rules",Bus+Other
+mdb-1264,Azienda Varesina Trasporti (AVT),Azienda Varesina Trasporti,IT,Milano (51 km),Flat,1,0,EUR,1.0,1.0,2,8.7893,45.8596,fare_attributes,Other
+tld-576,CTM SpA Cagliari,CTM Spa,IT,Cagliari (4 km),Flat,1,0,EUR,1.3,1.3,1048,9.1306,39.2345,fare_attributes,Bus
+mdb-1154,Regione Piemonte,A.T.A.P. S.p.A.; A.T.A.V. VIGO S.p.A. +87,IT,Torino (26 km),Declared only,0,0,,,,5390,7.9673,44.9947,"fare_attributes,fare_rules",Bus+Other
+mdb-1170,Trenitalia Piemonte,TRENITALIA ,IT,Torino (47 km),Declared only,0,0,,,,244,8.2522,45.0821,"fare_attributes,fare_rules",Rail
+tld-4477,"Lietuvos transporto saugos administracija, Lazdijų r. sav., Utenos r. sav., Šalč",Molėtų r. sav.; Pagėgių sav. +72,LT,Kaunas (44 km),Zone-to-zone OD,336399,98863,EUR,0.0,2850.0,20367,24.0159,55.2997,"fare_attributes,fare_rules",Bus+Other+Rail
+man-Lithuania,,Molėtų r. sav.; Pagėgių sav. +72,LT,Kaunas (40 km),Zone-to-zone OD,315075,95009,EUR,0.0,2850.0,19938,24.0175,55.2691,"fare_attributes,fare_rules",Bus+Other+Rail
+mdb-1041,Kauno viešasis transportas (KVT),Kauno miesto savivaldybės administracija,LT,Kaunas (1 km),Per-route,4,0,EUR,0.7,1.3,970,23.9298,54.9105,"fare_attributes,fare_rules",Bus+Other
+mdb-1044,Vilnius Transport,"SĮ ""Susisiekimo paslaugos""",LT,Vilnius (2 km),Declared only,0,0,,,,1556,25.2731,54.6963,"areas,stop_areas",Bus+Other
+mdb-2337,Latvia by Gustavs Svalbe gsvalbe.id.lv,SIA GALSS BUSS; SIA Daugavpils autobusu parks +23,LV,Rīga (22 km),Zone-to-zone OD,1169444,236920,EUR,0.7,14.1,14720,24.4478,56.8582,"fare_attributes,fare_rules",Bus+Other+Rail
+man-Latvia,,Vivi,LV,Rīga (17 km),Zone-to-zone OD,85,4504,EUR,1.0,10.9,141,24.4083,56.919,"fare_attributes,fare_rules",Rail
+mdb-3385,Pasažieru Vilciens,Vivi,LV,Rīga (17 km),Zone-to-zone OD,85,4504,EUR,1.0,10.9,141,24.4083,56.919,"fare_attributes,fare_rules",Rail
+mdb-3496,VTU Valmiera,SIA VTU Valmiera,LV,Rīga (101 km),Zone-to-zone OD,1,1,EUR,1.0,1.0,100,25.4237,57.5353,"fare_attributes,fare_rules",Bus
+mdb-3497,Hansabuss,Hansabuss (Jūrmala),LV,Rīga (24 km),Per-route,2,0,EUR,0.9,1.1,208,23.7334,56.962,"fare_attributes,fare_rules",Bus
+mdb-3499,Jēkabpils autobusu parks,Jēkabpils autobusu parks,LV,Rīga (118 km),Per-route,1,0,EUR,1.0,1.0,159,25.8704,56.5031,"fare_attributes,fare_rules",Bus
+mdb-2092,Warszawski Transport Publiczny (ZTM Warszawa),Warszawski Transport Publiczny,PL,Warszawa (1 km),Per-route,79,0,PLN,3.0,26.0,7284,21.0167,52.2334,"fare_attributes,fare_rules",Bus+Other+Rail
+mdb-3156,Rzeszowski Transport Miejski,Rzeszowski Transport Miejski,PL,Rzeszów (3 km),GTFS-Fares v2,48,0,PLN,2.1,23.0,919,21.9907,50.0324,"areas,fare_leg_rules,fare_media,fare_products,fare_transfer_rules,rider_categories,stop_areas",Bus
+mdb-3189,Komunikacja miejska w Jarosławiu,Rozkładnik.pl,PL,Rzeszów (46 km),GTFS-Fares v2,16,0,PLN,2.0,7.0,145,22.6722,50.0241,"areas,fare_leg_rules,fare_media,fare_products,fare_transfer_rules,rider_categories,stop_areas",Bus
+mdb-2086,Miejski Zakład Komunikacji w Ełku (MZK Ełk),MZK Ełk,PL,Białystok (92 km),Flat,14,0,PLN,2.8,23.0,296,22.3467,53.8263,"fare_attributes,fare_rules",Bus
+mdb-2399,ZTM Katowice,ZTM – Zarząd Transportu Metropolitalnego,PL,Katowice (3 km),Flat,8,0,PLN,4.2,13.8,8703,18.9863,50.2909,fare_attributes,Bus+Other
+tld-7878,Zarząd Transportu Metropolitalnego (ZTM Transport GZM),ZTM – Zarząd Transportu Metropolitalnego,PL,Katowice (4 km),Flat,8,0,PLN,4.2,13.8,7814,18.9865,50.2962,fare_attributes,Bus+Other
+mdb-2090,MZDiK Radom,MZDiK Radom,PL,Radom (1 km),Flat,3,0,PLN,3.6,14.0,705,21.1578,51.398,fare_attributes,Bus
+mdb-2091,Warszawska Kolej Dojazdowa (WKD),Warszawska Kolej Dojazdowa,PL,Warszawa (15 km),Flat,3,0,PLN,4.1,9.2,60,20.8461,52.1725,fare_attributes,Bus+Rail
+mdb-1072,Wielicka Komunikacja Wewnątrzgminna,Wielicka Komunikacja Wewnątrzgminna,PL,Kraków (9 km),Flat,1,0,PLN,3.0,3.0,74,20.0566,49.9806,"fare_attributes,fare_rules",Bus
+mdb-1123,Komunikacja Miejska Łomianki,Komunikacja Miejska Łomianki,PL,Warszawa (16 km),Flat,1,0,PLN,0.0,0.0,74,20.8757,52.3448,fare_attributes,Bus
+mdb-2838,Guimabus - Transportes de Guimarães,GUIMABUS - EMPRESA TRANSP. DE GUIMARÃES UNIP LDA,PT,Braga (17 km),Zone-to-zone OD,528,283190,EUR,1.0,9.0,1522,-8.316,41.444,"fare_attributes,fare_rules",Bus
+mdb-2836,Mobiave,MobiAve,PT,Braga (22 km),Zone-to-zone OD,0,282208,,,,2452,-8.479,41.3786,fare_rules,Bus
+mdb-2837,TUBA - Transportes Urbanos de Barcelos,TUBA,PT,Braga (16 km),Zone-to-zone OD,0,282208,,,,1626,-8.6135,41.5414,fare_rules,Bus
+mdb-2357,Metro do Porto,Metro do Porto,PT,Porto (6 km),Zone-to-zone OD,6,169,EUR,1.4,3.65,85,-8.6286,41.1833,"fare_attributes,fare_rules",Other
+tld-715,Fertagus,Fertagus,PT,Lisboa (16 km),Zone-to-zone OD,56,111,EUR,1.5,4.6,14,-9.115,38.6255,"fare_attributes,fare_rules",Rail
+tld-4257,AUTNA SL,AUTNA,PT,Braga (36 km),Zone-to-zone OD,9,18,EUR,4.0,14.9,8,-8.6919,41.8222,"fare_attributes,fare_rules",Bus
+tld-716,Metro de Lisboa (Metro),"Metropolitano de Lisboa, E.P.E.",PT,Lisboa (3 km),Zone-to-zone OD,2,8,EUR,1.9,1.9,74,-9.1462,38.7373,"areas,fare_attributes,fare_leg_rules,fare_media,fare_products,fare_rules,fare_transfer_rules",Other
+tld-4316,A Onda - Mobilidade Urbana,A Onda - Mobilidade Urbana,PT,Huelva (156 km),Zone-to-zone OD,2,4,EUR,1.2,1.6,306,-8.6879,37.114,"fare_attributes,fare_rules",Bus
+tld-4320,GIRO - Transportes Urbanos,GIRO - Transportes Urbanos,PT,Huelva (117 km),Zone-to-zone OD,2,4,EUR,2.0,2.6,232,-8.242,37.0966,"fare_attributes,fare_rules",Bus
+tld-4321,Próximo - Transportes Urbanos de Faro,Próximo - Transportes Urbanos de Faro,PT,Huelva (93 km),Zone-to-zone OD,3,1,EUR,1.35,2.85,184,-7.9388,37.0268,"fare_attributes,fare_rules",Bus
+tld-4317,Vai e Vem - Circuito Urbano,Vai e Vem - Circuito Urbano,PT,Huelva (145 km),Zone-to-zone OD,1,1,EUR,1.65,1.65,477,-8.5615,37.1468,"fare_attributes,fare_rules",Bus
+tld-4319,Circuito Olhão,CUBO,PT,Huelva (84 km),Zone-to-zone OD,1,1,EUR,1.0,1.0,87,-7.8389,37.0353,"fare_attributes,fare_rules",Bus
+mdb-1927,Transportes Urbanos de Braga (TUB),Transportes Urbanos de Braga,PT,Braga (3 km),Flat,6,0,EUR,1.55,2.0,2001,-8.4297,41.5466,"fare_attributes,fare_rules",Bus
+mdb-2056,Daytrip Shuttle,Daytrip,PT,Lisboa (85 km),Per-route,3,0,EUR,30.0,42.0,6,-8.8717,39.4892,"fare_attributes,fare_rules",Bus
+mdb-1272,"Cascais Próxima, E.M., S.A.",Cascais Próxima,PT,Lisboa (19 km),Flat,2,0,EUR,1.5,2.0,1076,-9.3868,38.7132,"fare_attributes,fare_rules",Bus
+mdb-2143,Regia Autonomă De Transport Brașov,RATBV S.A.,RO,Brasov (1 km),Zone-to-zone OD,7,74,RON,0.0,12.0,842,25.6087,45.6598,"areas,fare_attributes,fare_leg_rules,fare_products,fare_rules,networks,route_networks,timeframes",Bus+Other
+mdb-2114,Transport Urban Sinaia,Transport Urban Sinaia,RO,Brasov (33 km),Zone-to-zone OD,7,11,RON,3.0,75.0,44,25.548,45.3543,"fare_attributes,fare_rules",Bus+Other
+mdb-2116,Compania de Transport Public Iași,SCTP Iasi,RO,Iasi (1 km),Zone-to-zone OD,3,4,RON,4.0,9.0,643,27.576,47.16,"areas,fare_attributes,fare_leg_rules,fare_products,fare_rules,fare_transfer_rules,stop_areas",Bus+Other
+mdb-2098,Asociația de Dezvoltare Intercomunitară pentru Transport Public București – Ilfo,STB SA; METROREX SA +3,RO,Bucureşti (1 km),GTFS-Fares v2,5,0,RON,3.0,5.0,4548,26.096,44.4398,"fare_attributes,fare_leg_rules,fare_media,fare_products,fare_transfer_rules,networks,route_networks",Bus+Other
+mdb-2868,Societatea Metropolitană de Transport Timișoara,Societatea de Transport Public Timisoara,RO,Timişoara (0 km),Per-route,2,0,RON,5.0,5.0,889,21.2272,45.7511,"fare_attributes,fare_rules",Bus+Other
+mdb-2108,Transport Călători Express Ploiești,S.C. „Transport Călători Express” S.A Ploiești,RO,Ploiesti (1 km),Flat,1,0,RON,2.5,2.5,318,26.0208,44.9385,fare_attributes,Bus+Other
+mdb-2939,Trafiklab,Samtrafiken i Sverige AB; Trafikverket RDB +152,SE,Örebro (25 km),Declared only,0,0,,,,182418,15.6144,59.265,"areas,stop_areas",Bus+Other+Rail
+tld-7891,Scania Transport Services,Scania Transport Services,SE,Stockholm (28 km),Declared only,0,0,,,,19,17.6351,59.1746,"areas,fare_attributes,fare_rules",Bus
+mdb-1827,Ljubljanski Potniški Promet,Ljubljanski Potniški Promet,SI,Ljubljana (2 km),Flat,1,0,EUR,1.5,1.5,719,14.5169,46.0555,fare_attributes,Bus
+mdb-3478,Kompa Vojka-Kyselica,"Vodohospodárska výstavba, š. p.",SK,Bratislava (30 km),Per-route,1,0,EUR,0.0,0.0,2,17.3838,47.9823,"fare_attributes,fare_rules",Other
+tld-3363,"Dopravný podnik Bratislava, a.s.","Dopravný podnik Bratislava, a.s.",SK,Bratislava (5 km),Declared only,0,0,,,,1366,17.1189,48.1583,"fare_attributes,fare_rules",Bus+Other

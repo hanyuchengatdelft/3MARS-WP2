@@ -17,6 +17,8 @@ The main result is that public fare data are much more common than the original 
 | `documents/` | 15 validated example tariff PDFs, workbooks and CSVs |
 | `build_register.py` / `validate_audit.py` | Rebuild and validation commands |
 | `agents/` | Regional research notes and structured intermediate results |
+| `gtfs_embedded_fares.md` / `gtfs_fare_inventory.csv` | Which collected GTFS feeds ship prices inside the archive itself, and where they apply |
+| `scan_gtfs_fares.py` / `enrich_gtfs_modes.py` | Rebuild the GTFS fare inventory |
 
 Rebuild and validate with:
 
