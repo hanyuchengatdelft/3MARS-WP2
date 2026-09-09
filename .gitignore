@@ -7,3 +7,4 @@ notebooks
 *.ipynb
 env.yml
 gtc-params.yml
+sources.yml

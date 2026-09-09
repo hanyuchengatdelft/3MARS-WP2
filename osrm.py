@@ -7,8 +7,8 @@ import os
 from pathlib import Path
 import requests
 import shlex
-from shutil import rmtree
 import subprocess
+from tempfile import TemporaryDirectory
 import time
 from typing import Any
 
@@ -188,8 +188,8 @@ def get_travel_times(
     server_start_timeout : float, default 180
         Maximum seconds for preprocessing and `osrm-routed` startup.
     workdir : str | Path
-        Temporary directory for the clipped PBF and OSRM files. The directory
-        is deleted before and after every call.
+        Parent directory for temporary clipped PBF and OSRM files. Each call
+        uses and removes its own subdirectory.
     osrm_img : str
         Versioned OSRM-backend Docker image.
 
@@ -213,9 +213,10 @@ def get_travel_times(
     
     ## Configure
     container = "osrm-times"
-    workdir = Path(workdir).resolve()
-    rmtree(workdir, ignore_errors=True)
-    workdir.mkdir(parents=True, exist_ok=True)
+    tmp_root = Path(workdir).resolve()
+    tmp_root.mkdir(parents=True, exist_ok=True)
+    tmpdir = TemporaryDirectory(prefix="osrm-", dir=tmp_root)
+    workdir = Path(tmpdir.name)
     server = None
     try:
         ## Clip the supplied OSM extract to the OD extent
@@ -226,8 +227,9 @@ def get_travel_times(
         json_path = workdir / "boundary.geojson"
         extent.to_crs(CRS_DEG).to_file(json_path, driver="GeoJSON")
         run(
-            "osmium extract --strategy=complete_ways --overwrite "
-            f"-p {json_path} -o {workdir}/tmp.osm.pbf {osm_path}"
+            "osmium extract --no-progress --strategy=complete_ways "
+            f"--overwrite -p {json_path} "
+            f"-o {workdir}/tmp.osm.pbf {osm_path}"
         )
         ## Preprocess the extract and start OSRM server
         probe_pt = tuple(pts.geometry.iloc[0].coords[0])
@@ -241,14 +243,12 @@ def get_travel_times(
             ttm = ttm.loc[
                 np.isfinite(ttm["dist"]) & np.isfinite(ttm["time"]) &
                 ~np.isnan(ttm["dist"]) & ~np.isnan(ttm["time"])
-            ].query("src_id != trg_id").reset_index(drop=True)
+            ].reset_index(drop=True)
         return ttm
-    except Exception as e:
-        print("ERROR:", e)
     finally:
         if server is not None:
             _stop_server(server, container)
-        rmtree(workdir, ignore_errors=True)
+        tmpdir.cleanup()
         
 # x = get_travel_times(pts, pts, osm_path, workdir=C.DATA / "tmp"); x
 
