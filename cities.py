@@ -50,7 +50,7 @@ fuas = (
 #%% Population grid
 url = ("https://ec.europa.eu/eurostat/cache/GISCO/geodatafiles/"
        "JRC_GRID_2018.zip/JRC_POPULATION_2018.shp")
-popu = C.load("popu-grid")
+popu = C.load("popu-grid", quiet=True)
 if popu is None:
     C.log("Downloading JRC population grid")
     popu = (
@@ -85,5 +85,5 @@ fuas2 = (
     .to_crs(C.CRS_DEG)
     .astype({"id": np.int16, "popu": np.int32})
     [["id", "name", "icc", "popu", "centre", "geometry"]]
-).view()
+)#.view()
 C.save(fuas2, "fuas")

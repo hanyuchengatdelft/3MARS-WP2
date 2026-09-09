@@ -88,7 +88,7 @@ class API:
         return datasets
 
 
-#%% Catalog
+#%% Catalog [4m5s]
 def build_catalog(
     snapshot_date: dt.datetime = SNAPSHOT_DATE,
     country_codes: list[str] = COUNTRIES,
@@ -153,7 +153,7 @@ def build_catalog(
     C.log(f"Saved {len(catalog):,} feeds to '{catalog_file}'")
     return catalog
 
-catalog = build_catalog(rebuild=False).view() # 4m5s
+catalog = build_catalog(rebuild=False)#.view()
 
 #%% Download feeds
 def download_feeds(

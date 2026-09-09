@@ -15,7 +15,7 @@ fuas = (
     .set_axis(["fua", "city", "icc", "geometry"], axis=1)
     .set_index("fua")
     .pipe(gpd.GeoDataFrame, crs=C.CRS_DEG)
-).view()
+)#.view()
 pts = fuas.get_coordinates()
 
 #%% Times using base highway network [1m27s]
@@ -63,7 +63,7 @@ ttm2 = (
     pd.concat([ttm, ttm_bridge], ignore_index=True)
     .rename(columns={"src_id": "src_fua", "trg_id": "trg_fua"})
     .astype({"src_fua": np.int16, "trg_fua": np.int16})
-).view()
+)#.view()
 ttm2["time"] /= 60 # convert to minutes
 ttm2["dist"] /= 1000 # convert to kilometres
 
