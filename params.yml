@@ -1,26 +1,23 @@
 # Snapshot date of OSM extracts for study countries
-OSM_SNAPSHOT_DATE: 2026-08-30
+OSM_SNAPSHOT_DATE: 2026-09-01
 # Target MobilityDatabase GTFS snapshot date
-MDB_SNAPSHOT_DATE: 2026-08-30
+MDB_SNAPSHOT_DATE: 2026-09-01
+# Date for timezone computation of airports
+AIR_TIMEZONE_DATE: 2026-01-01
 # Minimum population of a functional urban area (FUA)
 MIN_FUA_POPU: 200000
-# Reference/baseline date that defines `day_id` in table `gtfs-datesets`
-BASE_START_DATE: 2020-01-01
-BASE_END_DATE: 2030-01-01
 # Start and end dates of public transport services in GTFS data
 SERVICE_START: 2023-01-01
 SERVICE_END: 2026-12-31
-# Rail route types
-RAIL_ROUTE_TYPES: [2, 100, 101, 102, 103, 105, 106, 107, 108, 
-    109, 111, 113, 114, 117, 900, 901, 902, 903, 904, 905, 906]
-BUS_ROUTE_TYPES: [3, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209,
-                  700, 701, 702, 703, 704, 705, 706, 707, 708,
-                  709, 710, 711, 712, 713, 714, 715, 716]
-# Radius/bandwidth (metres) used in clustering of nearby stops
+# Radius/bandwidth (m) used in clustering of nearby stops
 STOP_CLUSTER_RADIUS: 400
-# Buffer radius (metres) of stops around stations for intracity trips
-STATION_BUFFER_RADIUS: 400
-# Maximum distance (metres) of a station to its nearest OSM junction
+# Buffer radius (m) of stops around stations for intracity trips
+STN_BUFFER_RADIUS: 400
+# Maximum distance (m) of a station to its nearest OSM junction
 MAX_STN_OSM_OFFSET: 5000
 # Catchment radius (km) of an airport for FUA centroid mapping
 AIRPORT_CATCH_RADIUS: 150
+# Minimum distance (m) between an airport & station to be distinct hubs
+AIRPT_STN_DIST: 400
+# Buffer radius (km) for clipping OSM PBF extracts in OSRM routing
+OSM_BUFFER_RADIUS: 10

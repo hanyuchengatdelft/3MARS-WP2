@@ -15,8 +15,6 @@ I16, UI16, I32 = np.int16, np.uint16, np.int32
 
 import config as C
 
-params = C.load_params()
-
 #%% Urban stops [3s]
 C.log("Filtering urban stops")
 
@@ -32,11 +30,22 @@ stops = (
 
 #%% Routes
 C.log("Identifying routes and computing timezone offsets")
+# See https://gtfs.org/documentation/schedule/reference/#routestxt and
+# https://developers.google.com/transit/gtfs/reference/extended-route-types
+rail_route_types = (
+    2, 100, 101, 102, 103, 105, 106, 107, 108, 109, 111,
+    113, 114, 117, 900, 901, 902, 903, 904, 905, 906
+)
+bus_route_types = (
+    3, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209,
+    700, 701, 702, 703, 704, 705, 706, 707, 708,
+    709, 710, 711, 712, 713, 714, 715, 716
+)
 routes = (
     C.load("gtfs/db-routes")
     .assign(rail=lambda df: df["mode_id"].map(
-        {x: 0 for x in params.BUS_ROUTE_TYPES} |
-        {x: 1 for x in params.RAIL_ROUTE_TYPES}
+        {x: 0 for x in bus_route_types} |
+        {x: 1 for x in rail_route_types}
     )).dropna(subset="rail", ignore_index=True)
     .astype({"agency": "category", "rail": bool})
     .rename(columns={"id": "route", "fid": "feed"})
@@ -64,10 +73,10 @@ dates = (
     .rename(columns={"id": "dateset_id", "fid": "feed"})
     .explode("day_id").astype({"day_id": np.int32})
 )
-date2int = lambda date: np.int32(str(date).replace("-", ""))
-dates["date"] = dates.pop("day_id") + date2int(params.BASE_START_DATE)
-dates = dates[dates["date"] >= date2int(params.SERVICE_START)]
-dates = dates[dates["date"] <= date2int(params.SERVICE_END)]
+dates["date"] = dates.pop("day_id") + 20200101 # start date of day IDs
+start_date = int(C.PARAMS["SERVICE_START"].strftime("%Y%m%d"))
+end_date = int(C.PARAMS["SERVICE_END"].strftime("%Y%m%d"))
+dates = dates.query(f"{start_date} <= date <= {end_date}")
 row_codes, dateset_ids = pd.factorize(dates.index, sort=True)
 col_codes, date_ids = pd.factorize(dates["date"], sort=True)
 date_mat = np.zeros((len(dateset_ids), len(date_ids)), dtype=bool)
@@ -133,7 +142,7 @@ stns = (
     .get_coordinates().reset_index()
 )
 stns["stn"] = DBSCAN(
-    eps=params.STOP_CLUSTER_RADIUS,
+    eps=C.PARAMS["STOP_CLUSTER_RADIUS"],
     min_samples=1,
     algorithm="ball_tree"
 ).fit_predict(stns[["x", "y"]])
@@ -173,7 +182,7 @@ jrn_ic = (
 C.log("Mapping nearby stops to stations for intracity routing")
 stn_stops = (
     stns.to_crs(C.CRS_EU)
-    .buffer(params.STATION_BUFFER_RADIUS)
+    .buffer(C.PARAMS["STN_BUFFER_RADIUS"])
     .rename("geometry").reset_index()
     .to_crs(C.CRS_DEG)
     .sjoin(stops, predicate="contains")
@@ -384,6 +393,9 @@ imp_agencies.to_csv(C.DATA / "gtfs/ic-agencies.csv", index=False)
 
 #%% Update other tables [3s]
 C.log("Updating other tables")
+stns2.insert(0, "node_id", [f"STN_{i:04d}" for i in stns2.index])
+stns2 = stns2.reset_index().astype({"stn": UI16})
+
 jrn2 = (
     lines2[["line", "jrn"]]
     .explode("jrn").astype({"jrn": I32})
@@ -394,7 +406,7 @@ jrn2 = (
     .astype({"jrn": I32})
 )#.view()
 tt2 = (
-    tt[(tt["stn"].isin(stns2.index)) &
+    tt[(tt["stn"].isin(stns2["stn"])) &
        (tt["jrn"].isin(jrn2["jrn"]))]
 )#.view()
 datesets2 = datesets.loc[jrn2["dateset"].unique()].sort_index()
@@ -404,7 +416,7 @@ datesets2 = datesets2.reset_index().astype({"dateset": I32})#.view()
 #%% Export [3s]
 C.log("Saving intercity data tables")
 for df, table in [
-    (stns2.reset_index().astype({"stn": UI16}), "ic-stations"),
+    (stns2, "ic-stations"),
     (lines2.drop(columns="jrn"), "ic-lines"),
     (jrn2, "ic-journeys"),
     (datesets2, "ic-datesets"),
@@ -412,5 +424,4 @@ for df, table in [
     (seg, "ic-segments"),
 ]:
     C.log(f"Table `{table}`: {len(df):,} rows")
-    # print("Previously", table, len(C.load(table)))
     C.save(df, table)

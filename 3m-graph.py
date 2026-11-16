@@ -1,6 +1,7 @@
 """Combine the modal link tables into the 3MARS transport graph."""
 
 #%% Imports
+import geopandas as gpd
 import numpy as np
 import pandas as pd
 
@@ -8,139 +9,125 @@ import config as C
 
 F32 = np.float32
 
-#%% Load nodes
-fuas = C.load("fuas")
-airports = C.load("airports")
-stns = C.load("ic-stations")
-lines = C.load("ic-lines", columns=["rail", "stn"])
+#%% Nodes: Cities & airports
+fuas = (
+    C.load("fuas").set_index("id")
+    [["node_id", "name", "centre"]]
+    .assign(lat=lambda df: df["centre"].y,
+            lon=lambda df: df["centre"].x)
+    .drop(columns="centre")
+    .assign(kind="City")
+)#.view()
+airports = (
+    C.load("airports")
+    .set_index(["iata", "node_id", "name"])
+    .get_coordinates()
+    .set_axis(["lon", "lat"], axis=1)
+    .reset_index()
+    .assign(kind="Airport")
+    .set_index("iata").rename_axis("id")
+)#.view()
 
-stn_kind = (
-    lines.explode("stn").astype({"stn": int})
-    .groupby("stn")["rail"].agg(lambda x: tuple(sorted(set(x))))
-    .map({
-        (False,): "Bus station",
-        (True,): "Rail station",
-        (False, True): "Multimodal station",
-    })
+#%% Nodes: Stations
+stations = (
+    C.load("ic-stations")
+    .set_index(["stn", "node_id", "name"])
+    .get_coordinates()
+    .set_axis(["lon", "lat"], axis=1)
+    .reset_index()
 )
+stations["name"] = stations["name"].str.split(" | ", regex=False).str[0]
+stations.insert(2, "kind", stations["stn"].map(
+    C.load("ic-lines", columns=["rail", "stn"])
+    .explode("stn").astype({"stn": int, "rail": int})
+    .groupby("stn")
+    ["rail"].agg(lambda x: tuple(sorted(set(x))))
+    .map({(0,): "Bus", (1,): "Rail", (0, 1): "Multimodal"})
+) + " station")
+stations = stations.set_index("stn").rename_axis("id")#.view()
 
-#%% Graph nodes
-city_nodes = (
-    fuas.assign(
-        node_id=fuas["id"].map(lambda x: f"FUA_{x:03}"),
-        kind="City",
-        local_id=fuas["id"].astype(str),
-        name=fuas["name"],
-        lon=fuas["centre"].x,
-        lat=fuas["centre"].y,
-    )
-    [["node_id", "kind", "local_id", "name", "lon", "lat"]]
-)
-airport_nodes = (
-    airports.assign(
-        node_id="AIR_" + airports["iata"],
-        kind="Airport",
-        local_id=airports["iata"],
-        name=airports["name"],
-        lon=airports.geometry.x,
-        lat=airports.geometry.y,
-    )
-    [["node_id", "kind", "local_id", "name", "lon", "lat"]]
-)
-station_nodes = (
-    stns.assign(
-        node_id=stns["stn"].map(lambda x: f"STN_{x:04}"),
-        kind=stns["stn"].map(stn_kind),
-        local_id=stns["stn"].astype(str),
-        name=stns["name"].str.split(" | ", n=1, regex=False).str[0],
-        lon=stns.geometry.x,
-        lat=stns.geometry.y,
-    )
-    [["node_id", "kind", "local_id", "name", "lon", "lat"]]
-)
+#%% Map stations close to airports to their multimodal airports
+stn2ap = gpd.sjoin(
+    (C.pdf2gdf(stations, crs=C.CRS_DEG).to_crs(C.CRS_EU)
+    .rename(columns={"node_id": "station"})),
+    (C.pdf2gdf(airports, crs=C.CRS_DEG).to_crs(C.CRS_EU)
+    .rename(columns={"node_id": "airport"})),
+    predicate="dwithin",
+    distance=C.PARAMS["AIRPT_STN_DIST"]
+).set_index("station")["airport"].to_dict()
+C.log(f"{len(stn2ap)} stations mapped to nearby airports")
+
+#%% Combine nodes
 nodes = (
-    pd.concat([city_nodes, airport_nodes, station_nodes], ignore_index=True)
-    .astype({"node_id": str, "kind": "category", "local_id": str,
-             "name": str, "lon": F32, "lat": F32})
+    pd.concat([fuas, airports, stations])
+    .set_index("node_id")
+    .drop(index=list(stn2ap))
+    [["kind", "name", "lat", "lon"]]
+    .astype({"name": str, "lat": F32, "lon": F32})
+    .reset_index()
 )#.view()
 
-#%% Car links between cities
-car = C.load("car-links")
-car_links = (
-    car.assign(
-        src=car["src_fua"].map(lambda x: f"FUA_{x:03}"),
-        trg=car["trg_fua"].map(lambda x: f"FUA_{x:03}"),
-        kind="Intercity",
-        mode="Car",
-        operator=pd.NA,
-        freq=np.nan,
-    )
-    [["src", "trg", "kind", "mode", "operator", "time", "freq"]]
-)
+#%% Service links: Intercity air, car & public transport (PT)
+ic_car_links = (
+    C.load("car-links")
+    .assign(src=lambda df: df["src_fua"].map(fuas["node_id"]),
+            trg=lambda df: df["trg_fua"].map(fuas["node_id"]),
+            kind="Intercity",
+            mode="Car",
+            operator=pd.NA,
+            freq=np.nan)
+    # [["src", "trg", "kind", "mode", "operator", "dist", "time", "freq"]]
+)#.view()
 
-#%% Air links between airports
-air = C.load("air-links")
 air_links = (
-    air.assign(
-        src="AIR_" + air["src"].astype(str),
-        trg="AIR_" + air["trg"].astype(str),
-        kind="Intercity",
-        mode="Air",
-        operator=air["carrier"].astype(str),
-    )
-    [["src", "trg", "kind", "mode", "operator", "time", "freq"]]
-)
-
-#%% Bus and rail links between stations
-pt = C.load("pt-links")
-pt_links = (
-    pt.assign(
-        src=pt["src"].map(lambda x: f"STN_{x:04}"),
-        trg=pt["trg"].map(lambda x: f"STN_{x:04}"),
-        kind=pt["intercity"].map({False: "Intraurban", True: "Intercity"}),
-        mode=pt["rail"].map({False: "Bus", True: "Rail"}),
-    )
-    [["src", "trg", "kind", "mode", "operator", "time", "freq"]]
-)
-
-#%% Directed car connectors between cities and transport hubs
-connectors = C.load("connectors")
-connectors["hub_id"] = [
-    f"AIR_{hub}" if kind == "Airport" else f"STN_{int(hub):04}"
-    for hub, kind in zip(connectors["hub"], connectors["kind"])
-]
-connectors = connectors[connectors["hub_id"].isin(nodes["node_id"])]
-connector_links = (
-    connectors.assign(
-        src=connectors["fua"].map(lambda x: f"FUA_{x:03}"),
-        trg=connectors["hub_id"],
-        kind="Connector",
-        mode="Car",
-        operator=pd.NA,
-        freq=np.nan,
-    )
-    [["src", "trg", "kind", "mode", "operator", "time", "freq"]]
-)
-connector_links = pd.concat([
-    connector_links,
-    connector_links.rename(columns={"src": "trg", "trg": "src"})
-], ignore_index=True)
-
-#%% Combined graph edges
-edges = (
-    pd.concat(
-        [car_links, air_links, pt_links, connector_links],
-        ignore_index=True)
-    .query("src != trg").reset_index(drop=True)
-    .astype({"src": str, "trg": str, "kind": "category",
-             "mode": "category", "time": F32, "freq": F32})
+    C.load("air-links")
+    .assign(kind="Intercity", mode="Air")
+    .rename(columns={"avg_time": "time", "avg_freq": "freq"})
+    # [["src", "trg", "kind", "mode", "operator", "dist", "time", "freq"]]
 )#.view()
-edges["operator"] = (edges["operator"].fillna("<NA>")
-                     .astype(str).astype("category"))
-edges
+
+ic_pt_links = (
+    C.load("pt-links")
+    .query("intercity")
+    .assign(src=lambda df: df["src"].map(stations["node_id"]),
+            trg=lambda df: df["trg"].map(stations["node_id"]),
+            mode=lambda df: df["rail"].map({True: "Rail", False: "Bus"}),
+            kind="Intercity")
+    # [["src", "trg", "kind", "mode", "operator", "dist", "time", "freq"]]
+)#.view()
+
+#%% Local links: Connectors & interhub car & PT links
+local_car_links = (
+    C.load("connectors")
+    .assign(mode="Car", operator=None, freq=np.nan)
+)#.view()
+
+local_pt_links = (
+    C.load("local-pt-links")
+    .assign(kind="Interhub", mode="PT", operator=None, dist=np.nan)
+    .rename(columns={"avg_time": "time", "avg_freq": "freq"})
+)#.view()
+
+#%% Combine links and map back stations to nearby airports
+links = (
+    pd.concat([
+        air_links,
+        ic_pt_links,
+        ic_car_links,
+        local_car_links,
+        local_pt_links
+    ])[["src", "trg", "kind", "mode", "operator", "dist", "time", "freq"]]
+    .astype({"dist": F32, "time": F32, "freq": F32})
+    .assign(src=lambda df: df["src"].replace(stn2ap))
+    .assign(trg=lambda df: df["trg"].replace(stn2ap))
+    .query("src != trg")
+    .reset_index(drop=True)
+)#.view()
 
 #%% Export
 C.save(nodes, "3m-nodes")
-C.save(edges, "3m-edges")
+C.save(links, "3m-edges")
 nodes.to_csv("nodes.csv", index=False)
-edges.to_csv("links.csv", index=False)
+links.to_csv("links.csv", index=False)
+
+#%%

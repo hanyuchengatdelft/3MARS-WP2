@@ -10,23 +10,21 @@ from tqdm import tqdm
 
 import config as C
 
-
 #%% Configuration
-params = C.load_params()
-SNAPSHOT_DATE = dt.datetime.combine(params.MDB_SNAPSHOT_DATE, dt.time())
+SNAPSHOT_DATE = dt.datetime.combine(
+    C.PARAMS["MDB_SNAPSHOT_DATE"], dt.time())
 
 COUNTRIES = sorted(
     C.load("countries")["icc"]
     .replace({"UK": "GB", "EL": "GR"})
     .unique()
 )
-FEED_DIR = C.DATA / "gtfs/feeds"
 
 #%% MobilityDatabase API
 class API:
     """Small replacement for mobility_db_api.MobilityAPI."""
 
-    base_url = "https://api.mobilitydatabase.org/v1"
+    base_url = C.URLS["mdb-root"]
     token_error = ("Mobility Database refresh token not found. "
                    "Set MDB_API_KEY in `env.yml`.")
 
@@ -158,7 +156,7 @@ catalog = build_catalog(rebuild=False)#.view()
 #%% Download feeds
 def download_feeds(
     catalog: pd.DataFrame,
-    outdir=FEED_DIR,
+    outdir=C.DATA / "gtfs/feeds",
     overwrite=False,
     remove_stale=True,
 ) -> None:
@@ -202,9 +200,9 @@ def download_feeds(
     if remove_stale:
         removed = []
         for file in sorted(outdir.glob("*.zip")):
-            manually_downloaded = file.stem.startswith("man-")
+            external_feeds = file.stem.startswith("ext-")
             in_catalog = file.stem in set(catalog["name"])
-            if not in_catalog and not manually_downloaded:
+            if not in_catalog and not external_feeds:
                 file.unlink()
                 removed.append(file.stem)
         C.warn(f"Deleted {len(removed)} stale feeds: " + ", ".join(removed))

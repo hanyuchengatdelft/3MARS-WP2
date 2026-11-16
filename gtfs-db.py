@@ -1,7 +1,7 @@
 """Clean original GTFS feeds into a database for downstream use."""
 
 #%% Imports
-import datetime
+import datetime as dt
 from pathlib import Path
 
 import numpy as np
@@ -12,8 +12,6 @@ from zipfile import ZipFile
 I16, I32 = np.int16, np.int32
 
 import config as C
-
-params = C.load_params()
 
 #%% Compile feed info and assign feed_id
 feeds = []
@@ -131,10 +129,10 @@ def get_routes(feed):
 
 #%% Service dates
 def get_service_dates(feed: str,
-                      start_date: datetime.date = params.BASE_START_DATE,
-                      end_date: datetime.date = params.BASE_END_DATE):
+                      start_date=dt.datetime(2020, 1, 1),
+                      end_date=dt.datetime(2030, 1, 1)):
     cal, removed = [pd.DataFrame([], columns=["service_id", "date"])] * 2
-    start_int = int(str(start_date).replace("-", ""))
+    start_int = int(str(start_date.date()).replace("-", ""))
     ## Calendar table
     df = read_gtfs_table(feed, "calendar")
     if len(df) > 0:
@@ -148,14 +146,16 @@ def get_service_dates(feed: str,
         def get_imp_dates(r):
             dates = pd.date_range(r["start_date"], r["end_date"])
             d = dates[dates >= pd.to_datetime(start_date)]
-            d = dates[dates <= pd.to_datetime(end_date)]
+            d = d[d < pd.to_datetime(end_date)]
             d = d[d.day_of_week.map(dict(enumerate(r["days"]))).astype(bool)]
             return d.year * 10_000 + d.month * 100 + d.day
         df["date"] = df.apply(get_imp_dates, axis=1)
         df = df[["service_id", "date"]].explode("date")
-        # Shift the dates only for Hellenic Train (to ensure network coverage)
+        # Shift the dates for specific coverage-necessary feeds
         if feed == "man-TrainOSE":
             df["date"] += 60000 # shift from 2019 to 2025
+        if feed == "man-Slovenia":
+            df["date"] += 80000 # shift from 2017 to 2025
         df = df[df["date"] >= start_int]
         df = df.explode("service_id")
         cal = pd.concat([cal, df])
@@ -177,7 +177,7 @@ def get_service_dates(feed: str,
     df = df.groupby("day_id")["service_id"].agg(list).reset_index()
     return df.rename_axis("id")
 
-# x = get_service_dates("man-Estonia"); x
+# x = get_service_dates("ext-Estonia"); x
 
 #%% Process feed
 def process_feed(feed, overwrite=False):

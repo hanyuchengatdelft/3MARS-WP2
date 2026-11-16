@@ -1,15 +1,13 @@
 """Custom configuration and utility tools for this project."""
 
 #%% Imports
-from datetime import datetime
 from pathlib import Path
-from types import SimpleNamespace
 from typing import Union
 
 import geopandas as gpd
 from IPython.display import display
 import logging
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import pyarrow.parquet as pq
@@ -21,20 +19,22 @@ CRS_DEG = "EPSG:4326"
 # Spatial CRS best suited for Europe (unit: metres)
 CRS_EU = "EPSG:3035"
 
+
+#%% URLs/URIs of data sources
+with open("urls.yml", "r") as f:
+    URLS = yaml.safe_load(f)
+
+#%% Model parameters
+with open("params.yml", "r") as f:
+    PARAMS = yaml.safe_load(f)
+
 #%% User-specific environment variables
-try:
-    with open("env.yml", "r") as f:
-        env_data = yaml.safe_load(f)
-except FileNotFoundError:
-    raise FileNotFoundError("Environment file `./env.yml` not found.")
+with open("env.yml", "r") as f:
+    env_data = yaml.safe_load(f)
 
 # Main data directory for the project
 DATA = Path(env_data.get("DATA_DIR", "./data")).resolve()
 DATA.mkdir(parents=True, exist_ok=True)
-
-# Folder for output figures [optional]
-FIG = Path(env_data.get("FIG_DIR", "./fig")).resolve()
-FIG.mkdir(parents=True, exist_ok=True)
 
 # MobilityDatabase API key
 MDB_API_KEY = env_data.get("MDB_API_KEY")
@@ -110,14 +110,6 @@ def save(df: pd.DataFrame | gpd.GeoDataFrame,
     """Write a processed dataframe to a parquet file in a given folder."""
     df.to_parquet(root / f"{name}.parquet", **kwargs)
     log(f"Saved table '{name}'")
-    
-
-def load_params(yml_file: str | Path = Path("params.yml")):
-    """Load the study parameters into a simple namespace object."""
-    with open(yml_file, "r") as f:
-        params = yaml.safe_load(f)
-    log("Loaded parameters")
-    return SimpleNamespace(**params)
 
 
 #%% Data handling
@@ -139,7 +131,7 @@ def normalise(x: Union[np.array, pd.Series], vmin=None, vmax=None):
     return (x - vmin) / (vmax - vmin)
 
 
-def _view_pdf(df: pd.DataFrame, nrow: int = 0):
+def _view_pdf(df: pd.DataFrame, nrow: int = 1):
     mem = df.memory_usage(deep=True).sum() / 1024 ** 2
     log("{:,} rows x {:,} cols [{:.1f} MiB]".format(*df.shape, mem))
     display(pd.concat([pd.DataFrame({
@@ -147,7 +139,7 @@ def _view_pdf(df: pd.DataFrame, nrow: int = 0):
     }).T, df.head(nrow)]))
     return df
 
-def _view_gdf(df: gpd.GeoDataFrame, nrow: int = 0):
+def _view_gdf(df: gpd.GeoDataFrame, nrow: int = 1):
     mem = df.memory_usage(deep=True).sum() / 1024 ** 2
     log("{:,} rows x {:,} cols [{:.1f} MiB] [CRS: EPSG:{}]".format(
         *df.shape, mem, df.crs.to_epsg()))
@@ -160,14 +152,9 @@ def _view_gdf(df: gpd.GeoDataFrame, nrow: int = 0):
 pd.DataFrame.view = _view_pdf
 gpd.GeoDataFrame.view = _view_gdf
 
-def _map(df: gpd.GeoDataFrame, *args, tiles="CartoDB.Voyager", **kwargs):
-    return df.explore(*args, tiles=tiles, **kwargs)
-    
-gpd.GeoDataFrame.map = _map
-
 
 #%% Plotting
-pyplot_params = {
+plt.rcParams.update({
     "axes.edgecolor": "k",
     "axes.edgecolor": "k",
     "axes.formatter.use_mathtext": True,
@@ -200,19 +187,23 @@ pyplot_params = {
     "ytick.labelsize": 10,
     "ytick.left": True,
     "ytick.minor.visible": True,
-}
+})
 
-# def imsave(title=None, fig=None, ax=None, dpi=300,
-#            root=FIG, ext="png", opaque=True):
-#     """Save the current matplotlib figure to disk."""
-#     fig = fig or plt.gcf()
-#     ax = ax or fig.axes[0]
-#     time = datetime.now().strftime("%Y-%m-%d_%H-%m-%S")
-#     title = title or fig._suptitle or ax.get_title() or f"Untitled {time}"
-#     fig.savefig(
-#         f"{mkdir(root)}/{title}.{ext}",
-#         dpi=dpi,
-#         bbox_inches="tight",
-#         transparent=not opaque,
-#         facecolor="white" if opaque else "auto",
-#     )
+def imsave(title=None, fig=None, ax=None, dpi=300,
+           root="fig", ext="png", opaque=True):
+    """Save the current matplotlib figure to disk."""
+    fig = fig or plt.gcf()
+    ax = ax or fig.axes[0]
+    title = title or fig._suptitle or ax.get_title()
+    fig.savefig(
+        f"{mkdir(root)}/{title}.{ext}",
+        dpi=dpi,
+        bbox_inches="tight",
+        transparent=not opaque,
+        facecolor="white" if opaque else "auto",
+    )
+    
+# gpd.GeoDataFrame.map = (
+#     lambda gdf, *args, tiles="CartoDB.Voyager", **kwargs:
+#     gdf.explore(*args, tiles=tiles, **kwargs)
+# )
