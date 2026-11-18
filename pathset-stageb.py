@@ -1,27 +1,3 @@
-"""Stage B: the named pairs, every R0 candidate stored, and the rules side by
-side with their variants and the deck's top-5 selection (plan step 6).
-
-    python -X utf8 pathset-stageb.py [--passed-share X]
-
-For every pair of NAMED_PAIRS (pathset-params.yml):
-  - all R0 candidates (search at MU = inf, car included) with their fate under
-    the default rules: PATHSET_DIR/stage-b/trace-<o>-<d>.parquet (contract
-    TRACE of pathset/schemas.py);
-  - the variants of pathset.view.variants on the same candidates: default;
-    October order; R2 on weighted time; R1 keyed on the mode class; R1 keyed on
-    the route pattern (corridor merge off); the other two forms of the R2 gate
-    (gate_path, gate_pooled); path frequency replaced by the
-    least freq_fixed / least freq_span of the links or the first link's freq;
-    the deck's top 5 per (hub OD pair, mode sequence); the sensitivity values
-    of EPS_T_ABS, MU and RHO_F (STAGE_B_* keys, else view.SENSITIVITY).
-The R0 clause PASSED_SHARE is --passed-share, else the yml value, else the
-value of the latest full run in ps-manifest (view.choose_passed_share), so
-that the counts match ps-funnel and ps-trace; it is written to the report and
-to the manifest. The numba kernels are compiled before the first pair is
-timed (an enumeration towards the origin itself, which has no destination).
-Outputs: PATHSET_DIR/stage-b/variants.parquet (one row per pair and variant)
-and PATHSET_DIR/stage-b/stage-b-report.md.
-"""
 
 #%% Imports
 import argparse
