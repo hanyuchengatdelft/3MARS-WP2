@@ -1,11 +1,4 @@
-"""Car access and egress, and moves between hubs (plan step 2).
 
-Reads ps-hubs (pathset-network.py), the released graph (RELEASE_DIR
-nodes.csv, links.csv), data-upstream fuas and airports, data-upstream-hubs
-air2rail. Writes ps-connectors and ps-moves (contract: pathset/schemas.py).
-
-Run:  python -X utf8 pathset-connectors.py
-"""
 
 #%% Imports
 import time
