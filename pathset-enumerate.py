@@ -1,35 +1,3 @@
-"""Path enumeration: candidate paths and alternatives of every FUA pair.
-
-Plan step 3 ("Generation") and step 4 ("Rules"); the search is
-``pathset/search.py``, the tables are the "Paths" part of
-``pathset/schemas.py``. Inputs from PATHSET_DIR: ps-hubs, ps-links, ps-events,
-ps-event-masks.npy, ps-transfers, ps-connectors, ps-car.
-
-    python -X utf8 pathset-enumerate.py --origins stagec --named
-    python -X utf8 pathset-enumerate.py --origins all --resume --combine
-    python -X utf8 pathset-enumerate.py --combine
-
---origins   all | stagec (STAGE_C_ORIGINS) | comma-separated FUA ids
---workers   worker processes (default WORKERS); each builds the network once
---mu        R3 margin (default MU; "inf" switches R3 off)
---passed-share  share of a link's dated departures that must pass a city for
-            the link to pass it (R0; search.passed_cities). Default
-            PASSED_SHARE of pathset-params.yml; without that key 1 (every
-            run, search.passed_share). The value is hashed and recorded in
-            the manifest (info "passed_share").
---named     trace the NAMED_PAIRS whose origin is run (ps-trace)
---resume    skip origins whose shards carry the hash of this run
---combine   concatenate the shards into the ps-* path tables and write
-            ps-unserved
-
-One shard per origin and table: PATHSET_DIR/paths/<table>/o<ooo>.parquet,
-written atomically (pathset.io.save). Every shard carries the run hash in its
-metadata (attrs "param_hash"); the funnel shard is written last, so an origin
-is complete when all its shards carry the same hash (--resume skips only
-those; --combine refuses anything else). A failed origin stops the run with
-its error. One ps-manifest record per run.
-"""
-
 #%% Imports
 import argparse
 import hashlib
