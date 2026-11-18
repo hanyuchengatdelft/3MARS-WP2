@@ -1,17 +1,4 @@
-"""Static service network of the path-set module (plan step 1).
 
-Builds, from every date of the timeline, the hubs, the service links with
-their frequencies, the events (distinct runs) with their calendars, and the
-direct car alternative. Rail and coach come from data-upstream-hubs, flights,
-car, FUAs and airports from data-upstream. Steps a to i follow the plan's
-Definitions; the rules themselves are in pathset/network.py.
-
-Writes to PATHSET_DIR: ps-hubs, ps-links, ps-sparse, ps-events,
-ps-event-masks.npy, ps-link-members, ps-drops, ps-car and one record in
-ps-manifest.jsonl.
-
-Run:  python -X utf8 pathset-network.py
-"""
 
 #%% Imports
 import time
