@@ -1,13 +1,3 @@
-"""Checks of the path-set outputs (plan, Verification 2). Network part
-(1-5); connectors and moves (6-9); transfers (10-12).
-
-Prints a short report and exits non-zero when a check fails. Expected values
-are those of the plan; a miss is reported with the numbers that explain it,
-the rule is not bent to meet it.
-
-Run:  python -X utf8 pathset-checks.py
-"""
-
 #%% Imports
 import sys
 from itertools import combinations
